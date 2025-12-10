@@ -19,14 +19,35 @@ enum Roles {
   user
 }
 
+//! todo: create the columns createdAt and updatedAt
 model User {
   id       String  @id @default(uuid())
   name     String
   lastname String
   email    String  @unique
   password String
-  role      Roles
+  role     Roles
 
   @@index([email])
   @@map("users")
+}
+
+enum StatusLead {
+  unattended
+  attended
+}
+
+model Lead {
+  id          String      @id @default(uuid())
+  name        String
+  lastname    String
+  email       String
+  phoneNumber String?
+  zipcode     String?
+  comments    String?     @db.Text
+  status      StatusLead  @default(unattended)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("leads")
 }

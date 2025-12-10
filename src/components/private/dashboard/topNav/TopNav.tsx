@@ -32,6 +32,7 @@ export const TopNav = async () => {
             <TopNavItem path="/dashboard" labelText="Home" />
             <TopNavItem path="/dashboard/admins" labelText="Admins" />
             <TopNavItem path="/dashboard/catalog" labelText="Catalog" />
+            <TopNavItem path="/dashboard/leads" labelText="Leads" />
           </ul>
         </div>
 

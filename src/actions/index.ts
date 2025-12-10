@@ -1,2 +1,3 @@
 export * from "./auth/login";
-export * from "./admins/admins.actions";
+export * from "./admin/admins.actions";
+export * from "./admin/leads.actions";

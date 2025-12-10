@@ -3,7 +3,8 @@
 
 :root {
   --background: #0a0a0a;
-   --foreground: #ededed;
+  --foreground: #ededed;
+  --swiper-theme-color: #ededed !important;
 }
 
 @theme inline {
@@ -24,4 +25,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.mySwiper .swiper-slide-active img {
+  animation: zoomIn 0.5s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

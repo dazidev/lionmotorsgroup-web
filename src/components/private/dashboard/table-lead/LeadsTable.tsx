@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { LeadsTableItem } from "../table-lead/LeadsTableItem";
-import { deleteAdmin } from "@/src/actions";
 import { ConfirmModal } from "../modal/ConfirmModal";
 import { Lead } from "@/src/interfaces/lead";
 import { LeadView } from "./LeadView";
+import { deleteLead } from "@/src/actions";
 
 interface Props {
   name: string;
@@ -61,7 +61,7 @@ export const LeadsTable = ({ name, headers, data }: Props) => {
 
   const handleRemove = async () => {
     try {
-      const remove = await deleteAdmin(targetId);
+      const remove = await deleteLead(targetId);
       if (!remove.success) return toast.error(remove.message as string);
       return toast.success(`${remove.message}`);
     } catch (error) {

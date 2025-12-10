@@ -1,4 +1,5 @@
 "use server";
+import { ServerResponse } from "@/src/interfaces";
 import prisma from "@/src/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -32,6 +33,24 @@ export async function setAttend(id: string) {
     return {
       success: false,
       message: "An error occurred while changing the status.",
+    };
+  }
+}
+
+export async function deleteLead(id: string): Promise<ServerResponse> {
+  //! todo: makes validations!!!!!
+  try {
+    await prisma.lead.delete({ where: { id } });
+
+    revalidatePath("/dashboard/leads");
+    return {
+      success: true,
+      message: "The lead has been delete successfully",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "There was an error deleting the lead.",
     };
   }
 }

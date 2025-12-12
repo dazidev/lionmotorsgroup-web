@@ -6,7 +6,6 @@ import { regex } from "@/src/utils/regex";
 import { Roles } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
-import { success } from "zod";
 
 export async function getAdmins() {
   try {

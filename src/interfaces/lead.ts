@@ -17,3 +17,12 @@ export interface LeadsResponse {
   success: boolean;
   data: Lead[];
 }
+
+export interface FormLead {
+  name: string;
+  lastname: string;
+  email: string;
+  zipcode: string;
+  phoneNumber: string;
+  comments: string;
+}

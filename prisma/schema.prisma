@@ -51,3 +51,13 @@ model Lead {
 
   @@map("leads")
 }
+
+model Brand {
+  id        String    @id @default(uuid())
+  name      String
+  imagePath String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("brands")
+}

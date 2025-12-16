@@ -1,12 +1,35 @@
+"use client";
+import { addSpecification } from "@/src/actions";
 import { DefaultButton } from "@/src/components/button/DefaultButton";
 import { CheckBoxInput } from "@/src/components/input/CheckBoxInput";
 import { TextInput } from "@/src/components/input/TextInput";
+import { useCatalog } from "@/src/context/CatalogProvider";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export const SecuritySpecificationModal = () => {
   const [specification, setSpecification] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleAddSpecification = () => {};
+  const { securitySpecsData, revalidateData } = useCatalog();
+
+  const handleAddSpecification = async () => {
+    if (!specification) return; // todo: add more validations!!
+    if (loading) return;
+    setLoading(true);
+
+    const response = await addSpecification(specification, "security");
+    if (!response.success) {
+      toast.error(`${response.message}`);
+      setLoading(false);
+      return;
+    }
+
+    toast.success(`${response.message}`);
+    revalidateData("securitySpecs");
+    setSpecification("");
+    setLoading(false);
+  };
 
   const handleChange = (value: string) => {
     setSpecification(value);
@@ -27,16 +50,16 @@ export const SecuritySpecificationModal = () => {
           <DefaultButton
             name="Add Specification"
             style="bg-green-800 hover:bg-green-700"
-            onClick={() => {}}
+            size="w-42"
+            loading={loading}
+            onClick={handleAddSpecification}
           />
         </div>
       </div>
       <div className="grid grid-cols-4 gap-4">
-        <CheckBoxInput />
-        <CheckBoxInput />
-        <CheckBoxInput />
-        <CheckBoxInput />
-        <CheckBoxInput />
+        {securitySpecsData.map((s) => (
+          <CheckBoxInput key={s.id} name={s.name} value={s.name} id={s.id} />
+        ))}
       </div>
     </div>
   );

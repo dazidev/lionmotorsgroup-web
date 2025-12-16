@@ -1,3 +1,4 @@
+"use client";
 import { getVehiclesDetailsByVin } from "@/src/actions";
 import { CloseButton } from "@/src/components/button/CloseButton";
 import { DefaultButton } from "@/src/components/button/DefaultButton";
@@ -57,8 +58,6 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
     if (!searchResponse.success) return;
 
     const data: VehicleResponse = searchResponse.data;
-
-    console.log(data);
 
     setVehicleData({
       vin: data.general.vin,

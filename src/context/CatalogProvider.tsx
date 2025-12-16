@@ -1,4 +1,12 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+"use client";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import { getBrands, getSpecifications } from "../actions";
 
 export type CatalogSpec = {
   id: string;
@@ -9,12 +17,17 @@ export type CatalogBrand = {
   id: string;
   name: string;
   imagePath: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
+
+type DataOptions = "securitySpecs" | "confortSpecs" | "brands";
 
 type CatalogContextValue = {
   securitySpecsData: CatalogSpec[];
   confortSpecsData: CatalogSpec[];
   brandsData: CatalogBrand[];
+  revalidateData: (option: DataOptions) => void;
 };
 
 const CatalogContext = createContext<CatalogContextValue | null>(null);
@@ -38,13 +51,39 @@ export function CatalogProvider({
     useState<CatalogSpec[]>(confortSpecsData);
   const [brands, setBrands] = useState<CatalogBrand[]>(brandsData);
 
+  const revalidateData = useCallback(async (option: DataOptions) => {
+    switch (option) {
+      case "securitySpecs":
+        const securityResponse = await getSpecifications("security");
+        if (!securityResponse.success) return;
+        setSecuritySpecs(securityResponse.data);
+        break;
+
+      case "confortSpecs":
+        const confortResponse = await getSpecifications("confort");
+        if (!confortResponse.success) return;
+        setConfortSpecs(confortResponse.data);
+        break;
+
+      case "brands":
+        const brandsResponse = await getBrands();
+        if (!brandsResponse.success) return;
+        setBrands(brandsResponse.data!);
+        break;
+
+      default:
+        break;
+    }
+  }, []);
+
   const value = useMemo<CatalogContextValue>(
     () => ({
       securitySpecsData: securitySpecs,
       confortSpecsData: confortSpecs,
       brandsData: brands,
+      revalidateData,
     }),
-    [securitySpecs, confortSpecs, brands]
+    [securitySpecs, confortSpecs, brands, revalidateData]
   );
 
   return (

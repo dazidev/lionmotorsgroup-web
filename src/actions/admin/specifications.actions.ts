@@ -18,9 +18,15 @@ export async function addSpecification(
       },
     });
 
-    return { success: true };
+    return {
+      success: true,
+      message: "The security specification has been create successfully",
+    };
   } catch (error) {
-    return { success: false };
+    return {
+      success: false,
+      message: "There was an error creating the security specification.",
+    };
   }
 }
 

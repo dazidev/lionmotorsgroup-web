@@ -1,14 +1,20 @@
-export const CheckBoxInput = () => {
+interface Props {
+  id: string;
+  name: string;
+  value: string;
+}
+
+export const CheckBoxInput = ({ id, name, value }: Props) => {
   return (
     <div className="flex items-center gap-2">
       <input
         type="checkbox"
-        id="html"
-        name="intereses"
-        value="HTML"
+        id={id}
+        name={name}
+        value={value}
         className="h-4.5 w-4.5 accent-yellow-500 cursor-pointer"
       />
-      <label htmlFor="html">HTML</label>
+      <label htmlFor={id}>{value}</label>
     </div>
   );
 };

@@ -1,22 +1,39 @@
+import { Spinner } from "../loading/Spinner";
+
 interface Props {
   name: string;
   onClick: () => void;
   style?: string;
+  size?: string;
+  loading: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 export const DefaultButton = ({
   name,
   onClick,
   style = "bg-gold-700 hover:bg-gold-600",
+  size,
+  loading,
+  type = "button",
 }: Props) => {
   return (
-    <div className="col-span-2">
+    <div className={`${size}`}>
       <button
-        type="button"
-        className={`w-full h-12 rounded-xl px-5 py-3 text-white hover:cursor-pointer focus:outline-none active:scale-98 ${style}`}
+        type={type}
         onClick={onClick}
+        disabled={loading}
+        className={`
+          w-full h-12 rounded-xl px-5 py-3 text-white focus:outline-none
+          ${
+            loading
+              ? "cursor-not-allowed"
+              : "hover:cursor-pointer active:scale-98"
+          }
+          ${style}
+        `}
       >
-        {name}
+        {loading ? <Spinner /> : name}
       </button>
     </div>
   );

@@ -1,0 +1,33 @@
+interface Props {
+  onClick: (value: boolean, option: string) => void;
+}
+
+export const CloseButton = ({ onClick }: Props) => {
+  const handleClick = () => {
+    onClick(false, "create");
+  };
+
+  return (
+    <button
+      type="button"
+      className="text-gray-400 bg-transparent hover:text-gold-600 hover:cursor-pointer rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
+      onClick={handleClick}
+    >
+      <svg
+        className="w-4 h-4"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 14 14"
+      >
+        <path
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+        />
+      </svg>
+      <span className="sr-only">Close modal</span>
+    </button>
+  );
+};

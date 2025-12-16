@@ -61,3 +61,41 @@ model Brand {
 
   @@map("brands")
 }
+
+enum StatusVehicle {
+  in_stock
+  on_sale
+  sold
+}
+
+model Vehicle {
+  id        String         @id @default(uuid())
+  vin       String
+  year      Int
+  brand     String
+  model     String
+  mileage   Int
+  price     Int
+  status    StatusVehicle
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@index([vin])
+  @@map("vehicles")
+}
+
+enum TypeSpecification {
+  security
+  confort
+}
+
+model Specification {
+  id        String             @id @default(uuid())
+  type      TypeSpecification
+  name      String
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  @@index([type])
+  @@map("specifications")
+}

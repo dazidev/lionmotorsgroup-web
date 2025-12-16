@@ -8,4 +8,5 @@ export const regex = {
   zipcode: /^\d{5}(-\d{4})?$/,
   phoneNumber:
     /^\+?1?\s*(?:\([2-9]\d{2}\)|[2-9]\d{2})[ .-]?\d{3}[ .-]?\d{4}(?:\s*(?:x|ext\.?|extension)\s*\d{1,5})?$/,
+  vin: /^[A-Za-z0-9]{17}$/,
 };

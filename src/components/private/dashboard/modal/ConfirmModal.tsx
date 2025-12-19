@@ -1,3 +1,5 @@
+import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
+
 interface Props {
   open: boolean;
   setOpen: (value: boolean, option: string) => void;
@@ -14,13 +16,15 @@ export const ConfirmModal = ({ open, setOpen, handleRemove }: Props) => {
     setOpen(false, "confirm");
   };
 
+  useLockBodyScroll(open);
+  if (!open) return null;
   return (
     <>
       {open && (
         <div
           id="popup-modal"
           tabIndex={-1}
-          className="overflow-y-auto overflow-x-hidden fixed flex z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          className="overflow-y-auto overflow-x-hidden fixed flex z-50 justify-center items-center w-full md:inset-0 h-screen max-h-full bg-zinc-800/90"
         >
           <div className="relative p-4 w-full max-w-md max-h-full">
             <div className="relative bg-zinc-900 border border-stone-700 rounded-lg shadow-sm">

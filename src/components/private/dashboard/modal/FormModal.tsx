@@ -1,5 +1,6 @@
 "use client";
 
+import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
 import { AdminForm, User } from "@/src/interfaces";
 import React, { useEffect, useState } from "react";
 
@@ -60,6 +61,8 @@ export const FormModal = ({
     setOpen(false);
   };
 
+  useLockBodyScroll(open);
+  if (!open) return null;
   return (
     <>
       {/*<!-- Main modal -->*/}
@@ -67,7 +70,7 @@ export const FormModal = ({
         <div
           id="crud-modal"
           tabIndex={-1}
-          className="overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          className="overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-full bg-zinc-800/90"
         >
           <div className="relative p-4 w-full max-w-md max-h-full">
             {/*<!-- Modal content -->*/}

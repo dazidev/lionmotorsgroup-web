@@ -54,9 +54,9 @@ export const LeadsTableItem = ({
         <td className="px-6 py-4">
           <span className="inline-flex items-center gap-1.5">
             <span
-              className={`w-auto h-auto rounded p-1 ${statusColor} font-bold`}
+              className={`flex w-30 justify-center h-auto rounded p-1 ${statusColor} font-bold`}
             >
-              {status}
+              {status.toUpperCase()}
             </span>
           </span>
         </td>

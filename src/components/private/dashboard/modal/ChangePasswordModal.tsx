@@ -1,4 +1,5 @@
 import { changeAdminPassword } from "@/src/actions";
+import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
 import { regex } from "@/src/utils/regex";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -37,13 +38,15 @@ export const ChangePasswordModal = ({ id, open, setOpen }: Props) => {
     setOpen(false);
   };
 
+  useLockBodyScroll(open);
+  if (!open) return null;
   return (
     <>
       {open && (
         <div
           id="crud-modal"
           tabIndex={-1}
-          className="overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          className="overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-full bg-zinc-800/90"
         >
           <div className="relative p-4 w-full max-w-md max-h-full">
             {/*<!-- Modal content -->*/}

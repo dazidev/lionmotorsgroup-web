@@ -10,7 +10,10 @@ import { getBrands, getSpecifications } from "../actions";
 
 export type CatalogSpec = {
   id: string;
+  type: string;
   name: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type CatalogBrand = {
@@ -21,11 +24,10 @@ export type CatalogBrand = {
   updatedAt: Date;
 };
 
-type DataOptions = "securitySpecs" | "confortSpecs" | "brands";
+type DataOptions = "specifications" | "brands";
 
 type CatalogContextValue = {
-  securitySpecsData: CatalogSpec[];
-  confortSpecsData: CatalogSpec[];
+  specificationsData: CatalogSpec[];
   brandsData: CatalogBrand[];
   revalidateData: (option: DataOptions) => void;
 };
@@ -34,35 +36,25 @@ const CatalogContext = createContext<CatalogContextValue | null>(null);
 
 interface Props {
   children: React.ReactNode;
-  securitySpecsData: CatalogSpec[];
-  confortSpecsData: CatalogSpec[];
+  specificationsData: CatalogSpec[];
   brandsData: CatalogBrand[];
 }
 
 export function CatalogProvider({
   children,
-  securitySpecsData,
-  confortSpecsData,
+  specificationsData,
   brandsData,
 }: Props) {
-  const [securitySpecs, setSecuritySpecs] =
-    useState<CatalogSpec[]>(securitySpecsData);
-  const [confortSpecs, setConfortSpecs] =
-    useState<CatalogSpec[]>(confortSpecsData);
+  const [specifications, setSpecifications] =
+    useState<CatalogSpec[]>(specificationsData);
   const [brands, setBrands] = useState<CatalogBrand[]>(brandsData);
 
   const revalidateData = useCallback(async (option: DataOptions) => {
     switch (option) {
-      case "securitySpecs":
-        const securityResponse = await getSpecifications("security");
+      case "specifications":
+        const securityResponse = await getSpecifications();
         if (!securityResponse.success) return;
-        setSecuritySpecs(securityResponse.data);
-        break;
-
-      case "confortSpecs":
-        const confortResponse = await getSpecifications("confort");
-        if (!confortResponse.success) return;
-        setConfortSpecs(confortResponse.data);
+        setSpecifications(securityResponse.data);
         break;
 
       case "brands":
@@ -78,12 +70,11 @@ export function CatalogProvider({
 
   const value = useMemo<CatalogContextValue>(
     () => ({
-      securitySpecsData: securitySpecs,
-      confortSpecsData: confortSpecs,
+      specificationsData: specifications,
       brandsData: brands,
       revalidateData,
     }),
-    [securitySpecs, confortSpecs, brands, revalidateData]
+    [specifications, brands, revalidateData]
   );
 
   return (

@@ -8,13 +8,16 @@ import { Vehicle } from "@/src/interfaces/index";
 import { createAdmin, deleteVehicle, editAdmin } from "@/src/actions";
 import { FormModal } from "../../modal/FormModal";
 import { ConfirmModal } from "../../modal/ConfirmModal";
-import { CatalogModalAddBrand } from "../modal/CatalogModalAddBrand";
+import { SpecificationManageModal } from "../specification/SpecificationManageModal";
 import { CreateVehicleModal } from "../modal/CreateVehicleModal";
+import { useSearchParams } from "next/navigation";
+import { Pagination } from "../../table/pagination/Pagination";
 
 interface Props {
   name: string;
   headers: string[];
   data?: any[]; //! change to interface vehicle
+  amountPages: number;
 }
 
 interface Modals {
@@ -24,7 +27,12 @@ interface Modals {
   addBrand: boolean;
 }
 
-export const CatalogTable = ({ name, headers, data }: Props) => {
+export const CatalogTable = ({
+  name,
+  headers,
+  data,
+  amountPages = 1,
+}: Props) => {
   const [search, setSearch] = useState("");
   const [dataList, setDataList] = useState<Vehicle[]>();
   const [openModal, setOpenModal] = useState<Modals>({
@@ -34,12 +42,27 @@ export const CatalogTable = ({ name, headers, data }: Props) => {
     addBrand: false,
   });
   const [targetId, setTargetId] = useState("");
+  const [pagination, setPagination] = useState({
+    limitInf: 1,
+    limitSup: data?.length ?? 20,
+  });
+
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
 
   useEffect(() => {
     if (data) {
-      setDataList(data);
+      const end = Number(page) * 20;
+      const start = end - 20;
+      console.log(`${end} ${start}`);
+      const sliceData = data.slice(start, end);
+      setDataList(sliceData);
+      setPagination({
+        limitInf: start,
+        limitSup: sliceData.length + start,
+      });
     }
-  }, [data]);
+  }, [searchParams, data, page]);
 
   const findData = (value: string) => {
     if (!data) return;
@@ -112,26 +135,6 @@ export const CatalogTable = ({ name, headers, data }: Props) => {
     }
   };
 
-  const handleEdit = async (field: any): Promise<boolean> => {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.email)) return false;
-    if (!field.name || !field.lastname || !field.email || !field.role)
-      return false;
-
-    try {
-      const response = await editAdmin(targetId, field);
-      if (!response.success) {
-        toast.error(`${response.message}`);
-        return false;
-      }
-
-      toast.success(`${response.message}`);
-      return true;
-    } catch (error) {
-      toast.error(`${error}`);
-      return false;
-    }
-  };
-
   return (
     <>
       <div className="relative overflow-x-auto shadow-sm sm:rounded-lg m-5 bg-zinc-900 border border-stone-700">
@@ -143,7 +146,7 @@ export const CatalogTable = ({ name, headers, data }: Props) => {
               type="button"
               onClick={() => handleOpenModal(true, "addBrand")}
             >
-              Add Brand
+              Manage Details
             </button>
             <button
               className="block px-5 py-2 text-white font-bold rounded-lg cursor-pointer hover:brightness-110 bg-gold-700"
@@ -193,6 +196,14 @@ export const CatalogTable = ({ name, headers, data }: Props) => {
               ))}
           </tbody>
         </table>
+        {data && (
+          <Pagination
+            pages={30}
+            results={data.length}
+            limitInf={pagination.limitInf}
+            limitSup={pagination.limitSup}
+          />
+        )}
       </div>
       <FormModal
         open={openModal.create}
@@ -200,20 +211,10 @@ export const CatalogTable = ({ name, headers, data }: Props) => {
         handleAction={handleCreate}
         type="create"
       />
-      <CatalogModalAddBrand
+      <SpecificationManageModal
         open={openModal.addBrand}
         setOpen={handleOpenModal}
-        handleAction={handleCreate}
       />
-      {/*<FormModal
-        open={openModal.edit}
-        setOpen={handleOpenModalEdit}
-        handleAction={handleEdit}
-        type="edit"
-        vehicle={data?.find((user) => {
-          return user.id === targetId;
-        })}
-      />*/}
       <ConfirmModal
         open={openModal.confirm}
         setOpen={() => handleOpenModal}

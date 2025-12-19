@@ -3,9 +3,12 @@ import { VehicleState } from "@/src/interfaces";
 interface Props {
   name: string;
   value: string;
-  valueOption: keyof VehicleState;
+  valueOption: keyof VehicleState | "typeSpecification";
   options: string[];
-  onChange: (value: string, option: keyof VehicleState) => void;
+  onChange: (
+    value: string,
+    option: keyof VehicleState | "typeSpecification"
+  ) => void;
   styles?: string;
 }
 
@@ -18,7 +21,9 @@ export const SelectInput = ({
   styles,
 }: Props) => {
   const handleChange = (value: string) => {
-    onChange(value, valueOption);
+    if (valueOption === "typeSpecification") {
+      onChange(value, valueOption);
+    } else onChange(value, valueOption);
   };
 
   return (

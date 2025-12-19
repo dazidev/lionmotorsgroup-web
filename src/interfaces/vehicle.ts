@@ -75,3 +75,19 @@ export interface VehicleState {
   drivetrain: string;
   transmission: string;
 }
+
+export interface Brands {
+  id: string;
+  name: string;
+  imagePath: string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export interface Specifications {
+  id: string;
+  type: string;
+  name: string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}

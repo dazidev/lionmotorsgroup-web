@@ -83,10 +83,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
     });
   };
 
-  const handleChange = (
-    value: string,
-    option: keyof VehicleState | undefined
-  ) => {
+  const handleChange = (value: string, option: string | undefined) => {
     if (option === undefined) return;
     setVehicleData((prev) => ({ ...prev, [option]: value }));
   };
@@ -102,7 +99,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
             <div className="relative h-[calc(100vh-5rem)] overflow-y-auto no-scrollbar bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
               <div className="flex border-b rounded-t border-stone-700 p-5">
                 <span className="text-2xl font-semibold ">Create Vehicle</span>
-                <CloseButton onClick={setOpen} />
+                <CloseButton onClick={setOpen} element="create" />
               </div>
               <div className="flex p-5 border-b rounded-t border-stone-700">
                 <div className="flex justify-left items-end w-150 gap-3">
@@ -120,7 +117,11 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     valueOption="year"
                     onChange={handleChange}
                   />
-                  <DefaultButton name="Search Vehicle" onClick={handleSearch} />
+                  <DefaultButton
+                    name="Search Vehicle"
+                    onClick={handleSearch}
+                    loading
+                  />
                 </div>
               </div>
               <div className="gap-3">

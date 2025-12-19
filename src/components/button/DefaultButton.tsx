@@ -2,7 +2,7 @@ import { Spinner } from "../loading/Spinner";
 
 interface Props {
   name: string;
-  onClick: () => void;
+  onClick?: () => void;
   style?: string;
   size?: string;
   loading: boolean;

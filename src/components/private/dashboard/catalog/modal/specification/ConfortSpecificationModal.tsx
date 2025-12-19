@@ -11,7 +11,7 @@ export const ConfortSpecificationModal = () => {
   const [specification, setSpecification] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { confortSpecsData, revalidateData } = useCatalog();
+  const { specificationsData, revalidateData } = useCatalog();
 
   const handleAddSpecification = async () => {
     if (!specification) return; // todo: add more validations!!
@@ -26,7 +26,7 @@ export const ConfortSpecificationModal = () => {
     }
 
     toast.success(`${response.message}`);
-    revalidateData("confortSpecs");
+    revalidateData("specifications");
     setSpecification("");
     setLoading(false);
   };
@@ -57,9 +57,11 @@ export const ConfortSpecificationModal = () => {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-4">
-        {confortSpecsData.map((s) => (
-          <CheckBoxInput key={s.id} name={s.name} value={s.name} id={s.id} />
-        ))}
+        {specificationsData
+          .filter((row) => row.type.includes("confort"))
+          .map((s) => (
+            <CheckBoxInput key={s.id} value={s.name} id={s.id} />
+          ))}
       </div>
     </div>
   );

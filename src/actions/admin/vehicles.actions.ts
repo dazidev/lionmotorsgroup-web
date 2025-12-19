@@ -4,7 +4,7 @@ import { ServerResponse, VpicDecodeVinValuesResponse } from "@/src/interfaces";
 import prisma from "@/src/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-export async function getVehicles() {
+export async function getVehicles(amount?: number) {
   try {
     const vehicles = await prisma.vehicle.findMany();
     if (!vehicles) return { success: false };

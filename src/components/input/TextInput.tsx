@@ -1,8 +1,8 @@
 import { VehicleState } from "@/src/interfaces";
 import { capitalize } from "@/src/utils/format";
 
-type Options = keyof VehicleState;
-type OnChange = (value: string, option?: Options) => void;
+type Options = keyof VehicleState | string;
+type OnChange = (value: string, option?: string | undefined) => void;
 
 interface Props {
   name: string;
@@ -26,7 +26,7 @@ export const TextInput = ({
   const handleChange = (value: string) => {
     if (valueOption !== "specification") return onChange(value, valueOption);
 
-    onChange(value);
+    onChange(value, valueOption);
   };
 
   return (

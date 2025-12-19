@@ -1,10 +1,11 @@
 interface Props {
   onClick: (value: boolean, option: string) => void;
+  element: string;
 }
 
-export const CloseButton = ({ onClick }: Props) => {
+export const CloseButton = ({ onClick, element }: Props) => {
   const handleClick = () => {
-    onClick(false, "create");
+    onClick(false, element);
   };
 
   return (

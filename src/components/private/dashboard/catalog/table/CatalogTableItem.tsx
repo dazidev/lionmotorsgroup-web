@@ -42,11 +42,9 @@ export const CatalogTableItem = ({
 
   return (
     <tr className="bg-zinc-900 hover:bg-zinc-800 text-gray-50">
-      <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap ">
-        <div className="flex items-center gap-3">
-          <span className="font-semibold">{model}</span>
-        </div>
-      </th>
+      <td className="px-6 py-4">
+        <span className="font-semibold">{model}</span>
+      </td>
       <td className="px-6 py-4">
         <span className=""> {brand} </span>
       </td>
@@ -55,13 +53,13 @@ export const CatalogTableItem = ({
       </td>
       <td className="px-6 py-4">
         <span
-          className={`inline-flex items-center py-1 px-1.5 rounded gap-1.5 font-semibold ${colorStatus}`}
+          className={`inline-flex items-center justify-center py-1 px-1.5 w-22 rounded gap-1.5 font-semibold ${colorStatus}`}
         >
           {formatStatus}
         </span>
       </td>
       <td className="px-6 py-4">
-        <span className="inline-flex items-centerrounded-full">{`$${formatPrice}`}</span>
+        <span className="inline-flex items-centerrounded-full justify-end">{`$${formatPrice}`}</span>
       </td>
       <td className="pl-6 py-4">
         <div className="flex gap-2">

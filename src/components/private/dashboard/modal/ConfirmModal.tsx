@@ -1,17 +1,17 @@
 interface Props {
   open: boolean;
-  setOpen: (value: boolean) => void;
+  setOpen: (value: boolean, option: string) => void;
   handleRemove: () => void;
 }
 
 export const ConfirmModal = ({ open, setOpen, handleRemove }: Props) => {
   const handleConfirm = () => {
     handleRemove();
-    setOpen(false);
+    setOpen(false, "confirm");
   };
 
   const handleCancel = () => {
-    setOpen(false);
+    setOpen(false, "confirm");
   };
 
   return (
@@ -29,7 +29,7 @@ export const ConfirmModal = ({ open, setOpen, handleRemove }: Props) => {
                 className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:text-gold-700 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                 data-modal-hide="popup-modal"
                 onClick={() => {
-                  setOpen(false);
+                  setOpen(false, "confirm");
                 }}
               >
                 <svg

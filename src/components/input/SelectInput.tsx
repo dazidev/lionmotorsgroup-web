@@ -1,10 +1,13 @@
+import { CatalogBrand } from "@/src/context/CatalogProvider";
 import { VehicleState } from "@/src/interfaces";
+
+type ValueOption = string[] | object[];
 
 interface Props {
   name: string;
   value: string;
   valueOption: keyof VehicleState | "typeSpecification";
-  options: string[];
+  options: ValueOption;
   onChange: (
     value: string,
     option: keyof VehicleState | "typeSpecification"
@@ -26,6 +29,10 @@ export const SelectInput = ({
     } else onChange(value, valueOption);
   };
 
+  function isBrand(data: object): data is CatalogBrand {
+    return "imagePath" in data;
+  }
+
   return (
     <div className={`col-span-2 ${styles}`}>
       <label htmlFor={name} className="block mb-2 text-sm font-medium">
@@ -43,21 +50,31 @@ export const SelectInput = ({
         {options.map((option) => {
           let formatOption;
 
-          if (
-            option === "in_stock" ||
-            option === "on_sale" ||
-            option === "sold"
-          ) {
-            formatOption = option.replace("_", " ").toUpperCase();
-          } else {
-            formatOption = option;
-          }
+          if (typeof option === "string") {
+            if (
+              option === "in_stock" ||
+              option === "on_sale" ||
+              option === "sold"
+            ) {
+              formatOption = option.replace("_", " ").toUpperCase();
+            } else {
+              formatOption = option;
+            }
 
-          return (
-            <option key={option} value={option}>
-              {formatOption}
-            </option>
-          );
+            return (
+              <option key={option} value={option}>
+                {formatOption}
+              </option>
+            );
+          } else if (typeof option === "object") {
+            if (isBrand(option)) {
+              return (
+                <option key={option.id} value={option.id}>
+                  {option.name}
+                </option>
+              );
+            }
+          }
         })}
       </select>
     </div>

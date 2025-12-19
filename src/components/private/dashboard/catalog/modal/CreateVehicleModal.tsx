@@ -14,6 +14,7 @@ import { useState } from "react";
 import { SecuritySpecificationModal } from "./specification/SecuritySpecificationModal";
 import { ConfortSpecificationModal } from "./specification/ConfortSpecificationModal";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
+import { useCatalog } from "@/src/context/CatalogProvider";
 
 interface Props {
   open: boolean;
@@ -49,6 +50,8 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
   const [loading, setLoading] = useState({
     searchVehicle: false,
   });
+
+  const { brandsData } = useCatalog();
 
   const statusOptions = ["in_stock", "on_sale", "sold"];
 
@@ -150,8 +153,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   valueOption="year"
                   onChange={handleChange}
                 />
-                <TextInput
+                <SelectInput
                   name={"Brand"}
+                  options={brandsData}
                   styles="flex-2"
                   value={vehicleData.brand}
                   valueOption="brand"

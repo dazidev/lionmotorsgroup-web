@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 
+
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -44,3 +45,16 @@ body {
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(150%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}

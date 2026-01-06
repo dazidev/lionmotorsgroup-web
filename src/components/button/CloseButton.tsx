@@ -1,12 +1,11 @@
+"use client";
 interface Props {
   onClick: (value: boolean, option: string) => void;
-  element: string;
+  element?: string;
 }
 
-export const CloseButton = ({ onClick, element }: Props) => {
-  const handleClick = () => {
-    onClick(false, element);
-  };
+export const CloseButton = ({ onClick, element = "" }: Props) => {
+  const handleClick = () => onClick(false, element);
 
   return (
     <button

@@ -1,7 +1,9 @@
 "use client";
 
 import { Brands, Specifications } from "@/src/interfaces";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import ImageWithLoader from "../../../../image/ImageWithLoader";
 
 type Data = Specifications | Brands;
 
@@ -56,11 +58,22 @@ export const SpecificationTableItem = ({
       {formatData &&
         Object.entries(formatData)
           .filter(([key]) => !["id", "createdAt", "updatedAt"].includes(key))
-          .map(([key, value]) => (
-            <td key={key} className="px-6 py-4">
-              <span className="">{value}</span>
-            </td>
-          ))}
+          .map(([key, value]) => {
+            if (key === "imagePath") {
+              const linkImage = `https://images.lionmotorsgroup.com/${value}`;
+              return (
+                <td key={key} className="flex px-6 py-4 h-20">
+                  <ImageWithLoader src={linkImage} alt="brand-logo" />
+                </td>
+              );
+            }
+
+            return (
+              <td key={key} className="px-6 py-4">
+                <span className="">{value}</span>
+              </td>
+            );
+          })}
       <td className="pl-6 py-4">
         <div className="flex gap-2">
           <button

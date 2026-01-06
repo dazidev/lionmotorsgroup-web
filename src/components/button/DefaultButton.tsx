@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { Spinner } from "../loading/Spinner";
 
 interface Props {

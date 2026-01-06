@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { SpecificationTableItem } from "./SpecificationTableItem";
@@ -8,11 +8,13 @@ import { Brands, Specifications } from "@/src/interfaces/index";
 import { deleteBrand, deleteSpecification } from "@/src/actions";
 import { ConfirmModal } from "../../modal/ConfirmModal";
 import { useCatalog } from "@/src/context/CatalogProvider";
+import { DefaultButton } from "../../../../button/DefaultButton";
 
 interface Props {
   name: string;
   headers: string[];
   data?: Specifications[] | Brands[];
+  setOpenAddBrand: () => void;
 }
 
 interface Modals {
@@ -21,7 +23,12 @@ interface Modals {
   addBrand: boolean;
 }
 
-export const SpecificationTable = ({ name, headers, data }: Props) => {
+export const SpecificationTable = ({
+  name,
+  headers,
+  data,
+  setOpenAddBrand,
+}: Props) => {
   const { revalidateData } = useCatalog();
   const [search, setSearch] = useState("");
   const [dataList, setDataList] = useState<Specifications[] | Brands[]>();
@@ -93,6 +100,13 @@ export const SpecificationTable = ({ name, headers, data }: Props) => {
       <div className="relative overflow-x-auto shadow-sm sm:rounded-lg m-5 bg-zinc-900 border border-stone-700">
         <div className="flex flex-row w-full h-20 items-center justify-between border-b border-stone-700 px-10">
           <span className="text-xl text-gray-50 font-bold">{`${name}`}</span>
+          {name === "Brands" && (
+            <DefaultButton
+              name={"Add Brand"}
+              loading={false}
+              onClick={setOpenAddBrand}
+            />
+          )}
         </div>
         <div className="px-8 py-6">
           <div className="relative">

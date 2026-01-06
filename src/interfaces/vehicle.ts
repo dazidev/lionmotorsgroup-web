@@ -91,3 +91,9 @@ export interface Specifications {
   createdAt: Date | string;
   updatedAt: Date | string;
 }
+
+export interface DataImage {
+  mime: string;
+  ext: string | undefined;
+  size: number;
+}

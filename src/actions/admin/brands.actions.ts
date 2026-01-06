@@ -1,7 +1,13 @@
 "use server";
 
-import { ServerResponse } from "@/src/interfaces";
+import { DataImage, ServerResponse } from "@/src/interfaces";
+import { deleteByKey, r2 } from "@/src/lib/cloudflare-r2";
 import prisma from "@/src/lib/prisma";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
+const MAX_BYTES = Number(process.env.MAX_UPLOAD_BYTES ?? 5_000_000);
+const BUCKET = process.env.R2_BUCKET!;
 
 export async function getBrands() {
   try {
@@ -17,20 +23,50 @@ export async function getBrands() {
   }
 }
 
-export async function addBrand(name: string): Promise<ServerResponse> {
+export async function addBrand(
+  name: string,
+  dataImage: DataImage
+): Promise<ServerResponse> {
   //! todo: makes validations!!!!!
 
   try {
-    await prisma.brand.create({
+    const { mime, ext, size } = dataImage;
+
+    //* Image validation
+    const allow = ["image/jpeg", "image/png", "image/webp", "image/jpg"];
+    if (!allow.includes(mime)) throw "";
+    if (!ext || ext.length > 8) throw "";
+    if (!size || size > MAX_BYTES) throw "";
+
+    const brand = await prisma.brand.create({
       data: {
         name,
         imagePath: "",
       },
     });
 
+    const key = `catalog/brands/images/${
+      brand.id
+    }/${Date.now()}-${crypto.randomUUID()}.${dataImage.ext}`;
+
+    const cmd = new PutObjectCommand({
+      Bucket: BUCKET,
+      Key: key,
+      ContentType: mime,
+      // Opcional: limitar tamaño esperado
+      // ContentLength: size,
+    });
+
+    const url = await getSignedUrl(r2, cmd, { expiresIn: 600 });
+
     return {
       success: true,
       message: "The brand has been create successfully.",
+      data: {
+        url: url ?? "",
+        key: key ?? "",
+        brandId: brand.id,
+      },
     };
   } catch (error) {
     return {
@@ -40,10 +76,27 @@ export async function addBrand(name: string): Promise<ServerResponse> {
   }
 }
 
+export async function attachBrandImage(
+  id: string,
+  key: string
+): Promise<ServerResponse> {
+  try {
+    await prisma.brand.update({ where: { id }, data: { imagePath: key } });
+    return { success: true };
+  } catch (error) {
+    return { success: false };
+  }
+}
+
 export async function deleteBrand(id: string): Promise<ServerResponse> {
   //! todo: makes validations!!!!!
   try {
-    await prisma.brand.delete({ where: { id } });
+    const brand = await prisma.brand.delete({
+      where: { id },
+      select: { imagePath: true },
+    });
+
+    await deleteByKey(BUCKET, brand.imagePath);
 
     return {
       success: true,

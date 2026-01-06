@@ -19,7 +19,7 @@ export const TopNavPublic = async () => {
 
         <div className="">
           <ul className="flex flex-row justify-center">
-            <TopNavItem path="/" labelText="Home" />
+            <TopNavItem path="/home" labelText="Home" />
             <TopNavItem path="/catalog" labelText="Catalog" />
             <TopNavItem path="/about-us" labelText="About Us" />
           </ul>

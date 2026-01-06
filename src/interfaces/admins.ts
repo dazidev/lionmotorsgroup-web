@@ -5,3 +5,8 @@ export interface AdminForm {
   password?: string;
   role: string;
 }
+
+export interface PromiseResponse {
+  success: boolean;
+  message?: string;
+}

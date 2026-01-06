@@ -6,9 +6,12 @@ import { useState } from "react";
 import { SpecificationTable } from "./SpecificationTable";
 import { useCatalog } from "@/src/context/CatalogProvider";
 import { SelectInput } from "@/src/components/input/SelectInput";
-import { addBrand, addSpecification } from "@/src/actions";
+import { addBrand, addSpecification, attachBrandImage } from "@/src/actions";
 import toast from "react-hot-toast";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
+import { ImageInput } from "@/src/components/input/ImageInput";
+import { AddBrandModal } from "./AddBrandModal";
+import { DataImage, PromiseResponse } from "@/src/interfaces";
 
 interface Props {
   open: boolean;
@@ -23,6 +26,9 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
     specification: "",
     typeSpecification: "",
   });
+  const [brandModal, setBrandModal] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const [page, setPage] = useState<Pages>("brands");
 
@@ -30,7 +36,7 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
 
   const headers =
     page === "brands"
-      ? ["name", "path", "actions"]
+      ? ["name", "image", "actions"]
       : ["name", "type", "actions"];
 
   const handleChange = (value: string, option: string | undefined) => {
@@ -44,18 +50,6 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
       specification: "",
       typeSpecification: "",
     }));
-  };
-
-  const handleAddBrand = async () => {
-    if (!field.brand) return;
-
-    const response = await addBrand(field.brand);
-
-    if (!response.success) return toast.error(`${response.message}`);
-    toast.success(`${response.message}`);
-    revalidateData("brands");
-    clearFields();
-    return;
   };
 
   const handleAddSpecification = async () => {
@@ -76,6 +70,54 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
     revalidateData("specifications");
     clearFields();
     return;
+  };
+
+  const handleOpenBrandModal = () => {
+    setBrandModal(!brandModal);
+  };
+
+  const handleAddBrand = async (): Promise<PromiseResponse> => {
+    try {
+      if (!field.brand) throw "Insert brand!";
+      if (!file) throw "Select image!";
+
+      const dataImage: DataImage = {
+        mime: file.type,
+        ext: file.name.split(".").pop(),
+        size: file.size,
+      };
+
+      const response = await addBrand(field.brand, dataImage);
+
+      if (!response.success) throw response.message;
+
+      const { url, key, brandId } = response.data;
+
+      const putRes = await fetch(url, {
+        method: "PUT",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+
+      if (!putRes.ok) throw "There was an error uploading the image.";
+
+      const attachResponse = await attachBrandImage(brandId, key);
+
+      if (!attachResponse.success)
+        throw "There was an error attaching the image.";
+
+      toast.success(`${response.message}`);
+      revalidateData("brands");
+      clearFields();
+      return {
+        success: true,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: typeof error === "string" ? error : "Unknown error.",
+      };
+    }
   };
 
   useLockBodyScroll(open);
@@ -138,22 +180,7 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
             ></div>
           </div>
           <div className="flex p-5">
-            {page === "brands" ? (
-              <div className="flex flex-row items-end gap-3">
-                <TextInput
-                  name="Brand"
-                  value={field.brand}
-                  valueOption="brand"
-                  onChange={handleChange}
-                />
-                <DefaultButton
-                  name="Add Brand"
-                  type="button"
-                  loading={false}
-                  onClick={handleAddBrand}
-                />
-              </div>
-            ) : (
+            {page === "specifications" && (
               <div className="flex flex-row items-end gap-3">
                 <TextInput
                   name="Specification"
@@ -181,9 +208,21 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
             name={page === "brands" ? "Brands" : "Specifications"}
             headers={headers}
             data={page === "brands" ? brandsData : specificationsData}
+            setOpenAddBrand={handleOpenBrandModal}
           />
         </div>
       </div>
+      <AddBrandModal
+        open={brandModal}
+        setOpen={handleOpenBrandModal}
+        file={file}
+        setFile={setFile}
+        preview={preview}
+        setPreview={setPreview}
+        addBrand={handleAddBrand}
+        brand={field.brand}
+        setBrand={handleChange}
+      />
     </div>
   );
 };

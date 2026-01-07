@@ -53,11 +53,13 @@ model Lead {
 }
 
 model Brand {
-  id        String    @id @default(uuid())
+  id        String            @id @default(uuid())
   name      String
   imagePath String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  vehicles  VehicleGeneral[]
 
   @@map("brands")
 }
@@ -68,20 +70,59 @@ enum StatusVehicle {
   sold
 }
 
-model Vehicle {
-  id        String         @id @default(uuid())
-  vin       String
-  year      Int
-  brand     String
-  model     String
-  mileage   Int
-  price     Int
-  status    StatusVehicle
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
+model VehicleGeneral {
+  id             String                  @id @default(uuid())
+  vin            String                  @unique
+  year           Int
+  brandId        String
+  model          String
+  series         String
+  doors          Int
+  color_ext      String
+  color_int      String
+  mileage        Int
+  price          Int
+  status         StatusVehicle
+  type           String
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
 
-  @@index([vin])
-  @@map("vehicles")
+  brand          Brand                  @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  technical      VehicleTechnical?
+  images         VehicleImage[]
+  specifications VehicleSpecification[]
+
+  @@map("vehicles_general")
+}
+
+model VehicleTechnical {
+  vehicleId            String          @id
+  engine_fuel_type     String
+  engine_configuration String
+  engine_cylinders     Int
+  engine_power         Int
+  engine_displacement  Float
+  engine_turbo         String
+  drivetrain           String
+  transmission         String
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  vehicle              VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@map("vehicles_technical")
+}
+
+model VehicleImage {
+  id        String          @id @default(uuid())
+  vehicleId String
+  key       String
+  position  Int
+
+  vehicle   VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId])
+  @@map("vehicle_images")
 }
 
 enum TypeSpecification {
@@ -90,12 +131,27 @@ enum TypeSpecification {
 }
 
 model Specification {
-  id        String             @id @default(uuid())
+  id        String                  @id @default(uuid())
   type      TypeSpecification
   name      String
-  createdAt DateTime           @default(now())
-  updatedAt DateTime           @updatedAt
+  createdAt DateTime                @default(now())
+  updatedAt DateTime                @updatedAt
+
+  vehicles  VehicleSpecification[]
 
   @@index([type])
   @@map("specifications")
+}
+
+model VehicleSpecification {
+  vehicleId       String
+  specificationId String
+
+  vehicle         VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  specification   Specification  @relation(fields: [specificationId], references: [id], onDelete: Cascade)
+
+  @@id([vehicleId, specificationId])
+  @@index([vehicleId])
+  @@index([specificationId])
+  @@map("vehicle_specifications")
 }

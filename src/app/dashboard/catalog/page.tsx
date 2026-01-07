@@ -28,6 +28,17 @@ export default async function CatalogPage({ searchParams }: Props) {
     getBrands(),
   ]);
 
+  const specData = specificationsRes.data!.map((spec) => {
+    return {
+      id: spec.id,
+      name: spec.name,
+      type: spec.type,
+      checked: false,
+      createdAt: spec.createdAt,
+      updatedAt: spec.updatedAt,
+    };
+  });
+
   const amountPages = vehiclesRes.data
     ? Math.ceil(vehiclesRes.data.length / 20)
     : 1;
@@ -36,7 +47,7 @@ export default async function CatalogPage({ searchParams }: Props) {
     <div className="flex flex-col items-center justify-between min-h-[calc(100vh-8.25rem)] w-[90%]">
       <div className="m-8 w-full">
         <CatalogProvider
-          specificationsData={specificationsRes.data ?? []}
+          specificationsData={specData ?? []}
           brandsData={brandsRes.data ?? []}
         >
           <CatalogTable

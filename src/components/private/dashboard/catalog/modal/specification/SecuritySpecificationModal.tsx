@@ -60,7 +60,12 @@ export const SecuritySpecificationModal = () => {
         {specificationsData
           .filter((row) => row.type.includes("security"))
           .map((s) => (
-            <CheckBoxInput key={s.id} value={s.name} id={s.id} />
+            <CheckBoxInput
+              key={s.id}
+              value={s.name}
+              id={s.id}
+              checked={s.checked}
+            />
           ))}
       </div>
     </div>

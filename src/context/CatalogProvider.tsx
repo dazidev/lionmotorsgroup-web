@@ -7,11 +7,13 @@ import React, {
   useState,
 } from "react";
 import { getBrands, getSpecifications } from "../actions";
+import { ServerResponse, Specification } from "../interfaces";
 
 export type CatalogSpec = {
   id: string;
   type: string;
   name: string;
+  checked: boolean;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -30,6 +32,7 @@ type CatalogContextValue = {
   specificationsData: CatalogSpec[];
   brandsData: CatalogBrand[];
   revalidateData: (option: DataOptions) => void;
+  handleCheckedSpec: (id: string) => void;
 };
 
 const CatalogContext = createContext<CatalogContextValue | null>(null);
@@ -52,9 +55,21 @@ export function CatalogProvider({
   const revalidateData = useCallback(async (option: DataOptions) => {
     switch (option) {
       case "specifications":
-        const securityResponse = await getSpecifications();
-        if (!securityResponse.success) return;
-        setSpecifications(securityResponse.data);
+        const specResponse: ServerResponse<Specification[]> =
+          await getSpecifications();
+        if (!specResponse.success) return;
+        if (!specResponse.data) return;
+        const data: CatalogSpec[] = specResponse.data?.map((spec) => {
+          return {
+            id: spec.id,
+            type: spec.type,
+            name: spec.name,
+            checked: false,
+            createdAt: spec.createdAt,
+            updatedAt: spec.updatedAt,
+          };
+        });
+        setSpecifications(data);
         break;
 
       case "brands":
@@ -68,13 +83,25 @@ export function CatalogProvider({
     }
   }, []);
 
+  const handleCheckedSpec = useCallback((id: string) => {
+    setSpecifications((prev) =>
+      prev.map((spec) => {
+        if (spec.id === id) {
+          return { ...spec, checked: !spec.checked };
+        }
+        return spec;
+      })
+    );
+  }, []);
+
   const value = useMemo<CatalogContextValue>(
     () => ({
       specificationsData: specifications,
       brandsData: brands,
       revalidateData,
+      handleCheckedSpec,
     }),
-    [specifications, brands, revalidateData]
+    [specifications, brands, revalidateData, handleCheckedSpec]
   );
 
   return (

@@ -58,7 +58,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
   const handleSearch = async () => {
     if (!regex.vin.test(vehicleData.vin)) return;
 
-    const searchResponse: ServerResponse = await getVehiclesDetailsByVin(
+    const searchResponse: ServerResponse<any> = await getVehiclesDetailsByVin(
       vehicleData.vin,
       vehicleData.year
     );

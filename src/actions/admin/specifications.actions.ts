@@ -1,10 +1,11 @@
 "use server";
-import { ServerResponse } from "@/src/interfaces";
+import { ServerResponse, Specification } from "@/src/interfaces";
 import prisma from "@/src/lib/prisma";
+import { TypeSpecification } from "@prisma/client";
 
-type Specification = "security" | "confort";
-
-export async function getSpecifications(): Promise<ServerResponse> {
+export async function getSpecifications(): Promise<
+  ServerResponse<Specification[]>
+> {
   try {
     const specifications = await prisma.specification.findMany();
 
@@ -21,8 +22,8 @@ export async function getSpecifications(): Promise<ServerResponse> {
 
 export async function addSpecification(
   name: string,
-  type: Specification
-): Promise<ServerResponse> {
+  type: TypeSpecification
+): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
 
   try {
@@ -45,7 +46,9 @@ export async function addSpecification(
   }
 }
 
-export async function deleteSpecification(id: string): Promise<ServerResponse> {
+export async function deleteSpecification(
+  id: string
+): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
     await prisma.specification.delete({ where: { id } });

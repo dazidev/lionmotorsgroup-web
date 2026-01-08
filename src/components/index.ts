@@ -16,3 +16,6 @@ export * from "./button/CloseButton";
 export * from "./button/DefaultButton";
 
 export * from "./loading/Skeleton";
+
+export * from "./input/SelectInput";
+export * from "./input/TextInput";

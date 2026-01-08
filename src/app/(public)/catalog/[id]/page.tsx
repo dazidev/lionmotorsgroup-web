@@ -1,5 +1,21 @@
 import { titleFont } from "@/src/config/fonts";
 import { Carousel, FormAvailability } from "@/src/components";
+import { SwiperSlide } from "swiper/react";
+import Image from "next/image";
+
+const carImages = [
+  { src: "/cars/1.webp", width: 1200, height: 1000 },
+  { src: "/cars/2.jpg", width: 1200, height: 1000 },
+  { src: "/cars/3.jpg", width: 1200, height: 1000 },
+  { src: "/cars/4.jpg", width: 1200, height: 1000 },
+  { src: "/cars/5.jpg", width: 1200, height: 1000 },
+  { src: "/cars/6.jpg", width: 1200, height: 1000 },
+  { src: "/cars/7.avif", width: 1200, height: 1000 },
+  { src: "/cars/8.webp", width: 1200, height: 1000 },
+  { src: "/cars/9.webp", width: 1200, height: 1000 },
+  { src: "/cars/10.avif", width: 1200, height: 1000 },
+  { src: "/cars/11.webp", width: 1200, height: 1000 },
+];
 
 interface Props {
   params: { id: string };
@@ -10,7 +26,25 @@ export default function CatalogVehicleIdPage({ params }: Props) {
     <>
       <div className="flex flex-row w-full items-start pt-5 overflow-hidden gap-5">
         <div className="flex-8 min-w-0 text-xl gap-5">
-          <Carousel width="" height="1"></Carousel>
+          <Carousel>
+            {carImages.map((image, index) => (
+              <SwiperSlide
+                key={index}
+                className="flex items-center justify-center bg-linear-to-br from-gray-100 to-gray-200"
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={image.src}
+                    alt={`Car ${index + 1}`}
+                    width={image.width}
+                    height={image.height}
+                    className="object-cover w-full hover:scale-105 transition-transform duration-500"
+                    priority={index === 0}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Carousel>
           <section className="flex flex-col mt-5 gap-3">
             <h2 className="text-3xl">General Information</h2>
             <span className="block w-full h-px bg-gray-300"></span>

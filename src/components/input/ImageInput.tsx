@@ -12,6 +12,7 @@ interface Props {
   preview: string | null;
   setPreview: (f: string | null) => void;
   inputId?: string;
+  label?: boolean;
 }
 
 export const ImageInput = ({
@@ -20,6 +21,7 @@ export const ImageInput = ({
   preview,
   setPreview,
   inputId = "1",
+  label = true,
 }: Props) => {
   const [error, setError] = useState("");
 
@@ -44,10 +46,10 @@ export const ImageInput = ({
 
   return (
     <div className="flex flex-col w-full gap-2">
-      <span className="text-sm">Image</span>
+      {label && <span className="text-sm">Image</span>}
       <label
         htmlFor={inputId}
-        className="flex w-full h-auto justify-center items-center rounded-xl border-2 border-dashed aspect-3/2"
+        className="flex w-full h-auto justify-center items-center rounded-2xl border-2 border-dashed aspect-3/2"
       >
         {preview ? (
           <img

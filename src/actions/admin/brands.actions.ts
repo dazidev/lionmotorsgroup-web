@@ -26,7 +26,7 @@ export async function getBrands() {
 export async function addBrand(
   name: string,
   dataImage: DataImage
-): Promise<ServerResponse> {
+): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
 
   try {
@@ -79,7 +79,7 @@ export async function addBrand(
 export async function attachBrandImage(
   id: string,
   key: string
-): Promise<ServerResponse> {
+): Promise<ServerResponse<any>> {
   try {
     await prisma.brand.update({ where: { id }, data: { imagePath: key } });
     return { success: true };
@@ -88,7 +88,7 @@ export async function attachBrandImage(
   }
 }
 
-export async function deleteBrand(id: string): Promise<ServerResponse> {
+export async function deleteBrand(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
     const brand = await prisma.brand.delete({

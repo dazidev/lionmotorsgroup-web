@@ -1,5 +1,9 @@
 "use client";
-import { getVehiclesDetailsByVin } from "@/src/actions";
+import {
+  attachVehicleImages,
+  createVehicle,
+  getVehiclesDetailsByVin,
+} from "@/src/actions";
 import { DefaultButton } from "@/src/components/button/DefaultButton";
 import { CloseButton } from "@/src/components/button/CloseButton";
 import { SelectInput } from "@/src/components/input/SelectInput";
@@ -20,6 +24,7 @@ import { SwiperSlide } from "swiper/react";
 import { ImageInput } from "@/src/components/input/ImageInput";
 
 import { LuMinus, LuPlus } from "react-icons/lu";
+import toast from "react-hot-toast";
 
 type ImageItem = {
   file: File | null;
@@ -33,54 +38,57 @@ interface Props {
   setOpen: (value: boolean, option: string) => void;
 }
 
+const statusOptions = ["in_stock", "on_sale", "sold"];
+const NUM_INITIAL_IMAGES = 5;
+
+const initialVehicleState = {
+  //* General
+  vin: "",
+  year: "",
+  brand: "",
+  model: "",
+  series: "",
+  doors: "",
+  colorExt: "",
+  colorInt: "",
+  mileage: "",
+  price: "",
+  status: "",
+  type: "",
+  //* Technical
+  engineFuelType: "",
+  engineConfiguration: "",
+  engineCylinders: "",
+  enginePower: "",
+  engineDisplacement: "",
+  engineTurbo: "",
+  drivetrain: "",
+  transmission: "",
+};
+
 export const CreateVehicleModal = ({ open, setOpen }: Props) => {
-  const [vehicleData, setVehicleData] = useState<VehicleState>({
-    //* General
-    vin: "",
-    year: "",
-    brand: "",
-    model: "",
-    series: "",
-    doors: "",
-    colorExt: "",
-    colorInt: "",
-    mileage: "",
-    price: "",
-    status: "",
-    type: "",
-    //* Technical
-    engineFuelType: "",
-    engineConfiguration: "",
-    engineCylinders: "",
-    enginePower: "",
-    engineDisplacement: "",
-    engineTurbo: "",
-    drivetrain: "",
-    transmission: "",
-  });
+  const [vehicleData, setVehicleData] =
+    useState<VehicleState>(initialVehicleState);
   const [loading, setLoading] = useState({
     searchVehicle: false,
+    createVehicle: false,
   });
-  const { brandsData } = useCatalog();
+  const { brandsData, specificationsData, resetCheckedSpec } = useCatalog();
 
-  const [imageAmount, setImageAmount] = useState(5);
+  const [imageAmount, setImageAmount] = useState(NUM_INITIAL_IMAGES);
   const [images, setImages] = useState<ImagesState>([]);
 
-  let amount = Array.from({ length: imageAmount }, (_, i) => i + 1);
+  const amount = Array.from({ length: NUM_INITIAL_IMAGES }, (_, i) => i + 1);
 
   useEffect(() => {
-    amount = Array.from({ length: imageAmount }, (_, i) => i + 1);
+    if (open === false) {
+      clearData();
+    }
     if (images.length === 0) {
-      const initialImages = amount.map(() => {
-        return {
-          file: null,
-          image: null,
-        };
-      });
-      setImages(initialImages);
+      resetImagesState();
     }
     // add
-    if (imageAmount > images.length) {
+    else if (imageAmount > images.length) {
       setImages((prev) => {
         return [...prev, { file: null, image: null }];
       });
@@ -89,9 +97,18 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
     else if (imageAmount < images.length) {
       setImages((prev) => prev.slice(0, -1));
     }
-  }, [imageAmount]);
+  }, [imageAmount, open]);
 
-  const statusOptions = ["in_stock", "on_sale", "sold"];
+  const resetImagesState = () => {
+    const initialImages = amount.map(() => {
+      return {
+        file: null,
+        image: null,
+      };
+    });
+
+    setImages(initialImages);
+  };
 
   const handleSearch = async () => {
     if (!regex.vin.test(vehicleData.vin)) return;
@@ -138,6 +155,76 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
     if (value < imageAmount && imageAmount <= 5) return;
     if (value > imageAmount && imageAmount >= 15) return;
     setImageAmount(value);
+  };
+
+  const handleCreateVehicle = async () => {
+    try {
+      setLoading((prev) => ({ ...prev, createVehicle: true }));
+      const specifications = specificationsData
+        .filter((spec) => spec.checked)
+        .map((spec) => spec.id);
+
+      const imagesData = images
+        .filter((img): img is typeof img & { file: File } => img.file !== null)
+        .map((img) => ({
+          mime: img.file.type,
+          ext: img.file.name.split(".").pop(),
+          size: img.file.size,
+        }));
+
+      const vehicle = await createVehicle(
+        vehicleData,
+        specifications,
+        imagesData
+      );
+
+      if (!vehicle.success) throw new Error(vehicle.message);
+
+      if (vehicle.data === undefined || vehicle.data?.urls.length === 0)
+        throw new Error("Unknown error.");
+
+      const imagesToUpload = images.filter(
+        (img): img is typeof img & { file: File } => img.file !== null
+      );
+
+      for (let index = 0; index < images.length; index++) {
+        const file = imagesToUpload[index].file;
+        const url = vehicle.data.urls[index].url;
+
+        const putRes = await fetch(url, {
+          method: "PUT",
+          headers: { "Content-Type": file.type },
+          body: file,
+        });
+
+        if (!putRes.ok)
+          throw new Error("There was an error uploading the images.");
+      }
+
+      const keys = vehicle.data.urls.map(({ url, key }) => key);
+      const vehicleId = vehicle.data.vehicleId;
+
+      const imagesResponse = await attachVehicleImages(vehicleId, keys);
+
+      if (!imagesResponse.success) throw new Error(imagesResponse.message);
+
+      toast.success(imagesResponse.message);
+      setLoading((prev) => ({ ...prev, createVehicle: false }));
+      clearData();
+    } catch (error) {
+      toast.error(
+        `${error instanceof Error ? error.message : "Unknown error."}`
+      );
+      setLoading((prev) => ({ ...prev, createVehicle: false }));
+      return;
+    }
+  };
+
+  const clearData = () => {
+    setImageAmount(NUM_INITIAL_IMAGES);
+    resetImagesState();
+    resetCheckedSpec();
+    setVehicleData(initialVehicleState);
   };
 
   useLockBodyScroll(open);
@@ -395,9 +482,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
             <div className="flex p-5 justify-end">
               <DefaultButton
                 name="Create Vehicle"
-                onClick={handleSearch}
+                onClick={handleCreateVehicle}
                 size="w-40"
-                loading={loading.searchVehicle}
+                loading={loading.createVehicle}
               />
             </div>
           </div>

@@ -14,3 +14,13 @@ export interface Specification {
   createdAt: Date;
   updatedAt: Date;
 }
+
+type TypeDataImage = {
+  url: string;
+  key: string;
+};
+
+export interface CreateVehicleResponse {
+  urls: TypeDataImage[];
+  vehicleId: string;
+}

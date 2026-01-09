@@ -72,7 +72,9 @@ enum StatusVehicle {
 
 model VehicleGeneral {
   id             String                  @id @default(uuid())
+  shortId        String?                 @unique
   vin            String                  @unique
+  slug           String
   year           Int
   brandId        String
   model          String

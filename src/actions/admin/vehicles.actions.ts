@@ -1,12 +1,170 @@
 "use server";
 
-import { ServerResponse, VpicDecodeVinValuesResponse } from "@/src/interfaces";
+import {
+  CreateVehicleResponse,
+  DataImage,
+  ServerResponse,
+  VehicleState,
+  VpicDecodeVinValuesResponse,
+} from "@/src/interfaces";
+import { r2 } from "@/src/lib/cloudflare-r2";
 import prisma from "@/src/lib/prisma";
+import { normalizeToSlug } from "@/src/utils/format";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { StatusVehicle } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { success } from "zod";
+
+const MAX_BYTES = Number(process.env.MAX_UPLOAD_BYTES ?? 5_000_000);
+const BUCKET = process.env.R2_BUCKET!;
+
+export async function createVehicle(
+  data: VehicleState,
+  specifications: string[],
+  images: DataImage[]
+): Promise<ServerResponse<CreateVehicleResponse>> {
+  const allow = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/jpg",
+    "image/avif",
+  ];
+
+  try {
+    if (images.length < 5)
+      throw new Error("You need to upload at least 5 images.");
+
+    images.forEach((img, index) => {
+      if (!allow.includes(img.mime))
+        throw new Error(`Incorrect image type, image ${index + 1}.`);
+      if (!img.ext || img.ext.length > 8)
+        throw new Error(`Incorrect image extension, image ${index + 1}.`);
+      if (!img.size || img.size > MAX_BYTES)
+        throw new Error(`Incorrect image size, image ${index + 1}.`);
+    });
+
+    const exists = await prisma.vehicleGeneral.findUnique({
+      where: { vin: data.vin },
+    });
+
+    if (exists)
+      throw new Error("The vehicle has already exists! Duplicate VIN.");
+
+    const brand = await prisma.brand.findUnique({ where: { id: data.brand } });
+    if (!brand) throw new Error("There was an error getting the brand name.");
+
+    const slug = normalizeToSlug(`${brand.name}-${data.model}-${data.year}`);
+
+    const vehicle = await prisma.vehicleGeneral.create({
+      data: {
+        vin: data.vin,
+        slug: slug,
+        year: Number(data.year),
+        brand: { connect: { id: data.brand } },
+        model: data.model,
+        series: data.series,
+        doors: Number(data.doors),
+        color_ext: data.colorExt,
+        color_int: data.colorInt,
+        mileage: Number(data.mileage),
+        price: Number(data.price),
+        status: data.status as StatusVehicle,
+        type: data.type,
+      },
+    });
+
+    const shortId = vehicle.id.replace(/-/g, "").slice(0, 10);
+
+    await prisma.vehicleGeneral.update({
+      data: { shortId: shortId },
+      where: { id: vehicle.id },
+    });
+
+    await prisma.vehicleTechnical.create({
+      data: {
+        vehicle: { connect: { id: vehicle.id } },
+        engine_fuel_type: data.engineFuelType,
+        engine_configuration: data.engineConfiguration,
+        engine_cylinders: Number(data.engineCylinders),
+        engine_power: Number(data.enginePower),
+        engine_displacement: Number(data.engineDisplacement),
+        engine_turbo: data.engineTurbo,
+        drivetrain: data.drivetrain,
+        transmission: data.transmission,
+      },
+    });
+
+    await prisma.vehicleSpecification.createMany({
+      data: specifications.map((s) => ({
+        vehicleId: vehicle.id,
+        specificationId: s,
+      })),
+    });
+
+    const urls = await Promise.all(
+      images.map(async (img) => {
+        const key = `catalog/vehicles/images/${
+          vehicle.id
+        }/${Date.now()}-${crypto.randomUUID()}.${img.ext}`;
+
+        const cmd = new PutObjectCommand({
+          Bucket: BUCKET,
+          Key: key,
+          ContentType: img.mime,
+          ContentLength: img.size,
+        });
+
+        const url = await getSignedUrl(r2, cmd, { expiresIn: 600 });
+
+        return {
+          url,
+          key,
+        };
+      })
+    );
+
+    return {
+      success: true,
+      data: {
+        urls: urls ?? [],
+        vehicleId: vehicle.id,
+      },
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Unknown error",
+    };
+  }
+}
+
+export async function attachVehicleImages(id: string, keys: string[]) {
+  try {
+    await prisma.vehicleImage.createMany({
+      data: keys.map((key, index) => ({
+        vehicleId: id,
+        key: key,
+        position: index,
+      })),
+    });
+
+    return {
+      success: true,
+      message: "The vehicle has been created successfully!",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "There was error attaching the images.",
+    };
+  }
+}
 
 export async function getVehicles(amount?: number) {
   try {
-    const vehicles = await prisma.vehicle.findMany();
+    const vehicles = await prisma.vehicleGeneral.findMany();
     if (!vehicles) return { success: false };
 
     return {
@@ -18,10 +176,10 @@ export async function getVehicles(amount?: number) {
   }
 }
 
-export async function deleteVehicle(id: string): Promise<ServerResponse> {
+export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
-    await prisma.vehicle.delete({ where: { id } });
+    await prisma.vehicleGeneral.delete({ where: { id } });
 
     revalidatePath("/dashboard/catalog");
     return {
@@ -39,7 +197,7 @@ export async function deleteVehicle(id: string): Promise<ServerResponse> {
 export async function getVehiclesDetailsByVin(
   vin: string,
   year: string
-): Promise<ServerResponse> {
+): Promise<ServerResponse<any>> {
   const formatVin = vin.toUpperCase();
 
   const url = `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/${formatVin}?format=json&modelyear=${year}`;
@@ -52,8 +210,6 @@ export async function getVehiclesDetailsByVin(
       .catch();
 
     const data = res.Results[0];
-
-    console.log(data);
 
     const payload = {
       general: {

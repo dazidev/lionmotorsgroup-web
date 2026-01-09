@@ -37,7 +37,7 @@ export async function setAttend(id: string) {
   }
 }
 
-export async function deleteLead(id: string): Promise<ServerResponse> {
+export async function deleteLead(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
     await prisma.lead.delete({ where: { id } });

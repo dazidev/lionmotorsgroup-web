@@ -1,8 +1,10 @@
 import { Lead } from "@/src/interfaces";
 import { useEffect, useState } from "react";
 import { FormatDate } from "../../../../utils/format-date";
-import { setAttend } from "@/src/actions";
+import { getVehicleSlug, setAttend } from "@/src/actions";
 import toast from "react-hot-toast";
+import { CloseButton } from "@/src/components/button/CloseButton";
+import { DefaultButton } from "@/src/components/button/DefaultButton";
 
 interface Props {
   leads: Lead[];
@@ -22,10 +24,18 @@ export const LeadView = ({ leads, current, open, setOpen }: Props) => {
 
   const handleAttended = async () => {
     const response = await setAttend(lead?.id!);
-
     if (response.success === false) return toast.error(response.message!);
     setOpen(false);
     toast.success(response.message!);
+  };
+
+  const viewVehicle = async () => {
+    if (lead?.vehicleId === undefined) return;
+    const slug = await getVehicleSlug(lead.vehicleId);
+    if (!slug.success) return;
+
+    const url = `/catalog/${slug.data?.slug}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -33,56 +43,34 @@ export const LeadView = ({ leads, current, open, setOpen }: Props) => {
       {open && (
         <div
           id="lead-view"
-          className="overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+          className="overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-zinc-800/90"
         >
           <div className="relative p-4 w-full max-w-md max-h-full">
             {/*<!-- Modal content -->*/}
-            <div className="relative p-5 bg-zinc-900 rounded-xl shadow-2xl border border-stone-700">
-              <div>
-                <h1 className="text-3xl font-semibold text-gold-700">
-                  LEAD DETAILS
-                </h1>
-                <button
-                  type="button"
-                  className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:text-gold-700 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                  data-modal-hide="popup-modal"
-                  onClick={() => {
-                    setOpen(false);
-                  }}
-                >
-                  <svg
-                    className="w-3 h-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 14"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                    />
-                  </svg>
-                  <span className="sr-only">Close modal</span>
-                </button>
+            <div className="relative bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
+              <div className="sticky top-0 z-100 flex w-full border-b rounded-t-2xl border-stone-700 bg-zinc-800 p-5">
+                <h1 className="text-2xl font-semibold">Lead Details</h1>
+                <CloseButton onClick={setOpen} />
               </div>
               {lead && (
-                <>
-                  <span
-                    className={`w-auto h-auto rounded p-1 ${
-                      lead.status == "attended"
-                        ? "bg-emerald-600"
-                        : "bg-red-800"
-                    } mr-3`}
-                  >
-                    {lead.status}
-                  </span>
-                  <span className={"w-auto h-auto rounded p-1 bg-blue-800"}>
-                    {FormatDate.onlyDate(lead.createdAt)}
-                  </span>
-                  <div className="flex flex-col mt-2 text-xl">
+                <div className="flex flex-col p-5 gap-3">
+                  <div>
+                    <span
+                      className={`w-auto h-auto rounded py-1 px-2 ${
+                        lead.status == "attended"
+                          ? "bg-emerald-600"
+                          : "bg-red-800"
+                      } mr-3`}
+                    >
+                      {lead.status}
+                    </span>
+                    <span
+                      className={"w-auto h-auto rounded py-1 px-2 bg-blue-800"}
+                    >
+                      {FormatDate.onlyDate(lead.createdAt)}
+                    </span>
+                  </div>
+                  <div className="flex flex-col mt-2 text-xl gap-1">
                     <div className="flex gap-3">
                       <div className="flex-1 min-w-0">
                         <label htmlFor="name">First Name</label>
@@ -145,22 +133,21 @@ export const LeadView = ({ leads, current, open, setOpen }: Props) => {
                       name="comments"
                     />
                   </div>
-                </>
+                </div>
               )}
-              <div className="flex justify-end mt-5 gap-3">
-                <button
-                  type="submit"
-                  className=" bg-gold-700 hover:bg-gold-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                >
-                  <span>View Car</span>
-                </button>
+              <div className="flex justify-end gap-3 pb-5 pr-5">
+                <DefaultButton
+                  name={"View Vehicle"}
+                  loading={false}
+                  onClick={viewVehicle}
+                />
                 {lead?.status === "unattended" && (
-                  <button
+                  <DefaultButton
+                    name="Attended"
+                    style="bg-emerald-900 hover:bg-emerald-800"
                     onClick={handleAttended}
-                    className="bg-emerald-900 hover:bg-emerald-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                  >
-                    <span>Attended</span>
-                  </button>
+                    loading={false}
+                  />
                 )}
               </div>
             </div>

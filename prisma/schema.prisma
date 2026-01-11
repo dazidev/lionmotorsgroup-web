@@ -38,16 +38,19 @@ enum StatusLead {
 }
 
 model Lead {
-  id          String      @id @default(uuid())
+  id          String          @id @default(uuid())
   name        String
   lastname    String
   email       String
   phoneNumber String?
   zipcode     String?
-  comments    String?     @db.Text
-  status      StatusLead  @default(unattended)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  comments    String?         @db.Text
+  status      StatusLead      @default(unattended)
+  vehicleId   String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  vehicle     VehicleGeneral @relation(fields: [vehicleId], references: [id])
 
   @@map("leads")
 }
@@ -89,10 +92,11 @@ model VehicleGeneral {
   createdAt      DateTime                @default(now())
   updatedAt      DateTime                @updatedAt
 
-  brand          Brand                  @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  brand          Brand                  @relation(fields: [brandId], references: [id])
   technical      VehicleTechnical?
   images         VehicleImage[]
   specifications VehicleSpecification[]
+  leads          Lead[]
 
   @@unique([slug, shortId])
   @@map("vehicles_general")

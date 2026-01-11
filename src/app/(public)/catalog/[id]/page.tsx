@@ -124,7 +124,7 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
               </h1>
             </div>
           </div>
-          <FormAvailability />
+          <FormAvailability vehicleId={vehicleData.id} />
         </div>
       </div>
     </>

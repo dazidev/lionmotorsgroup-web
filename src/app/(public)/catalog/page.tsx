@@ -1,7 +1,4 @@
 "use server";
-
-import Image from "next/image";
-import { redirect } from "next/navigation";
 import { VehicleCard } from "@/src/components";
 import { Grid } from "../../../components";
 import prisma from "@/src/lib/prisma";

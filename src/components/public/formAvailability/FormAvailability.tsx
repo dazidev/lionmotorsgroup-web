@@ -4,24 +4,29 @@ import { saveLead } from "@/src/actions";
 import { FormLead } from "@/src/interfaces";
 import { regex } from "@/src/utils/regex";
 import { FormEvent, useState } from "react";
-import { FaExclamationTriangle } from "react-icons/fa";
 import { ErrorDialog } from "../../dialog/ErrorDialog";
 import { SuccessDialog } from "../../dialog/SuccessDialog";
+
+interface Props {
+  vehicleId: string;
+}
 
 interface Loading {
   status: "" | "loading" | "loaded";
   message: string;
 }
 
-export const FormAvailability = () => {
-  const [form, setForm] = useState<FormLead>({
+export const FormAvailability = ({ vehicleId }: Props) => {
+  const initialStateForm = {
     name: "",
     lastname: "",
     email: "",
     zipcode: "",
     phoneNumber: "",
     comments: "",
-  });
+    vehicleId: vehicleId,
+  };
+  const [form, setForm] = useState<FormLead>(initialStateForm);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<Loading>({
     status: "",
@@ -29,7 +34,8 @@ export const FormAvailability = () => {
   });
 
   const formValidation = (form: FormLead) => {
-    const { name, lastname, email, zipcode, phoneNumber, comments } = form;
+    const { name, lastname, email, zipcode, phoneNumber, comments, vehicleId } =
+      form;
     if (name.length > 16 || name.length < 2)
       return "Name must be between 2 and 16 characters.";
     if (lastname.length > 16 || lastname.length < 2)
@@ -41,18 +47,12 @@ export const FormAvailability = () => {
       return "Please enter a valid U.S. phone number.";
     if (comments && comments.length > 200)
       return "Comments cannot exceed 200 characters.";
+    if (!regex.uuidv4.test(vehicleId)) return "Unknown error.";
     return "";
   };
 
   const cleanForm = () => {
-    setForm({
-      name: "",
-      lastname: "",
-      email: "",
-      zipcode: "",
-      phoneNumber: "",
-      comments: "",
-    });
+    setForm(initialStateForm);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {

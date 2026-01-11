@@ -9,6 +9,7 @@ export interface Lead {
   zipcode: string | null;
   comments: string | null;
   status: StatusLead;
+  vehicleId: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -25,4 +26,5 @@ export interface FormLead {
   zipcode: string;
   phoneNumber: string;
   comments: string;
+  vehicleId: string;
 }

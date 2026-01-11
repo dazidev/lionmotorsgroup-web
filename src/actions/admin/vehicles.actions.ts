@@ -14,10 +14,36 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { StatusVehicle } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { success } from "zod";
 
 const MAX_BYTES = Number(process.env.MAX_UPLOAD_BYTES ?? 5_000_000);
 const BUCKET = process.env.R2_BUCKET!;
+
+export async function getVehicleSlug(
+  id: string
+): Promise<ServerResponse<{ slug: string }>> {
+  try {
+    const vehicle = await prisma.vehicleGeneral.findUnique({
+      where: { id },
+      select: { slug: true, shortId: true },
+    });
+
+    if (!vehicle) throw new Error("Vehicle doesn't exists.");
+
+    const slug = `${vehicle.slug}-${vehicle.shortId}`;
+
+    return {
+      success: true,
+      data: {
+        slug,
+      },
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Unknown error.",
+    };
+  }
+}
 
 export async function createVehicle(
   data: VehicleState,
@@ -233,8 +259,6 @@ export async function getVehiclesDetailsByVin(
         transmission: data.TransmissionStyle,
       },
     };
-
-    console.log(payload);
 
     return {
       success: true,

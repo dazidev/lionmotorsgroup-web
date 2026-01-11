@@ -1,14 +1,13 @@
 "use server";
 import { FormLead, ServerResponse } from "@/src/interfaces";
 import prisma from "@/src/lib/prisma";
-import { sleep } from "@/src/utils/sleep";
 
-export async function saveLead(form: FormLead): Promise<ServerResponse> {
-  const { name, lastname, email, zipcode, phoneNumber, comments } = form;
+export async function saveLead(form: FormLead): Promise<ServerResponse<any>> {
+  const { name, lastname, email, zipcode, phoneNumber, comments, vehicleId } =
+    form;
   //! todo: makes validations!!!!!
 
   try {
-    await sleep(3); //! remove after
     await prisma.lead.create({
       data: {
         name,
@@ -17,6 +16,7 @@ export async function saveLead(form: FormLead): Promise<ServerResponse> {
         zipcode,
         phoneNumber,
         comments,
+        vehicleId,
       },
     });
 

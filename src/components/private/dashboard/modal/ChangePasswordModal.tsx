@@ -1,4 +1,5 @@
 import { changeAdminPassword } from "@/src/actions";
+import { CloseButton } from "@/src/components/button/CloseButton";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
 import { regex } from "@/src/utils/regex";
 import { useState } from "react";
@@ -52,29 +53,9 @@ export const ChangePasswordModal = ({ id, open, setOpen }: Props) => {
             {/*<!-- Modal content -->*/}
             <div className="relative bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
               {/*<!-- Modal header -->*/}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-stone-700">
-                <h3 className="text-lg font-semibold">Change Password</h3>
-                <button
-                  type="button"
-                  className="text-gray-400 bg-transparent hover:text-gold-700 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
-                  onClick={() => setOpen(false)}
-                >
-                  <svg
-                    className="w-3 h-3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 14"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                    />
-                  </svg>
-                  <span className="sr-only">Close modal</span>
-                </button>
+              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t-2xl border-stone-700 bg-zinc-800">
+                <h3 className="text-2xl font-semibold">Change Password</h3>
+                <CloseButton onClick={setOpen} />
               </div>
               {/*<!-- Modal body -->*/}
               <form className="p-4 md:p-5" onSubmit={handleSubmit}>

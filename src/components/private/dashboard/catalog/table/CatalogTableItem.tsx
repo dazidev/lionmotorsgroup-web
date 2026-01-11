@@ -46,7 +46,7 @@ export const CatalogTableItem = ({
         <span className="font-semibold">{model}</span>
       </td>
       <td className="px-6 py-4">
-        <span className=""> {brand} </span>
+        <span className=""> {brand.name} </span>
       </td>
       <td className="px-6 py-4">
         <span className="inline-flex items-centerrounded-full">{year}</span>

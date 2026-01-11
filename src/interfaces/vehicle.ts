@@ -28,7 +28,13 @@ export interface Vehicle {
   id: string;
   vin: string;
   year: number;
-  brand: string;
+  brand: {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    name: string;
+    imagePath: string;
+  };
   model: string;
   series: string;
   mileage: number;

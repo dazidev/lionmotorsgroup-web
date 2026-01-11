@@ -198,7 +198,7 @@ export const CatalogTable = ({
         </table>
         {data && (
           <Pagination
-            pages={30}
+            pages={amountPages}
             results={data.length}
             limitInf={pagination.limitInf}
             limitSup={pagination.limitSup}

@@ -9,7 +9,6 @@ import { SelectInput } from "@/src/components/input/SelectInput";
 import { addBrand, addSpecification, attachBrandImage } from "@/src/actions";
 import toast from "react-hot-toast";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
-import { ImageInput } from "@/src/components/input/ImageInput";
 import { AddBrandModal } from "./AddBrandModal";
 import { DataImage, PromiseResponse } from "@/src/interfaces";
 
@@ -131,7 +130,7 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
       <div className="relative w-full max-w-5xl max-h-full">
         <div className="relative overflow-y-auto h-[calc(100vh-5rem)] bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
           <div className="flex px-5 rounded-t-2xl bg-zinc-800">
-            <h3 className="flex-3 text-lg font-semibold pt-5">
+            <h3 className="flex-3 text-2xl font-semibold pt-5">
               Manage Details
             </h3>
 
@@ -177,7 +176,7 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
               className={`flex-1 h-10 bg-zinc-800 ${
                 page === "specifications" ? "rounded-bl-2xl" : ""
               }`}
-            ></div>
+            />
           </div>
           <div className="flex p-5">
             {page === "specifications" && (

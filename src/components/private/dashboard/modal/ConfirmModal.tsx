@@ -1,3 +1,5 @@
+import { CloseButton } from "@/src/components/button/CloseButton";
+import { DefaultButton } from "@/src/components/button/DefaultButton";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
 
 interface Props {
@@ -28,34 +30,12 @@ export const ConfirmModal = ({ open, setOpen, handleRemove }: Props) => {
         >
           <div className="relative p-4 w-full max-w-md max-h-full">
             <div className="relative bg-zinc-900 border border-stone-700 rounded-lg shadow-sm">
-              <button
-                type="button"
-                className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:text-gold-700 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                data-modal-hide="popup-modal"
-                onClick={() => {
-                  setOpen(false, "confirm");
-                }}
-              >
+              <div className="flex pr-2 pt-2">
+                <CloseButton onClick={setOpen} element="confirm" />
+              </div>
+              <div className="p-5 text-center">
                 <svg
-                  className="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-                <span className="sr-only">Close modal</span>
-              </button>
-              <div className="p-4 md:p-5 text-center">
-                <svg
-                  className="mx-auto mb-4 text-gray-400 w-12 h-12"
+                  className="mx-auto mb-5 text-gray-400 w-12 h-12"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -72,20 +52,20 @@ export const ConfirmModal = ({ open, setOpen, handleRemove }: Props) => {
                 <h3 className="mb-5 text-lg font-normal text-gray-200">
                   Are you sure you want to delete this?
                 </h3>
-                <button
-                  type="button"
-                  className="text-gray-50 bg-red-900 hover:bg-red-600 border-stone-700 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
-                  onClick={handleConfirm}
-                >
-                  Yes, I'm sure
-                </button>
-                <button
-                  type="button"
-                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-50 focus:outline-none bg-zinc-900 rounded-lg border border-stone-700 hover:bg-zinc-800"
-                  onClick={handleCancel}
-                >
-                  No, cancel
-                </button>
+                <div className="flex justify-center flex-row gap-3">
+                  <DefaultButton
+                    name="Yes, I'm sure"
+                    style="bg-red-900 hover:bg-red-800"
+                    onClick={handleConfirm}
+                    loading={false}
+                  />
+                  <DefaultButton
+                    name="No, cancel"
+                    style="bg-zinc-900 hover:bg-zinc-800 border border-stone-700"
+                    onClick={handleCancel}
+                    loading={false}
+                  />
+                </div>
               </div>
             </div>
           </div>

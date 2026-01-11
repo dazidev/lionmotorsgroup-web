@@ -190,7 +190,11 @@ export async function attachVehicleImages(id: string, keys: string[]) {
 
 export async function getVehicles(amount?: number) {
   try {
-    const vehicles = await prisma.vehicleGeneral.findMany();
+    const vehicles = await prisma.vehicleGeneral.findMany({
+      include: {
+        brand: true,
+      },
+    });
     if (!vehicles) return { success: false };
 
     return {

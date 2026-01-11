@@ -94,6 +94,7 @@ model VehicleGeneral {
   images         VehicleImage[]
   specifications VehicleSpecification[]
 
+  @@unique([slug, shortId])
   @@map("vehicles_general")
 }
 

@@ -1,20 +1,7 @@
 "use server";
 import { CarouselVehicleImages, FormAvailability } from "@/src/components";
+import { InformationCard } from "@/src/components/public/card/InformationCard";
 import prisma from "@/src/lib/prisma";
-
-const carImages = [
-  "/cars/1.webp",
-  "/cars/2.jpg",
-  "/cars/3.jpg",
-  "/cars/4.jpg",
-  "/cars/5.jpg",
-  "/cars/6.jpg",
-  "/cars/7.avif",
-  "/cars/8.webp",
-  "/cars/9.webp",
-  "/cars/10.avif",
-  "/cars/11.webp",
-];
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -34,7 +21,11 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
       brand: true,
       technical: true,
       images: true,
-      specifications: true,
+      specifications: {
+        include: {
+          specification: true,
+        },
+      },
     },
   });
 
@@ -80,33 +71,41 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
     { name: "Transmission", value: vehicleData.technical?.transmission },
   ];
 
+  const specificationData = vehicleData.specifications.map(
+    ({ specification }) => ({
+      id: specification.id,
+      name: specification.name,
+      type: specification.type,
+    })
+  );
+
   return (
     <>
       <div className="flex flex-row w-full items-start pt-5 overflow-hidden gap-5">
         <div className="flex-8 min-w-0 text-xl">
           <CarouselVehicleImages images={images} />
-          <section className="flex flex-col mt-5 mb-10 gap-3">
-            <h2 className="text-3xl">General Information</h2>
-            <span className="block w-full h-px bg-gray-300"></span>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
-              {generalData.map(({ name, value }) => {
-                if (value) {
-                  return <p key={name}>{`${name}: ${value}`}</p>;
-                }
-              })}
-            </div>
-          </section>
-          <section className="flex flex-col mb-10 gap-3">
-            <h2 className="text-3xl">Technical Information</h2>
-            <span className="block w-full h-px bg-gray-300"></span>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
-              {technicalData.map(({ name, value }) => {
-                if (value) {
-                  return <p key={name}>{`${name}: ${value}`}</p>;
-                }
-              })}
-            </div>
-          </section>
+          <InformationCard
+            title="General Information"
+            type="text"
+            data={generalData}
+          />
+          <InformationCard
+            title="Technical Information"
+            type="text"
+            data={technicalData}
+          />
+          <InformationCard
+            title="Security Specifications"
+            type="tag"
+            data={specificationData}
+            specificationType="security"
+          />
+          <InformationCard
+            title="Confort Specifications"
+            type="tag"
+            data={specificationData}
+            specificationType="confort"
+          />
         </div>
         <div className="flex-4 min-w-0 flex flex-col gap-5">
           <div className="w-full h-auto bg-stone-900 rounded-2xl text-center gap-5 p-5">

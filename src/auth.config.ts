@@ -35,6 +35,25 @@ export const authConfig: NextAuthConfig = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.lastname = (user as any).lastname ?? null;
+        token.role = (user as any).role ?? null;
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.lastname = (token.lastname as string | null) ?? null;
+        session.user.role = (token.role as string | null) ?? null;
+      }
+      return session;
+    },
+  },
 };
 
 export const { signIn, signOut, auth } = NextAuth(authConfig);

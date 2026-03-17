@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/dazi/Desktop/FREELANCE/lionmotorsgroup/src/components/private/dashboard/topNav/TopNavItem.tsx"],"sourcesContent":["\"use client\";\n\nimport Link from \"next/link\";\nimport { usePathname } from \"next/navigation\";\n\ninterface Props {\n  path: string;\n  labelText: string;\n}\n\nexport const TopNavItem = ({ path, labelText }: Props) => {\n  const currentPath = usePathname();\n\n  return (\n    <li>\n      <Link\n        href={path}\n        className={`\n          flex items-center h-14  rounded-lg \n          ${\n            currentPath === path\n              ? \" text-gold-400 font-bold\"\n              : \"text-gold-700 hover:text-gold-400\"\n          }\n        `}\n      >\n        <div className=\"flex items-center pl-8\">\n          <span className={\"ms-3 text-2xl\"}>{labelText}</span>\n        </div>\n      </Link>\n    </li>\n  );\n};\n"],"names":[],"mappings":";;;;;AAEA;AACA;;;AAHA;;;AAUO,MAAM,aAAa,CAAC,EAAE,IAAI,EAAE,SAAS,EAAS;;IACnD,MAAM,cAAc,IAAA,oJAAW;IAE/B,qBACE,6LAAC;kBACC,cAAA,6LAAC,0KAAI;YACH,MAAM;YACN,WAAW,CAAC;;UAEV,EACE,gBAAgB,OACZ,6BACA,oCACL;QACH,CAAC;sBAED,cAAA,6LAAC;gBAAI,WAAU;0BACb,cAAA,6LAAC;oBAAK,WAAW;8BAAkB;;;;;;;;;;;;;;;;;;;;;AAK7C;GAtBa;;QACS,oJAAW;;;KADpB"}}]
-}

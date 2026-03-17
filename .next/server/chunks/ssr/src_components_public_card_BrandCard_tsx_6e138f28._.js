@@ -1,3 +1,0 @@
-module.exports=[45910,a=>{"use strict";var b=a.i(87924),c=a.i(50944),d=a.i(36424);a.s(["BrandCard",0,({brand:a})=>{let e=`https://images.lionmotorsgroup.com/${a.imagePath}`;return(0,b.jsxs)("div",{className:"flex flex-col h-40 p-6 items-center justify-center gap-2 bg-stone-900 rounded-2xl shadow-2xl hover:scale-102 transition-transform duration-500 cursor-pointer",onClick:()=>(0,c.redirect)("/catalog"),children:[(0,b.jsx)(d.default,{src:e,alt:`logo-${a.name}`}),(0,b.jsx)("p",{children:a.name})]},a.id)}])}];
-
-//# sourceMappingURL=src_components_public_card_BrandCard_tsx_6e138f28._.js.map

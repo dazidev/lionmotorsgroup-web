@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 27, "column": 0}, "map": {"version":3,"sources":["file:///Users/dazi/Desktop/FREELANCE/lionmotorsgroup/src/app/page.tsx"],"sourcesContent":["import { titleFont } from \"@/src/config/fonts\";\n\nexport default function Home() {\n  return (\n    <main className=\"\">\n      <h1>Hola mundo</h1>\n      <h1 className={titleFont.className}>Hola mundo</h1>\n    </main>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;QAAK,WAAU;;0BACd,8OAAC;0BAAG;;;;;;0BACJ,8OAAC;gBAAG,WAAW,8MAAS,CAAC,SAAS;0BAAE;;;;;;;;;;;;AAG1C"}}]
-}

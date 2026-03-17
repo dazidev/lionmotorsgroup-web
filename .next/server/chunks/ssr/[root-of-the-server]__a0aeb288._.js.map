@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/app/dashboard/page.tsx"],"sourcesContent":["import { titleFont } from \"@/src/config/fonts\";\nimport Image from \"next/image\";\n\nexport default function DashBoardPage() {\n  return <p>Hola</p>;\n}\n"],"names":[],"mappings":"gXAGe,SAAS,IACtB,MAAO,CAAA,EAAA,EAAA,GAAA,EAAC,IAAA,UAAE,QACZ"}

@@ -1,0 +1,3 @@
+module.exports=[18357,a=>{"use strict";var b=a.i(7997),c=a.i(64416);async function d({children:a}){return(0,b.jsxs)("main",{className:"flex flex-col items-center min-h-screen overflow-hidden",children:[(0,b.jsx)("header",{className:"flex flex-col items-center",children:(0,b.jsx)(c.TopNav,{})}),(0,b.jsx)("div",{className:"flex justify-center pt-28 w-full bg-zinc-950 flex-1",children:a})]})}a.s(["default",()=>d])}];
+
+//# sourceMappingURL=src_app_dashboard_layout_tsx_3fd7cd9c._.js.map

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/dazi/Desktop/FREELANCE/lionmotorsgroup/src/actions/auth/logout.ts"],"sourcesContent":["\"use server\";\n\nimport { signOut } from \"@/src/auth.config\";\n\nexport const logout = async () => {\n  await signOut();\n};\n"],"names":[],"mappings":";;;;;AAEA;;;;AAEO,MAAM,SAAS;IACpB,MAAM,IAAA,gIAAO;AACf;;;IAFa;;AAAA,+OAAA"}},
+    {"offset": {"line": 25, "column": 0}, "map": {"version":3,"sources":["file:///Users/dazi/Desktop/FREELANCE/lionmotorsgroup/.next-internal/server/app/dashboard/financials/page/actions.js%20%28server%20actions%20loader%29"],"sourcesContent":["export {TopNav as '008c7c3f44eccd2318285dd9c268140283bcb6c74b'} from 'ACTIONS_MODULE0'\nexport {logout as '0096f09927161fe0f1ae48be646683dc903d9a0852'} from 'ACTIONS_MODULE1'\n"],"names":[],"mappings":";AAAA;AACA"}}]
+}

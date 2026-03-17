@@ -29,7 +29,9 @@ export async function getAdmins() {
   }
 }
 
-export async function createAdmin(user: AdminForm): Promise<ServerResponse> {
+export async function createAdmin(
+  user: AdminForm,
+): Promise<ServerResponse<any>> {
   const { name, lastname, email, password, role } = user;
   //! todo: makes validations!!!!!
 
@@ -54,7 +56,7 @@ export async function createAdmin(user: AdminForm): Promise<ServerResponse> {
   }
 }
 
-export async function deleteAdmin(id: string): Promise<ServerResponse> {
+export async function deleteAdmin(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
     await prisma.user.delete({ where: { id } });
@@ -74,8 +76,8 @@ export async function deleteAdmin(id: string): Promise<ServerResponse> {
 
 export async function editAdmin(
   id: string,
-  user: AdminForm
-): Promise<ServerResponse> {
+  user: AdminForm,
+): Promise<ServerResponse<any>> {
   const { name, lastname, email, role } = user;
 
   if (!regex.roles.test(role)) return { success: false };
@@ -102,8 +104,8 @@ export async function editAdmin(
 
 export async function changeAdminPassword(
   id: string,
-  password: string
-): Promise<ServerResponse> {
+  password: string,
+): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
     await prisma.user.update({

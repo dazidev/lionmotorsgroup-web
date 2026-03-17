@@ -1,0 +1,1295 @@
+{
+  "node": {
+    "000884f9361eed1d7549a6b0c189400488ae016576": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/financials/page": {
+          "moduleId": 82298,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/page": {
+          "moduleId": 24932,
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "rsc",
+        "app/(public)/catalog/page": "rsc",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/financials/page": "rsc",
+        "app/dashboard/leads/page": "rsc",
+        "app/dashboard/page": "rsc"
+      },
+      "filename": "src/components/private/dashboard/topNav/TopNav.tsx",
+      "exportedName": "TopNav"
+    },
+    "000aa039073862d41b148164351d3cca6b250773da": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/financials/page": {
+          "moduleId": 82298,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/page": {
+          "moduleId": 24932,
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/financials/page": "action-browser",
+        "app/dashboard/leads/page": "rsc",
+        "app/dashboard/page": "action-browser"
+      },
+      "filename": "src/actions/auth/logout.ts",
+      "exportedName": "logout"
+    },
+    "4066486f76b29aab7ecbe38ab25df3fdd144cc17a5": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "createAdmin"
+    },
+    "40d4070b219f7b83ab5b24a91338fe0317341b0360": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "deleteAdmin"
+    },
+    "607e7f8d2557c41639fcf3f6c899423281804153f9": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "editAdmin"
+    },
+    "60b8cfa5d73cd372ae42c606259f44855a02fd90d1": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "changeAdminPassword"
+    },
+    "408a96a25277054b742e0a87f81b37a85f688abefd": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "getVehicleSlug"
+    },
+    "404978363a7e9dbd1d4176392e7e1ce12f7be76a56": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/leads.actions.ts",
+      "exportedName": "setAttend"
+    },
+    "40c372178c1deed77f74af5a6c76ee1412bb9569a3": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/leads.actions.ts",
+      "exportedName": "deleteLead"
+    },
+    "40d6679691501d1e87d3707072f4dffc2d14a401d7": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "deleteVehicle"
+    },
+    "401e8e4ee81372e7f8b198c56f096db39c4389c1ad": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "deleteBrand"
+    },
+    "404f1200ed5cd4e058911b88ac3cf3e9db7d072e04": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/specifications.actions.ts",
+      "exportedName": "deleteSpecification"
+    },
+    "00bd48edd3e4c959d59344fd538045f801e2780c69": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "getBrands"
+    },
+    "0059915f6ef2ab3b1bd59b36326966ce2308cd4fa6": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/specifications.actions.ts",
+      "exportedName": "getSpecifications"
+    },
+    "60d04d25c0ad2ad3a6a8649f7bfede29f25d729a0a": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "addBrand"
+    },
+    "60deb3f2171c40d312c277ed9304715e439c3a9818": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/specifications.actions.ts",
+      "exportedName": "addSpecification"
+    },
+    "608e8b1bba6886daedc7254c17c53c953ed03cbf8e": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "attachBrandImage"
+    },
+    "606e65076c18890ec1146b11dcfb32854f7e033852": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "attachVehicleImages"
+    },
+    "707f1363f10f70cc57e23e403644ee37071f7bbf9e": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "createVehicle"
+    },
+    "609522f19d5f8987e2bc86ed7e34af473b39e982a8": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "getVehiclesDetailsByVin"
+    },
+    "40b9a3f1275b33b875fc9751a2d7d1531141a5b96a": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "action-browser",
+        "app/(public)/catalog/page": "action-browser",
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/public/leads.actions.ts",
+      "exportedName": "saveLead"
+    },
+    "00da3a4195f0c6b1a3f40d417c6921430bbb4c5feb": {
+      "workers": {
+        "app/(public)/catalog/page": {
+          "moduleId": 51441,
+          "async": false,
+          "exportedName": "default",
+          "filename": "src/app/(public)/catalog/page.tsx"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/page": "rsc"
+      },
+      "filename": "src/app/(public)/catalog/page.tsx",
+      "exportedName": "default"
+    },
+    "405a0b5217d772df1f5e578804ff683a97c849a4b0": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "default",
+          "filename": "src/app/(public)/catalog/[id]/page.tsx"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "rsc"
+      },
+      "filename": "src/app/(public)/catalog/[id]/page.tsx",
+      "exportedName": "default"
+    },
+    "408918d4d05af1424eb438aaad24bd9e8fd682f2eb": {
+      "workers": {
+        "app/(public)/catalog/[id]/page": {
+          "moduleId": 81897,
+          "async": false,
+          "exportedName": "InformationCard",
+          "filename": "src/components/public/card/InformationCard.tsx"
+        }
+      },
+      "layer": {
+        "app/(public)/catalog/[id]/page": "rsc"
+      },
+      "filename": "src/components/public/card/InformationCard.tsx",
+      "exportedName": "InformationCard"
+    },
+    "60c9f772fe9f1965c011ca214ee1cd53341ff58e48": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/auth/login/page": {
+          "moduleId": 10082,
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/auth/login/page": "action-browser",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/auth/login.ts",
+      "exportedName": "authenticate"
+    },
+    "00a3bb88a4bed5bea584062ac1bd2a0d213f72cb95": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "getAdmins"
+    },
+    "00019836e7fa216bc09197c76488f70c5d4ff333d3": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/admin/leads.actions.ts",
+      "exportedName": "getLeads"
+    },
+    "40cf99c2494285cad31c0206600b5a8c065efe7529": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": 92894,
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": 35313,
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": 65810,
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "getVehicles"
+    },
+    "400c6ba48a351c05b1265a55b4aac14e6bb63a112d": {
+      "workers": {
+        "app/dashboard/catalog/page": {
+          "moduleId": 63975,
+          "async": false,
+          "exportedName": "default",
+          "filename": "src/app/dashboard/catalog/page.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/catalog/page": "rsc"
+      },
+      "filename": "src/app/dashboard/catalog/page.tsx",
+      "exportedName": "default"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "q3yhbVohqAkAvlf9eRLkFqFZEANidm69ILqWuRj7Z0g="
+}

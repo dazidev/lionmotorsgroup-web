@@ -19,7 +19,7 @@ const MAX_BYTES = Number(process.env.MAX_UPLOAD_BYTES ?? 5_000_000);
 const BUCKET = process.env.R2_BUCKET!;
 
 export async function getVehicleSlug(
-  id: string
+  id: string,
 ): Promise<ServerResponse<{ slug: string }>> {
   try {
     const vehicle = await prisma.vehicleGeneral.findUnique({
@@ -48,7 +48,7 @@ export async function getVehicleSlug(
 export async function createVehicle(
   data: VehicleState,
   specifications: string[],
-  images: DataImage[]
+  images: DataImage[],
 ): Promise<ServerResponse<CreateVehicleResponse>> {
   const allow = [
     "image/jpeg",
@@ -148,7 +148,7 @@ export async function createVehicle(
           url,
           key,
         };
-      })
+      }),
     );
 
     return {
@@ -159,6 +159,7 @@ export async function createVehicle(
       },
     };
   } catch (error) {
+    console.log(error);
     return {
       success: false,
       message: error instanceof Error ? error.message : "Unknown error",
@@ -226,7 +227,7 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
 
 export async function getVehiclesDetailsByVin(
   vin: string,
-  year: string
+  year: string,
 ): Promise<ServerResponse<any>> {
   const formatVin = vin.toUpperCase();
 

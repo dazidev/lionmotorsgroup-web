@@ -10,13 +10,13 @@ async function main() {
     data: users,
   });
 
-  await prisma.lead.createMany({
+  /*await prisma.lead.createMany({
     data: leads,
-  });
+  });*/
 
-  await prisma.vehicle.createMany({
+  /*await prisma.vehicleGeneral.createMany({
     data: vehicles,
-  });
+  });*/
 
   console.log("DB sync successfull!");
 }

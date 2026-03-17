@@ -115,7 +115,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
 
     const searchResponse: ServerResponse<any> = await getVehiclesDetailsByVin(
       vehicleData.vin,
-      vehicleData.year
+      vehicleData.year,
     );
 
     if (!searchResponse.success) return;
@@ -175,7 +175,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
       const vehicle = await createVehicle(
         vehicleData,
         specifications,
-        imagesData
+        imagesData,
       );
 
       if (!vehicle.success) throw new Error(vehicle.message);
@@ -184,7 +184,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
         throw new Error("Unknown error.");
 
       const imagesToUpload = images.filter(
-        (img): img is typeof img & { file: File } => img.file !== null
+        (img): img is typeof img & { file: File } => img.file !== null,
       );
 
       for (let index = 0; index < images.length; index++) {
@@ -212,8 +212,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
       setLoading((prev) => ({ ...prev, createVehicle: false }));
       clearData();
     } catch (error) {
+      console.log(error);
       toast.error(
-        `${error instanceof Error ? error.message : "Unknown error."}`
+        `${error instanceof Error ? error.message : "Unknown error."}`,
       );
       setLoading((prev) => ({ ...prev, createVehicle: false }));
       return;
@@ -443,16 +444,16 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                       setFile={(f: File | null) =>
                         setImages((prev) =>
                           prev.map((img, i) =>
-                            i === index ? { ...img, file: f } : img
-                          )
+                            i === index ? { ...img, file: f } : img,
+                          ),
                         )
                       }
                       preview={img.image ?? null}
                       setPreview={(f: string | null) =>
                         setImages((prev) =>
                           prev.map((img, i) =>
-                            i === index ? { ...img, image: f } : img
-                          )
+                            i === index ? { ...img, image: f } : img,
+                          ),
                         )
                       }
                       label={false}

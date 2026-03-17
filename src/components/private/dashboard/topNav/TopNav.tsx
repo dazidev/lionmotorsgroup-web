@@ -34,6 +34,7 @@ export const TopNav = async () => {
             <TopNavItem path="/dashboard/admins" labelText="Admins" />
             <TopNavItem path="/dashboard/catalog" labelText="Catalog" />
             <TopNavItem path="/dashboard/leads" labelText="Leads" />
+            <TopNavItem path="/dashboard/financials" labelText="Financials" />
           </ul>
         </div>
 

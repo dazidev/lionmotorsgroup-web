@@ -1,0 +1,3 @@
+module.exports=[54406,a=>{"use strict";var b=a.i(7997);a.i(72491);var c=a.i(9378);async function d({children:a}){return(0,b.jsxs)("main",{className:"flex justify-center min-h-screen bg-zinc-950 relative overflow-hidden",children:[(0,b.jsx)(c.TopNavPublic,{}),(0,b.jsx)("div",{className:"w-full sm:w-[1350px] pt-20",children:a})]})}a.s(["default",()=>d])}];
+
+//# sourceMappingURL=src_app_%28public%29_layout_tsx_fedd9c1f._.js.map

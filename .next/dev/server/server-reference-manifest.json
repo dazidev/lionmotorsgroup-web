@@ -1,0 +1,956 @@
+{
+  "node": {
+    "008c7c3f44eccd2318285dd9c268140283bcb6c74b": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/financials/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/financials/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        },
+        "app/dashboard/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/financials/page": "rsc",
+        "app/dashboard/leads/page": "rsc",
+        "app/dashboard/page": "rsc"
+      },
+      "filename": "src/components/private/dashboard/topNav/TopNav.tsx",
+      "exportedName": "TopNav"
+    },
+    "0096f09927161fe0f1ae48be646683dc903d9a0852": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/financials/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/financials/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        },
+        "app/dashboard/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/financials/page": "action-browser",
+        "app/dashboard/leads/page": "rsc",
+        "app/dashboard/page": "action-browser"
+      },
+      "filename": "src/actions/auth/logout.ts",
+      "exportedName": "logout"
+    },
+    "40ad8fa5b46959dabad3dfb50e5cbfb99f2010d5b5": {
+      "workers": {
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "default",
+          "filename": "src/app/dashboard/catalog/page.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/catalog/page": "rsc"
+      },
+      "filename": "src/app/dashboard/catalog/page.tsx",
+      "exportedName": "default"
+    },
+    "00d8228e7f70fc48668935ca3cb57bf339bfde141b": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getBrands",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "getBrands"
+    },
+    "4062667782f4e544f92e8e87ee709786bbd656e8a1": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "deleteBrand"
+    },
+    "605f00fc8dd9269ecc174737275b6b03d28e63697d": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addBrand",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "addBrand"
+    },
+    "60f7d229974aa40d39664ac3e5627e040e75f94f42": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachBrandImage",
+          "filename": "src/actions/admin/brands.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/brands.actions.ts",
+      "exportedName": "attachBrandImage"
+    },
+    "00db37082917c02d6bcfc1bd0ac473bfcee5549ae6": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getSpecifications",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/specifications.actions.ts",
+      "exportedName": "getSpecifications"
+    },
+    "401fd4fca22bf77669d9e98aba61741bec611fd44c": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/specifications.actions.ts",
+      "exportedName": "deleteSpecification"
+    },
+    "600375cac8a6368856a97d4d73453240a51335ea72": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "addSpecification",
+          "filename": "src/actions/admin/specifications.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/specifications.actions.ts",
+      "exportedName": "addSpecification"
+    },
+    "405ce3b416946a9dcfb5ab638dd884591bde7beb8f": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicleSlug",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "getVehicleSlug"
+    },
+    "40907ae21e1e30a5809b461a018bc5faa47fcef778": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehicles",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "getVehicles"
+    },
+    "40c48837af26dd66b5dca87cdedc83051705535046": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "deleteVehicle"
+    },
+    "608ac40de894dc55210391bc1c164ee4f8402c4228": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "attachVehicleImages",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "attachVehicleImages"
+    },
+    "6097cbd47d487a70939f233cf701d1c8201b077ff0": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getVehiclesDetailsByVin",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "getVehiclesDetailsByVin"
+    },
+    "7096c98b36a1df36755594bd8f4ff4b8dd2d444dd0": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createVehicle",
+          "filename": "src/actions/admin/vehicles.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/vehicles.actions.ts",
+      "exportedName": "createVehicle"
+    },
+    "6058a402fea4d0b471090e4396b4c0bc21f75cf839": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/auth/login/page": {
+          "moduleId": "[project]/.next-internal/server/app/auth/login/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "src/actions/auth/login.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/auth/login/page": "action-browser",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/auth/login.ts",
+      "exportedName": "authenticate"
+    },
+    "0077998523f40e7bcec39a16fdf1c499f05ac28f87": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getAdmins",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "getAdmins"
+    },
+    "40108f3dc9288fa56e47233b2a79e0f98d0922acee": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "deleteAdmin"
+    },
+    "403cadddbd8a5fb479974ab17a558c628ab2d4b330": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "createAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "createAdmin"
+    },
+    "6065013d1382910df328dfa1851af984d33a57900d": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "editAdmin",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "editAdmin"
+    },
+    "607f25a020700684352cb6ef0b333d0acbfb11825a": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "changeAdminPassword",
+          "filename": "src/actions/admin/admins.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/admins.actions.ts",
+      "exportedName": "changeAdminPassword"
+    },
+    "0026a17f26b93086e270b58a37f6b898d951a6f212": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getLeads",
+          "filename": "src/actions/admin/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "rsc",
+        "app/dashboard/catalog/page": "rsc",
+        "app/dashboard/leads/page": "rsc"
+      },
+      "filename": "src/actions/admin/leads.actions.ts",
+      "exportedName": "getLeads"
+    },
+    "40c7b2650ca2534cd3b83408d0aafa24855437f61e": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "deleteLead",
+          "filename": "src/actions/admin/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/leads.actions.ts",
+      "exportedName": "deleteLead"
+    },
+    "40cb3c24e759ca7cbc75f6f4be7fc5cb017e91ac24": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "setAttend",
+          "filename": "src/actions/admin/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/admin/leads.actions.ts",
+      "exportedName": "setAttend"
+    },
+    "40e5c51b657f1235b60e5880e63a5283b331ee431d": {
+      "workers": {
+        "app/(public)/home/page": {
+          "moduleId": "[project]/.next-internal/server/app/(public)/home/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/dashboard/admins/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/admins/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/dashboard/catalog/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/catalog/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/dashboard/catalog/page.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE9 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        },
+        "app/dashboard/leads/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/leads/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/actions/admin/leads.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/actions/auth/login.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/actions/admin/admins.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE5 => \"[project]/src/actions/admin/vehicles.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE6 => \"[project]/src/actions/admin/specifications.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE7 => \"[project]/src/actions/admin/brands.actions.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE8 => \"[project]/src/actions/public/leads.actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "saveLead",
+          "filename": "src/actions/public/leads.actions.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/home/page": "rsc",
+        "app/dashboard/admins/page": "action-browser",
+        "app/dashboard/catalog/page": "action-browser",
+        "app/dashboard/leads/page": "action-browser"
+      },
+      "filename": "src/actions/public/leads.actions.ts",
+      "exportedName": "saveLead"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "zk5jqXgeockv46DSOOZ8XM+sVk76NLVdx5ecXtxM7C8="
+}

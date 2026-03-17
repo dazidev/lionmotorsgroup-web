@@ -1,0 +1,35 @@
+{
+  "node": {
+    "008c7c3f44eccd2318285dd9c268140283bcb6c74b": {
+      "workers": {
+        "app/dashboard/financials/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/financials/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "TopNav",
+          "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+        }
+      },
+      "layer": {
+        "app/dashboard/financials/page": "rsc"
+      },
+      "exportedName": "TopNav",
+      "filename": "src/components/private/dashboard/topNav/TopNav.tsx"
+    },
+    "0096f09927161fe0f1ae48be646683dc903d9a0852": {
+      "workers": {
+        "app/dashboard/financials/page": {
+          "moduleId": "[project]/.next-internal/server/app/dashboard/financials/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/components/private/dashboard/topNav/TopNav.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/actions/auth/logout.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logout",
+          "filename": "src/actions/auth/logout.ts"
+        }
+      },
+      "layer": {
+        "app/dashboard/financials/page": "action-browser"
+      },
+      "exportedName": "logout",
+      "filename": "src/actions/auth/logout.ts"
+    }
+  },
+  "edge": {}
+}

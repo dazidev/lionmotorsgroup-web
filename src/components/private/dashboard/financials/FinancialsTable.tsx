@@ -1,33 +1,145 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { BiSearch } from "react-icons/bi";
+import { Vehicle } from "@/src/interfaces/index";
+import { useSearchParams } from "next/navigation";
+import { Pagination } from "../table/pagination/Pagination";
+import { FinancialsTableItem } from "./FinancialsTableItem";
+
 interface Props {
+  name: string;
   headers: string[];
+  data?: any[]; //! change to interface vehicle
+  amountPages: number;
 }
 
-export const FinancialsTable = ({ headers }: Props) => {
+interface Modals {
+  create: boolean;
+  confirm: boolean;
+  edit: boolean;
+  addBrand: boolean;
+}
+
+export const FinancialsTable = ({
+  name,
+  headers,
+  data,
+  amountPages = 1,
+}: Props) => {
+  const [search, setSearch] = useState("");
+  const [dataList, setDataList] = useState<Vehicle[]>();
+  const [openModal, setOpenModal] = useState<Modals>({
+    create: false,
+    confirm: false,
+    edit: false,
+    addBrand: false,
+  });
+  const [targetId, setTargetId] = useState("");
+  const [pagination, setPagination] = useState({
+    limitInf: 1,
+    limitSup: data?.length ?? 20,
+  });
+
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
+
+  useEffect(() => {
+    if (data) {
+      const end = Number(page) * 20;
+      const start = end - 20;
+      console.log(`${end} ${start}`);
+      const sliceData = data.slice(start, end);
+      setDataList(sliceData);
+      setPagination({
+        limitInf: start,
+        limitSup: sliceData.length + start,
+      });
+      console.log(dataList);
+    }
+  }, [searchParams, data, page]);
+
+  const findData = (value: string) => {
+    if (!data) return;
+
+    const q = value.toLowerCase();
+
+    const dataFounds = data.filter((row) => {
+      const fullmodel = `
+        ${row.brand.toLowerCase()} 
+        ${row.model.toLowerCase()} 
+        ${row.year}
+      `;
+
+      return fullmodel.includes(q);
+    });
+    if (dataFounds) {
+      setDataList(dataFounds);
+    }
+  };
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    findData(value);
+  };
+
+  const handleOpenModal = (value: boolean, option: string) => {
+    setOpenModal((prev) => ({ ...prev, [option]: value }));
+  };
+
   return (
     <>
       <div className="relative overflow-x-auto shadow-sm sm:rounded-lg m-5 bg-zinc-900 border border-stone-700">
-        <div className="flex flex-row w-full h-20 items-center justify-between border-b border-stone-700">
-          <span className="text-xl text-gray-50 font-bold m-10">{``}</span>
-          <button
-            className="block mr-10 px-5 py-2 text-white font-bold rounded-lg cursor-pointer hover:brightness-110 focus:ring-2 bg-gold-700 focus:ring-gold-400"
-            type="button"
-          >
-            {`Create vehicle `}
-          </button>
+        <div className="flex flex-row w-full h-20 items-center justify-between border-b border-stone-700 px-10">
+          <span className="text-xl text-gray-50 font-bold">{name}</span>
         </div>
-
+        <div className="px-8 py-6">
+          <div className="relative">
+            <BiSearch
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+              size={16}
+            />
+            <input
+              type="text"
+              placeholder="Search by model, brand or year..."
+              value={search}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="w-full pl-11 pr-4 py-3 border border-stone-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            />
+          </div>
+        </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 pt-5">
           <thead className="text-xs text-gray-100 uppercase bg-zinc-800">
             <tr>
-              {headers.map((header) => (
-                <th key={header} scope="col" className="px-6 py-3">
-                  {header}
-                </th>
-              ))}
+              {headers &&
+                headers.map((header) => (
+                  <th key={header} scope="col" className="px-6 py-3">
+                    {header}
+                  </th>
+                ))}
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {dataList &&
+              dataList.map((vehicle) => (
+                <FinancialsTableItem
+                  key={vehicle.id}
+                  vehicle={vehicle}
+                  setOpenConfirm={() => handleOpenModal}
+                  setOpenEdit={() => handleOpenModal}
+                  setTargetId={setTargetId}
+                />
+              ))}
+          </tbody>
         </table>
+        {data && (
+          <Pagination
+            pages={amountPages}
+            results={data.length}
+            limitInf={pagination.limitInf}
+            limitSup={pagination.limitSup}
+          />
+        )}
       </div>
     </>
   );

@@ -3,6 +3,7 @@ export * from "./private/dashboard/table/Table";
 export * from "./private/dashboard/table-lead/LeadsTable";
 export * from "./private/dashboard/catalog/table/CatalogTable";
 
+export * from "./public/review/ReviewCard";
 export * from "./public/carousel/Carousel";
 export * from "./public/carousel/CarouselVehicleImages";
 export * from "./public/topNav/TopNavPublic";

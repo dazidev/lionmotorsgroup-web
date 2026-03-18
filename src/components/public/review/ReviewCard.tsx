@@ -1,0 +1,34 @@
+import { FaStar } from "react-icons/fa";
+import ReadMore from "../../common/read-more/ReadMore";
+
+interface Props {
+  stars: number;
+  name: string;
+  comment: string;
+}
+
+export const ReviewCard = ({ stars, name, comment }: Props) => {
+  const numStars = Array.from({ length: stars }, (v, i) => i + 1);
+
+  return (
+    <div className="flex flex-col max-w-100 bg-stone-900 rounded-2xl p-5 text-center">
+      <div className="flex-10">
+        <ReadMore text={comment} maxLength={150} />
+      </div>
+
+      <div className="flex-2">
+        <p className="text-gold-500 mt-3">{name}</p>
+        <div className="flex flex-row justify-center gap-1">
+          {numStars.map((start) => (
+            <FaStar
+              key={start}
+              height={50}
+              width={50}
+              className="text-gold-500"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};

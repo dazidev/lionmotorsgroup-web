@@ -70,6 +70,7 @@ export interface VehicleState {
   colorExt: string;
   colorInt: string;
   type: string;
+  investment: string;
 
   //* Technical
   engineFuelType: string;

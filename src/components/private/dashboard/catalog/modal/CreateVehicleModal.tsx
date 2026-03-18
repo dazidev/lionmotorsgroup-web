@@ -55,6 +55,7 @@ const initialVehicleState = {
   price: "",
   status: "",
   type: "",
+  investment: "",
   //* Technical
   engineFuelType: "",
   engineConfiguration: "",
@@ -135,6 +136,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
       price: "",
       status: "",
       type: "",
+      investment: "",
       engineFuelType: data.technical.fuelType,
       engineConfiguration: data.technical.engine.configuration,
       engineCylinders: data.technical.engine.cylinders,
@@ -266,6 +268,18 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
             </div>
           </div>
           <div className="gap-3">
+            <div className="flex flex-col p-5 gap-3 border-b rounded-t border-stone-700">
+              <span className="text-xl font-semibold">Financials</span>
+              <div className="flex max-w-70 gap-3">
+                <TextInput
+                  name={"Initial Investment"}
+                  styles="flex-3"
+                  value={vehicleData.investment}
+                  valueOption="investment"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
             <div className="flex flex-col p-5 gap-3 border-b rounded-t border-stone-700">
               <span className="text-xl font-semibold">
                 General Specifications

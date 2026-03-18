@@ -89,6 +89,7 @@ model VehicleGeneral {
   price          Int
   status         StatusVehicle
   type           String
+  investment     Int
   createdAt      DateTime                @default(now())
   updatedAt      DateTime                @updatedAt
 

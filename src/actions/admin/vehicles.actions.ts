@@ -59,6 +59,11 @@ export async function createVehicle(
   ];
 
   try {
+    // todo: make important validations
+    const investment = Number(data.investment);
+    if (!Number.isFinite(investment))
+      throw new Error("The investment must be a number.");
+
     if (images.length < 5)
       throw new Error("You need to upload at least 5 images.");
 
@@ -98,6 +103,7 @@ export async function createVehicle(
         price: Number(data.price),
         status: data.status as StatusVehicle,
         type: data.type,
+        investment: Number(data.investment),
       },
     });
 

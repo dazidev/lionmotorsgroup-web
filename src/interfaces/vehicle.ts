@@ -44,6 +44,7 @@ export interface Vehicle {
   colorExt: string;
   colorInt: string;
   type: string;
+  investment: number;
 
   //* Technical
   engineFuelType: string;

@@ -14,7 +14,15 @@ interface Props {
 }
 
 export default async function FinancialsPage({ searchParams }: Props) {
-  const listHeaders = ["Model", "Brand", "Year", "Status", "Price", "Actions"];
+  const listHeaders = [
+    "VIN",
+    "Model",
+    "Brand",
+    "Year",
+    "Status",
+    "invested",
+    "Actions",
+  ];
   const { table, page } = await searchParams;
 
   if (!table || !page) {

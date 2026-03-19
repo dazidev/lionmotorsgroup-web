@@ -16,10 +16,10 @@ export const FinancialsTableItem = ({
   setOpenEdit,
   setTargetId,
 }: Props) => {
-  const { id, vin, brand, model, year, mileage, price, status } = vehicle;
+  const { id, vin, brand, model, year, investment, status } = vehicle;
 
   const formatStatus = status.replace("_", " ").toUpperCase();
-  const formatPrice = new Intl.NumberFormat("en-US").format(price);
+  const formatPrice = new Intl.NumberFormat("en-US").format(investment);
 
   const getColorStatus = () => {
     if (status === "in_stock") return "bg-gray-600";
@@ -43,6 +43,9 @@ export const FinancialsTableItem = ({
   return (
     <tr className="bg-zinc-900 hover:bg-zinc-800 text-gray-50">
       <td className="px-6 py-4">
+        <span className="font-semibold">{vin}</span>
+      </td>
+      <td className="px-6 py-4">
         <span className="font-semibold">{model}</span>
       </td>
       <td className="px-6 py-4">
@@ -63,6 +66,20 @@ export const FinancialsTableItem = ({
       </td>
       <td className="pl-6 py-4">
         <div className="flex gap-2">
+          <button
+            className="w-16 h-8 rounded-md border border-stone-700 bg-green-900 hover:bg-green-600 flex items-center justify-center transition-all"
+            onClick={handleClickEdit}
+          >
+            <span>View</span>
+          </button>
+
+          <button
+            className="w-16 h-8 rounded-md border border-stone-700 bg-gold-700 hover:bg-gold-600 flex items-center justify-center transition-all"
+            onClick={handleClickEdit}
+          >
+            <span>Add</span>
+          </button>
+
           <button
             className="w-16 h-8 rounded-md border border-stone-700 bg-blue-900 hover:bg-blue-600 flex items-center justify-center transition-all"
             onClick={handleClickEdit}

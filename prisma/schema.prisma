@@ -98,6 +98,7 @@ model VehicleGeneral {
   images         VehicleImage[]
   specifications VehicleSpecification[]
   leads          Lead[]
+  investments    VehicleInvestment[]
 
   @@unique([slug, shortId])
   @@map("vehicles_general")
@@ -162,4 +163,18 @@ model VehicleSpecification {
   @@index([vehicleId])
   @@index([specificationId])
   @@map("vehicle_specifications")
+}
+
+model VehicleInvestment {
+  id          String          @id @default(uuid())
+  vehicleId   String
+  amount      Int
+  description String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  vehicle     VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId])
+  @@map("vehicle_investment")
 }

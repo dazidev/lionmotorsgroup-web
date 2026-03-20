@@ -2,7 +2,8 @@
 
 import { CloseButton } from "@/src/components/button/CloseButton";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
-import { AdminForm, User, Vehicle } from "@/src/interfaces";
+import { Vehicle } from "@/src/interfaces";
+import { Investment } from "@/src/interfaces/investment";
 import React, { useEffect, useState } from "react";
 
 interface Modals {
@@ -15,7 +16,7 @@ type Options = keyof Modals;
 interface Props {
   open: boolean;
   setOpen: (value: boolean, options: Options) => void;
-  handleAction: (field: any) => Promise<boolean>;
+  handleAction: (investment: Investment) => Promise<boolean>;
   type: "create" | "edit";
   vehicle?: Vehicle;
 }
@@ -46,8 +47,8 @@ export const AddInvestmentModal = ({
   };
 
   const clearFields = () => {
-    setField(() => ({
-      VIN: "",
+    setField((prev) => ({
+      ...prev,
       name: "",
       description: "",
       amount: "",
@@ -57,7 +58,16 @@ export const AddInvestmentModal = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await handleAction(field);
+
+    const investment: Investment = {
+      id: vehicle?.id!,
+      name: field.name,
+      description: field.description,
+      amount: field.amount,
+      date: new Date(field.date),
+    };
+
+    const response = await handleAction(investment);
     if (!response) return;
     clearFields();
     setOpen(false, "create");

@@ -7,6 +7,10 @@ import { useSearchParams } from "next/navigation";
 import { Pagination } from "../table/pagination/Pagination";
 import { FinancialsTableItem } from "./FinancialsTableItem";
 import { AddInvestmentModal } from "./modal/AddInvestmentModal";
+import { Investment } from "@/src/interfaces/investment";
+import { addInvestment } from "@/src/actions/private/financials.actions";
+import { ServerResponse } from "../../../../interfaces/actions";
+import toast from "react-hot-toast";
 
 interface Props {
   name: string;
@@ -85,6 +89,17 @@ export const FinancialsTable = ({
     setOpenModal((prev) => ({ ...prev, [option]: value }));
   };
 
+  const handleAddInvestment = async (investment: Investment) => {
+    const response: ServerResponse<any> = await addInvestment(investment);
+
+    if (!response.success) {
+      toast.error(response.error ?? "Unknow error.");
+      return false;
+    }
+    toast.success(response.message ?? "");
+    return true;
+  };
+
   return (
     <>
       <div className="relative overflow-x-auto shadow-sm sm:rounded-lg m-5 bg-zinc-900 border border-stone-700">
@@ -143,9 +158,7 @@ export const FinancialsTable = ({
       <AddInvestmentModal
         open={openModal.create}
         setOpen={handleOpenModal}
-        handleAction={function (field: any): Promise<boolean> {
-          throw new Error("Function not implemented.");
-        }}
+        handleAction={handleAddInvestment}
         type={"create"}
         vehicle={dataList && dataList.find((veh) => veh.id === targetId)}
       />

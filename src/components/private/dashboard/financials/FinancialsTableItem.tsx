@@ -3,8 +3,16 @@
 import { Vehicle } from "@/src/interfaces";
 import React from "react";
 
+interface Modals {
+  view: boolean;
+  create: boolean;
+  edit: boolean;
+}
+type Options = keyof Modals;
+
 interface Props {
   vehicle: Vehicle;
+  handleOpenModal: (value: boolean, option: Options) => void;
   setOpenConfirm: (value: boolean) => void;
   setOpenEdit: (value: boolean) => void;
   setTargetId: React.Dispatch<React.SetStateAction<string>>;
@@ -12,6 +20,7 @@ interface Props {
 
 export const FinancialsTableItem = ({
   vehicle,
+  handleOpenModal,
   setOpenConfirm,
   setOpenEdit,
   setTargetId,
@@ -35,8 +44,8 @@ export const FinancialsTableItem = ({
     setTargetId(id);
   };
 
-  const handleClickEdit = () => {
-    setOpenEdit(true);
+  const clickOpenModal = (option: Options) => {
+    handleOpenModal(true, option);
     setTargetId(id);
   };
 
@@ -68,21 +77,21 @@ export const FinancialsTableItem = ({
         <div className="flex gap-2">
           <button
             className="w-16 h-8 rounded-md border border-stone-700 bg-green-900 hover:bg-green-600 flex items-center justify-center transition-all"
-            onClick={handleClickEdit}
+            onClick={handleClickDelete}
           >
             <span>View</span>
           </button>
 
           <button
             className="w-16 h-8 rounded-md border border-stone-700 bg-gold-700 hover:bg-gold-600 flex items-center justify-center transition-all"
-            onClick={handleClickEdit}
+            onClick={() => clickOpenModal("create")}
           >
             <span>Add</span>
           </button>
 
           <button
             className="w-16 h-8 rounded-md border border-stone-700 bg-blue-900 hover:bg-blue-600 flex items-center justify-center transition-all"
-            onClick={handleClickEdit}
+            onClick={handleClickDelete}
           >
             <span>Edit</span>
           </button>

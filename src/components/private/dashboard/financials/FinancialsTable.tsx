@@ -6,6 +6,7 @@ import { Vehicle } from "@/src/interfaces/index";
 import { useSearchParams } from "next/navigation";
 import { Pagination } from "../table/pagination/Pagination";
 import { FinancialsTableItem } from "./FinancialsTableItem";
+import { AddInvestmentModal } from "./modal/AddInvestmentModal";
 
 interface Props {
   name: string;
@@ -15,11 +16,11 @@ interface Props {
 }
 
 interface Modals {
+  view: boolean;
   create: boolean;
-  confirm: boolean;
   edit: boolean;
-  addBrand: boolean;
 }
+type Options = keyof Modals;
 
 export const FinancialsTable = ({
   name,
@@ -30,10 +31,9 @@ export const FinancialsTable = ({
   const [search, setSearch] = useState("");
   const [dataList, setDataList] = useState<Vehicle[]>();
   const [openModal, setOpenModal] = useState<Modals>({
+    view: false,
     create: false,
-    confirm: false,
     edit: false,
-    addBrand: false,
   });
   const [targetId, setTargetId] = useState("");
   const [pagination, setPagination] = useState({
@@ -48,14 +48,12 @@ export const FinancialsTable = ({
     if (data) {
       const end = Number(page) * 20;
       const start = end - 20;
-      console.log(`${end} ${start}`);
       const sliceData = data.slice(start, end);
       setDataList(sliceData);
       setPagination({
         limitInf: start,
         limitSup: sliceData.length + start,
       });
-      console.log(dataList);
     }
   }, [searchParams, data, page]);
 
@@ -83,7 +81,7 @@ export const FinancialsTable = ({
     findData(value);
   };
 
-  const handleOpenModal = (value: boolean, option: string) => {
+  const handleOpenModal = (value: boolean, option: Options) => {
     setOpenModal((prev) => ({ ...prev, [option]: value }));
   };
 
@@ -125,6 +123,7 @@ export const FinancialsTable = ({
                 <FinancialsTableItem
                   key={vehicle.id}
                   vehicle={vehicle}
+                  handleOpenModal={handleOpenModal}
                   setOpenConfirm={() => handleOpenModal}
                   setOpenEdit={() => handleOpenModal}
                   setTargetId={setTargetId}
@@ -141,6 +140,15 @@ export const FinancialsTable = ({
           />
         )}
       </div>
+      <AddInvestmentModal
+        open={openModal.create}
+        setOpen={handleOpenModal}
+        handleAction={function (field: any): Promise<boolean> {
+          throw new Error("Function not implemented.");
+        }}
+        type={"create"}
+        vehicle={dataList && dataList.find((veh) => veh.id === targetId)}
+      />
     </>
   );
 };

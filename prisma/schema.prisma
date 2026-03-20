@@ -170,6 +170,7 @@ model VehicleInvestment {
   vehicleId   String
   amount      Int
   description String
+  date        DateTime
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import { Vehicle } from "@/src/interfaces/index";
+import { BasicVehicleResponse, Vehicle } from "@/src/interfaces/index";
 import { useSearchParams } from "next/navigation";
 import { Pagination } from "../table/pagination/Pagination";
 import { FinancialsTableItem } from "./FinancialsTableItem";
@@ -12,11 +12,11 @@ import { addInvestment } from "@/src/actions/private/financials.actions";
 import { ServerResponse } from "../../../../interfaces/actions";
 import toast from "react-hot-toast";
 import { ViewInvestmentModal } from "./modal/view/ViewInvestmentModal";
+import { useFinancial } from "@/src/context/FinancialProvider";
 
 interface Props {
   name: string;
   headers: string[];
-  data?: any[]; //! change to interface vehicle
   amountPages: number;
 }
 
@@ -26,14 +26,10 @@ interface Modals {
 }
 type Options = keyof Modals;
 
-export const FinancialsTable = ({
-  name,
-  headers,
-  data,
-  amountPages = 1,
-}: Props) => {
+export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
+  const { vehiclesData } = useFinancial();
   const [search, setSearch] = useState("");
-  const [dataList, setDataList] = useState<Vehicle[]>();
+  const [dataList, setDataList] = useState<BasicVehicleResponse[]>();
   const [openModal, setOpenModal] = useState<Modals>({
     manage: false,
     create: false,
@@ -41,33 +37,33 @@ export const FinancialsTable = ({
   const [targetId, setTargetId] = useState("");
   const [pagination, setPagination] = useState({
     limitInf: 1,
-    limitSup: data?.length ?? 20,
+    limitSup: vehiclesData?.length ?? 20,
   });
 
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
 
   useEffect(() => {
-    if (data) {
+    if (vehiclesData) {
       const end = Number(page) * 20;
       const start = end - 20;
-      const sliceData = data.slice(start, end);
-      setDataList(sliceData);
+      const sliceData = vehiclesData.slice(start, end);
+      setDataList(vehiclesData);
       setPagination({
         limitInf: start,
         limitSup: sliceData.length + start,
       });
     }
-  }, [searchParams, data, page]);
+  }, [searchParams, vehiclesData, page]);
 
   const findData = (value: string) => {
-    if (!data) return;
+    if (!vehiclesData) return;
 
     const q = value.toLowerCase();
 
-    const dataFounds = data.filter((row) => {
+    const dataFounds = vehiclesData.filter((row) => {
       const fullmodel = `
-        ${row.brand.toLowerCase()} 
+        ${row.brand.name.toLowerCase()} 
         ${row.model.toLowerCase()} 
         ${row.year}
       `;
@@ -97,24 +93,6 @@ export const FinancialsTable = ({
     }
     toast.success(response.message ?? "");
     return true;
-  };
-
-  const getBasicDataVeh = (id: string) => {
-    const vehicle = dataList && dataList.find((veh) => veh.id === id);
-    if (vehicle) {
-      return {
-        year: vehicle.year.toString(),
-        brand: vehicle.brand.name,
-        model: vehicle.model,
-        vin: vehicle.vin,
-      };
-    }
-    return {
-      year: "",
-      brand: "",
-      model: "",
-      vin: "",
-    };
   };
 
   return (
@@ -163,10 +141,10 @@ export const FinancialsTable = ({
               ))}
           </tbody>
         </table>
-        {data && (
+        {vehiclesData && (
           <Pagination
             pages={amountPages}
-            results={data.length}
+            results={vehiclesData.length}
             limitInf={pagination.limitInf}
             limitSup={pagination.limitSup}
           />
@@ -182,8 +160,7 @@ export const FinancialsTable = ({
       <ViewInvestmentModal
         open={openModal.manage}
         setOpen={handleOpenModal}
-        vehicleId={targetId}
-        vehicleData={getBasicDataVeh(targetId)}
+        vehicleData={dataList && dataList.find((veh) => veh.id === targetId)}
       />
     </>
   );

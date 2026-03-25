@@ -1,6 +1,6 @@
 "use client";
 
-import { Vehicle } from "@/src/interfaces";
+import { BasicVehicleResponse, Vehicle } from "@/src/interfaces";
 import React from "react";
 
 interface Modals {
@@ -10,7 +10,7 @@ interface Modals {
 type Options = keyof Modals;
 
 interface Props {
-  vehicle: Vehicle;
+  vehicle: BasicVehicleResponse;
   handleOpenModal: (value: boolean, option: Options) => void;
   setOpenConfirm: (value: boolean) => void;
   setOpenEdit: (value: boolean) => void;

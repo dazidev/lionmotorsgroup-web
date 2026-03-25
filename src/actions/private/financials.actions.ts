@@ -57,6 +57,25 @@ export async function getInvestmentByVehicle(id: string) {
   }
 }
 
+export async function getInvestments() {
+  try {
+    const response = await prisma.vehicleInvestment.findMany();
+
+    if (!response)
+      throw new Error("There is an error, please try again later.");
+
+    return {
+      success: true,
+      data: response,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Unknown error.",
+    };
+  }
+}
+
 export async function updateInvestmentById(investment: Investment) {
   try {
     const data = investmentSchema.safeParse(investment);

@@ -1,6 +1,7 @@
 "use client";
 
 import { updateInvestmentById } from "@/src/actions/private/financials.actions";
+import { useFinancial } from "@/src/context/FinancialProvider";
 import { ServerResponse } from "@/src/interfaces";
 import { Investment } from "@/src/interfaces/investment";
 import { useState } from "react";
@@ -22,6 +23,7 @@ export const ViewInvestmentTableItem = ({
   amount,
   date,
 }: Props) => {
+  const { revalidateData } = useFinancial();
   const [initialInvest, setInitialInvest] = useState({
     name,
     description,
@@ -67,6 +69,7 @@ export const ViewInvestmentTableItem = ({
 
     toast.success(response.message ?? "");
     setInitialInvest(invest);
+    revalidateData();
     return;
   };
 

@@ -213,6 +213,33 @@ export async function getVehicles(amount?: number) {
   }
 }
 
+export async function getBasicVehicles() {
+  try {
+    const vehicles = await prisma.vehicleGeneral.findMany({
+      select: {
+        id: true,
+        vin: true,
+        year: true,
+        model: true,
+        brand: true,
+        status: true,
+        investment: true,
+        investments: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    if (!vehicles) return { success: false };
+
+    return {
+      success: true,
+      data: vehicles,
+    };
+  } catch (error) {
+    return { success: false };
+  }
+}
+
 export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {

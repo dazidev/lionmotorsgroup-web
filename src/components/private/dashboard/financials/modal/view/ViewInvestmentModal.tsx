@@ -1,10 +1,8 @@
 "use client";
 
-import { getInvestmentByVehicle } from "@/src/actions/private/financials.actions";
 import { CloseButton } from "@/src/components";
-import { InvestmentResponse } from "@/src/interfaces/investment";
-import { useEffect, useState } from "react";
 import { ViewInvestmentTable } from "./ViewInvestmentTable";
+import { BasicVehicleResponse } from "@/src/interfaces";
 
 interface Modals {
   manage: boolean;
@@ -15,36 +13,10 @@ type Options = keyof Modals;
 interface Props {
   open: boolean;
   setOpen: (value: boolean, options: Options) => void;
-  vehicleId: string;
-  vehicleData: {
-    year: string;
-    brand: string;
-    model: string;
-    vin: string;
-  };
+  vehicleData?: BasicVehicleResponse;
 }
 
-export const ViewInvestmentModal = ({
-  open,
-  setOpen,
-  vehicleId,
-  vehicleData,
-}: Props) => {
-  const [data, setData] = useState<InvestmentResponse[]>();
-
-  useEffect(() => {
-    const investments = async () => {
-      const response = await getInvestmentByVehicle(vehicleId);
-      if (!response.success) {
-        setData([]);
-        return;
-      }
-      setData(response.data);
-    };
-
-    investments();
-  }, [vehicleId]);
-
+export const ViewInvestmentModal = ({ open, setOpen, vehicleData }: Props) => {
   if (!open) return null;
   return (
     <>
@@ -62,8 +34,7 @@ export const ViewInvestmentModal = ({
               </div>
               <ViewInvestmentTable
                 headers={["Name", "Description", "Amount", "Date", "Actions"]}
-                data={data ? data : []}
-                vehicleData={vehicleData}
+                vehicleData={vehicleData!}
               />
             </div>
           </div>

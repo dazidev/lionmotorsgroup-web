@@ -1,3 +1,5 @@
+import { InvestmentResponse } from "./investment";
+
 export interface VehicleResponse {
   general: {
     vin: string;
@@ -104,4 +106,23 @@ export interface DataImage {
   mime: string;
   ext: string | undefined;
   size: number;
+}
+
+export interface BasicVehicleResponse {
+  id: string;
+  vin: string;
+  year: number;
+  model: string;
+  status: string;
+  investment: number;
+  createdAt: Date;
+  updatedAt: Date;
+  brand: {
+    name: string;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    imagePath: string;
+  };
+  investments: InvestmentResponse[];
 }

@@ -2,7 +2,7 @@
 
 import { CloseButton } from "@/src/components/button/CloseButton";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
-import { Vehicle } from "@/src/interfaces";
+import { BasicVehicleResponse } from "@/src/interfaces";
 import { Investment } from "@/src/interfaces/investment";
 import React, { useEffect, useState } from "react";
 
@@ -17,7 +17,7 @@ interface Props {
   setOpen: (value: boolean, options: Options) => void;
   handleAction: (investment: Investment) => Promise<boolean>;
   type: "create" | "edit";
-  vehicle?: Vehicle;
+  vehicle?: BasicVehicleResponse;
 }
 
 export const AddInvestmentModal = ({

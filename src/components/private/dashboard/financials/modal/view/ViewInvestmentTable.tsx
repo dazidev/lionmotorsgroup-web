@@ -1,18 +1,12 @@
+import { BasicVehicleResponse } from "@/src/interfaces";
 import { ViewInvestmentTableItem } from "./ViewInvestmentTableItem";
-import { InvestmentResponse } from "@/src/interfaces/investment";
 
 interface Props {
   headers: string[];
-  vehicleData: {
-    year: string;
-    brand: string;
-    model: string;
-    vin: string;
-  };
-  data: InvestmentResponse[];
+  vehicleData: BasicVehicleResponse;
 }
 
-export const ViewInvestmentTable = ({ headers, data, vehicleData }: Props) => {
+export const ViewInvestmentTable = ({ headers, vehicleData }: Props) => {
   const { year, brand, model, vin } = vehicleData;
   return (
     <div className="relative overflow-x-auto shadow-sm sm:rounded-lg m-5 bg-zinc-900 border border-stone-700">
@@ -32,8 +26,8 @@ export const ViewInvestmentTable = ({ headers, data, vehicleData }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {data &&
-            data.map((inv) => (
+          {vehicleData.investments &&
+            vehicleData.investments.map((inv) => (
               <ViewInvestmentTableItem
                 key={inv.id}
                 id={inv.id}

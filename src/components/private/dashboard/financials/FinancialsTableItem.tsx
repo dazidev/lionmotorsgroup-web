@@ -4,9 +4,8 @@ import { Vehicle } from "@/src/interfaces";
 import React from "react";
 
 interface Modals {
-  view: boolean;
+  manage: boolean;
   create: boolean;
-  edit: boolean;
 }
 type Options = keyof Modals;
 
@@ -76,31 +75,16 @@ export const FinancialsTableItem = ({
       <td className="pl-6 py-4">
         <div className="flex gap-2">
           <button
-            className="w-16 h-8 rounded-md border border-stone-700 bg-green-900 hover:bg-green-600 flex items-center justify-center transition-all"
-            onClick={handleClickDelete}
-          >
-            <span>View</span>
-          </button>
-
-          <button
             className="w-16 h-8 rounded-md border border-stone-700 bg-gold-700 hover:bg-gold-600 flex items-center justify-center transition-all"
             onClick={() => clickOpenModal("create")}
           >
             <span>Add</span>
           </button>
-
           <button
-            className="w-16 h-8 rounded-md border border-stone-700 bg-blue-900 hover:bg-blue-600 flex items-center justify-center transition-all"
-            onClick={handleClickDelete}
+            className="w-16 h-8 rounded-md border border-stone-700 bg-green-900 hover:bg-green-600 flex items-center justify-center transition-all"
+            onClick={() => clickOpenModal("manage")}
           >
-            <span>Edit</span>
-          </button>
-
-          <button
-            className="w-20 h-8 rounded-md border border-stone-700 bg-red-900 hover:bg-red-600 flex items-center justify-center transition-all"
-            onClick={handleClickDelete}
-          >
-            <span>Delete</span>
+            <span>Manage</span>
           </button>
         </div>
       </td>

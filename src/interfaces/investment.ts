@@ -5,3 +5,10 @@ export interface Investment {
   amount: string;
   date: Date;
 }
+
+export interface InvestmentResponse extends Omit<Investment, "amount"> {
+  amount: number;
+  createdAt: Date;
+  updatedAt: Date;
+  vehicleId: string;
+}

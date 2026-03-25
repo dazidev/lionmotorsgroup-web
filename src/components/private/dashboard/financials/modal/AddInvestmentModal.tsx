@@ -7,9 +7,8 @@ import { Investment } from "@/src/interfaces/investment";
 import React, { useEffect, useState } from "react";
 
 interface Modals {
-  view: boolean;
+  manage: boolean;
   create: boolean;
-  edit: boolean;
 }
 type Options = keyof Modals;
 

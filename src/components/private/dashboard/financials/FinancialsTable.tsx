@@ -11,6 +11,7 @@ import { Investment } from "@/src/interfaces/investment";
 import { addInvestment } from "@/src/actions/private/financials.actions";
 import { ServerResponse } from "../../../../interfaces/actions";
 import toast from "react-hot-toast";
+import { ViewInvestmentModal } from "./modal/view/ViewInvestmentModal";
 
 interface Props {
   name: string;
@@ -20,9 +21,8 @@ interface Props {
 }
 
 interface Modals {
-  view: boolean;
+  manage: boolean;
   create: boolean;
-  edit: boolean;
 }
 type Options = keyof Modals;
 
@@ -35,9 +35,8 @@ export const FinancialsTable = ({
   const [search, setSearch] = useState("");
   const [dataList, setDataList] = useState<Vehicle[]>();
   const [openModal, setOpenModal] = useState<Modals>({
-    view: false,
+    manage: false,
     create: false,
-    edit: false,
   });
   const [targetId, setTargetId] = useState("");
   const [pagination, setPagination] = useState({
@@ -98,6 +97,24 @@ export const FinancialsTable = ({
     }
     toast.success(response.message ?? "");
     return true;
+  };
+
+  const getBasicDataVeh = (id: string) => {
+    const vehicle = dataList && dataList.find((veh) => veh.id === id);
+    if (vehicle) {
+      return {
+        year: vehicle.year.toString(),
+        brand: vehicle.brand.name,
+        model: vehicle.model,
+        vin: vehicle.vin,
+      };
+    }
+    return {
+      year: "",
+      brand: "",
+      model: "",
+      vin: "",
+    };
   };
 
   return (
@@ -161,6 +178,12 @@ export const FinancialsTable = ({
         handleAction={handleAddInvestment}
         type={"create"}
         vehicle={dataList && dataList.find((veh) => veh.id === targetId)}
+      />
+      <ViewInvestmentModal
+        open={openModal.manage}
+        setOpen={handleOpenModal}
+        vehicleId={targetId}
+        vehicleData={getBasicDataVeh(targetId)}
       />
     </>
   );

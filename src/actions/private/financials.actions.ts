@@ -89,6 +89,7 @@ export async function updateInvestmentById(investment: Investment) {
         name,
         description,
         amount,
+        date,
       },
     });
 

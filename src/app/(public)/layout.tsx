@@ -10,7 +10,7 @@ export default async function Authlayout({
   return (
     <main className="flex justify-center min-h-screen bg-zinc-950 relative overflow-hidden">
       <TopNavPublic></TopNavPublic>
-      <div className="w-full sm:w-[1350px] pt-20">{children}</div>
+      <div className="w-full h-auto">{children}</div>
     </main>
   );
 }

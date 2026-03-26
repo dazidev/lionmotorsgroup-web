@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-
-
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -57,8 +55,21 @@ body {
   }
 }
 
+@keyframes bounce2 {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
 .animate-shimmer {
   animation: shimmer 2.5s infinite;
+}
+
+.bounce2 {
+  animation: bounce2 2s infinite;
 }
 
 .no-arrows::-webkit-outer-spin-button,
@@ -78,7 +89,8 @@ body {
   width: 40px;
   height: 1px;
   background: #B8965A;
-  }
+}
+
 .line-both::before, .line-both::after {
   content: '';
   display: block;
@@ -87,6 +99,7 @@ body {
   background: #B8965A;
   opacity: 0.6;
 }
+
 .line-both-brown::before, .line-both-brown::after {
   content: '';
   display: block;
@@ -105,4 +118,39 @@ body {
   height: 30px;
   border-right: 1px solid rgba(184,150,90,0.3);
   border-bottom: 1px solid rgba(184,150,90,0.3);
+}
+
+.hero-accent::before {
+  content: '';
+  position: absolute;
+  inset: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(184,150,90,0.08);
+}
+.hero-accent::after {
+  content: '';
+  position: absolute;
+  inset: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,150,90,0.06) 0%, transparent 70%);
+}
+
+.hero-radial {
+  background: radial-gradient(ellipse at 70% 50%, #1e1810 0%, #0E0E0E 65%);
+}
+
+.hero-grid-lines {
+  background-image:
+    linear-gradient(rgba(184,150,90,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,150,90,0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 70%);
+}
+
+.scroll-line::after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
 }

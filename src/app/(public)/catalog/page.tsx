@@ -26,22 +26,24 @@ export default async function CatalogPage() {
   });
 
   return (
-    <>
-      <Grid option="vehicles">
-        {vehicles &&
-          vehicles.map((veh) => (
-            <VehicleCard
-              key={veh.id}
-              brand={veh.brand.name}
-              model={veh.model}
-              year={veh.year}
-              miles={veh.mileage}
-              price={veh.price}
-              image={veh.images[0].key}
-              link={`${veh.slug}-${veh.shortId}`}
-            />
-          ))}
-      </Grid>
-    </>
+    <div className="flex justify-center pt-20">
+      <div className="sm:w-[1350px]">
+        <Grid option="vehicles">
+          {vehicles &&
+            vehicles.map((veh) => (
+              <VehicleCard
+                key={veh.id}
+                brand={veh.brand.name}
+                model={veh.model}
+                year={veh.year}
+                miles={veh.mileage}
+                price={veh.price}
+                image={veh.images[0].key}
+                link={`${veh.slug}-${veh.shortId}`}
+              />
+            ))}
+        </Grid>
+      </div>
+    </div>
   );
 }

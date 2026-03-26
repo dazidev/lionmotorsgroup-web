@@ -12,7 +12,7 @@ export const BrandCard = ({ brand }: Props) => {
   return (
     <div
       key={brand.id}
-      className="flex flex-col h-40 p-6 items-center justify-center gap-2 bg-stone-900 rounded-2xl shadow-2xl hover:scale-102 transition-transform duration-500 cursor-pointer"
+      className="flex flex-col h-30 md:h-40 p-6 items-center justify-center gap-2 bg-stone-900 rounded-2xl shadow-2xl hover:scale-102 transition-transform duration-500 cursor-pointer"
       onClick={() => redirect(`/catalog`)}
     >
       <ImageWithLoader src={linkImage} alt={`logo-${brand.name}`} />

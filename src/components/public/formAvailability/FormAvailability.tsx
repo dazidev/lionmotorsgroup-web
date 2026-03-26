@@ -85,7 +85,7 @@ export const FormAvailability = ({ vehicleId }: Props) => {
 
   return (
     <form
-      className="flex flex-col h-auto bg-stone-900 rounded-2xl text-center gap-5 p-5"
+      className="flex flex-col h-auto w-full bg-stone-900 rounded-2xl text-center gap-5 p-5"
       onSubmit={(e) => handleSubmit(e)}
     >
       <h1 className="text-2xl text-left">Confirm Availability</h1>

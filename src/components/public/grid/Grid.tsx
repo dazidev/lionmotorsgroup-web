@@ -1,13 +1,17 @@
 import { ReactNode } from "react";
 
+type Options = "brands" | "vehicles";
+
 interface Props {
   children: ReactNode;
+  option: Options;
 }
 
-export const Grid = ({ children }: Props) => {
-  return (
-    <section className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 my-10">
-      {children}
-    </section>
-  );
+export const Grid = ({ children, option }: Props) => {
+  const styles =
+    option === "brands"
+      ? "grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 my-10"
+      : "flex flex-col my-5 px-5 items-center md:grid md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5";
+
+  return <section className={styles}>{children}</section>;
 };

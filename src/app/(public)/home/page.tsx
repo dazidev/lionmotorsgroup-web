@@ -23,14 +23,16 @@ export default async function HomePage() {
   const reviews = dataReview.result.reviews;
 
   return (
-    <main className="my-5">
-      <h1 className="text-4xl font-bold">Available car brands</h1>
-      <Grid>
+    <main className="my-5 px-5 md:px-0">
+      <h1 className="text-2xl md:text-4xl font-bold">Available car brands</h1>
+      <Grid option="brands">
         {dataBrands &&
           dataBrands.map((brand) => <BrandCard key={brand.id} brand={brand} />)}
       </Grid>
 
-      <h1 className="text-4xl font-bold mt-20">Our customers recommend us</h1>
+      <h1 className="text-2xl md:text-4xl font-bold mt-20">
+        Our customers recommend us
+      </h1>
       <div className="flex flex-row mt-10 gap-5 w-full">
         <CarouselReviews reviews={reviews} />
       </div>

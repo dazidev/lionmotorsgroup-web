@@ -14,7 +14,7 @@ export default function ImageWithLoader({ src, alt, priority = true }: Props) {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="relative w-40 h-full overflow-hidden rounded-lg">
+    <div className="relative w-30 md:w-40 h-full overflow-hidden rounded-lg">
       {/* Loader */}
       {loading && (
         <Skeleton width="w-full" height="h-full" rounded="rounded-lg" />

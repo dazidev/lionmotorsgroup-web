@@ -27,7 +27,7 @@ export default async function CatalogPage() {
 
   return (
     <>
-      <Grid>
+      <Grid option="vehicles">
         {vehicles &&
           vehicles.map((veh) => (
             <VehicleCard

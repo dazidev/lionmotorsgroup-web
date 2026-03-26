@@ -27,7 +27,7 @@ export const VehicleCard = ({
 
   return (
     <div
-      className="w-auto max-w-80 h-auto bg-stone-900 rounded-sm border border-gold-700/50 hover:scale-102 transition-transform duration-500 cursor-pointer"
+      className="w-auto max-w-auto md:max-w-80 h-auto bg-stone-900 rounded-sm border border-gold-700/50 hover:scale-102 transition-transform duration-500 cursor-pointer"
       onClick={() => redirect(`/catalog/${link}`)}
     >
       <div>

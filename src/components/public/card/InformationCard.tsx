@@ -30,7 +30,7 @@ export const InformationCard = async ({
       ? "grid py-5 gap-3 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]"
       : "flex flex-wrap gap-3";
   return (
-    <section className="flex flex-col my-5 gap-3 bg-stone-900 p-5 rounded-2xl">
+    <section className="flex flex-col w-full md:my-5 gap-3 bg-stone-900 p-5 rounded-2xl">
       <h2 className="text-3xl font-bold text-gold-500">{title}</h2>
       <span className="block w-full h-px bg-gray-500/70"></span>
       <div className={style}>

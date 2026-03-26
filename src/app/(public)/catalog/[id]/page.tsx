@@ -1,7 +1,8 @@
 "use server";
-import { CarouselVehicleImages, FormAvailability } from "@/src/components";
-import { InformationCard } from "@/src/components/public/card/InformationCard";
+
 import prisma from "@/src/lib/prisma";
+import { DesktopPage } from "./ui/DesktopPage";
+import { MobilePage } from "./ui/MobilePage";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -37,7 +38,7 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
     );
 
   const milesFormat = new Intl.NumberFormat("en-US").format(
-    vehicleData.mileage
+    vehicleData.mileage,
   );
   const priceFormat = new Intl.NumberFormat("en-US").format(vehicleData.price);
   const images = Object.values(vehicleData.images).map(({ key }) => key);
@@ -76,56 +77,42 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
       id: specification.id,
       name: specification.name,
       type: specification.type,
-    })
+    }),
   );
+
+  const vehicle = {
+    id: vehicleData.id,
+    year: vehicleData.year,
+    brand: {
+      name: vehicleData.brand.name,
+    },
+    model: vehicleData.model,
+  };
 
   return (
     <>
-      <div className="flex flex-row w-full items-start pt-5 overflow-hidden gap-5">
-        <div className="flex-8 min-w-0 text-xl">
-          <CarouselVehicleImages images={images} />
-          <InformationCard
-            title="General Information"
-            type="text"
-            data={generalData}
-          />
-          <InformationCard
-            title="Technical Information"
-            type="text"
-            data={technicalData}
-          />
-          <InformationCard
-            title="Security Specifications"
-            type="tag"
-            data={specificationData}
-            specificationType="security"
-          />
-          <InformationCard
-            title="Confort Specifications"
-            type="tag"
-            data={specificationData}
-            specificationType="confort"
-          />
-        </div>
-        <div className="flex-4 min-w-0 flex flex-col gap-5">
-          <div className="w-full h-auto bg-stone-900 rounded-2xl text-center gap-5 p-5">
-            <div className="py-5">
-              <p className="text-3xl">{`${
-                vehicleData.year
-              } ${vehicleData.brand.name.toUpperCase()}`}</p>
-              <h1 className="text-5xl font-bold">{`${vehicleData.model.toUpperCase()}`}</h1>
-              <p className="text-2xl">{`${milesFormat} miles`}</p>
-            </div>
-            <span className="block w-full h-px bg-gray-300"></span>
-            <div className="py-5">
-              <h1 className="flex justify-between text-4xl font-bold">
-                <p>Price</p>
-                <p className="text-gold-500">{`$${priceFormat}`}</p>
-              </h1>
-            </div>
-          </div>
-          <FormAvailability vehicleId={vehicleData.id} />
-        </div>
+      <div className="block md:hidden">
+        <MobilePage
+          images={images}
+          generalData={generalData}
+          technicalData={technicalData}
+          specificationData={specificationData}
+          vehicleData={vehicleData}
+          milesFormat={milesFormat}
+          priceFormat={priceFormat}
+        />
+      </div>
+
+      <div className="hidden md:block">
+        <DesktopPage
+          images={images}
+          generalData={generalData}
+          technicalData={technicalData}
+          specificationData={specificationData}
+          vehicleData={vehicleData}
+          milesFormat={milesFormat}
+          priceFormat={priceFormat}
+        />
       </div>
     </>
   );

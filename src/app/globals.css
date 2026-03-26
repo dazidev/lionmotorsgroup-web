@@ -20,6 +20,8 @@
   --color-gold-500: #daa520;
   --color-gold-600: #b8860b;
   --color-gold-700: #a37508;
+  --color-gold-border: rgba(184,150,90,0.15);
+  --color-gold-border-t: rgba(184,150,90,0.50);
 }
 
 body {
@@ -68,4 +70,39 @@ body {
 .no-arrows {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+.line-before::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #B8965A;
+  }
+.line-both::before, .line-both::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: #B8965A;
+  opacity: 0.6;
+}
+.line-both-brown::before, .line-both-brown::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: #7A5C2E;
+  opacity: 0.6;
+}
+
+.card-corner::after {
+  content: '';
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 30px;
+  height: 30px;
+  border-right: 1px solid rgba(184,150,90,0.3);
+  border-bottom: 1px solid rgba(184,150,90,0.3);
 }

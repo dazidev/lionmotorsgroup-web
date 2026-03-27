@@ -26,7 +26,7 @@ export default async function HomePage() {
   const reviews = dataReview.result.reviews;
 
   return (
-    <main className="mb-5 px-5 md:px-0">
+    <main className="mb-5">
       <Hero />
       <OurValues />
       <MissionVision />
@@ -48,8 +48,8 @@ export default async function HomePage() {
           </Grid>
         </div>
       </section>
-      <section className="flex flex-col items-center py-28" id="reviews">
-        <div className="sm:w-[1350px]">
+      <section className="flex flex-col items-center w-full py-28" id="reviews">
+        <div className="w-full md:w-[1350px]">
           <div className="text-center mb-20">
             <p className="line-both font-sans text-xl font-medium tracking-[0.2em] uppercase text-gold-700 mb-4 flex items-center justify-center gap-4">
               Our costumers
@@ -58,7 +58,7 @@ export default async function HomePage() {
               They <em className="italic text-gold-400">recommend us</em>
             </h2>
           </div>
-          <div className="flex flex-row mt-10 gap-5 w-full">
+          <div className="flex flex-row mt-10 gap-5 w-full px-5 md:px-0">
             <CarouselReviews reviews={reviews} />
           </div>
         </div>

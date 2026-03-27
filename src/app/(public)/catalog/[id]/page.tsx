@@ -80,15 +80,6 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
     }),
   );
 
-  const vehicle = {
-    id: vehicleData.id,
-    year: vehicleData.year,
-    brand: {
-      name: vehicleData.brand.name,
-    },
-    model: vehicleData.model,
-  };
-
   return (
     <>
       <div className="block md:hidden">

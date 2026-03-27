@@ -30,7 +30,7 @@ export const DesktopPage = ({
 }: Props) => {
   return (
     <>
-      <div className="flex flex-row w-full items-start pt-5 overflow-hidden gap-5">
+      <div className="flex flex-row w-full items-start pt-25 overflow-hidden gap-5">
         <div className="flex-8 min-w-0 text-xl">
           <CarouselVehicleImages images={images} />
           <InformationCard

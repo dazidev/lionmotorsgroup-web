@@ -30,7 +30,7 @@ export const MobilePage = ({
 }: Props) => {
   return (
     <>
-      <div className="flex flex-col w-full items-start p-5 overflow-hidden gap-5">
+      <div className="flex flex-col w-full items-start p-5 pt-25 overflow-hidden gap-5">
         <CarouselVehicleImages images={images} />
         <GeneralCard
           vehicleData={vehicleData}

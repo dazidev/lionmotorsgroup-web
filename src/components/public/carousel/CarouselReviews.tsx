@@ -25,12 +25,11 @@ export const CarouselReviews = ({ reviews }: Props) => {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        loop={true}
         modules={[Autoplay]}
       >
         {grouped.map((group, i) => (
           <SwiperSlide key={i}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="felx justify-center grid grid-cols-1 md:grid-cols-3 gap-3">
               {group.map((review, j) => (
                 <ReviewCard
                   key={j}

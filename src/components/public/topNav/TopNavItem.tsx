@@ -6,15 +6,25 @@ import { usePathname } from "next/navigation";
 interface Props {
   path: string;
   labelText: string;
+  mobile?: boolean;
+  setClose?: (value: boolean) => void;
 }
 
-export const TopNavItem = ({ path, labelText }: Props) => {
+export const TopNavItem = ({
+  path,
+  labelText,
+  mobile = false,
+  setClose,
+}: Props) => {
   const currentPath = usePathname();
 
   return (
     <li>
       <Link
         href={path}
+        onClick={() => {
+          if (mobile && setClose) setClose(false);
+        }}
         className={`
           flex items-center h-14  rounded-lg 
           ${
@@ -25,7 +35,7 @@ export const TopNavItem = ({ path, labelText }: Props) => {
         `}
       >
         <div className="flex items-center pl-8">
-          <span className={"ms-3 text-2xl"}>{labelText}</span>
+          <span className={"ms-3 text-3xl sm:text-2xl"}>{labelText}</span>
         </div>
       </Link>
     </li>

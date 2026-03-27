@@ -11,7 +11,7 @@ export const ReviewCard = ({ stars, name, comment }: Props) => {
   const numStars = Array.from({ length: stars }, (v, i) => i + 1);
 
   return (
-    <div className="flex flex-col max-w-100 bg-stone-900 rounded-2xl p-5 text-center">
+    <div className="flex flex-col w-full md:max-w-100 p-5 bg-stone-900 rounded-2xl text-center">
       <div className="flex-10">
         <ReadMore text={comment} maxLength={150} />
       </div>

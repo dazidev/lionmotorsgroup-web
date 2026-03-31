@@ -94,7 +94,7 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
         />
       </div>
 
-      <div className="hidden md:block">
+      <div className="hidden md:flex items-center justify-center">
         <DesktopPage
           images={images}
           generalData={generalData}

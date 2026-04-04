@@ -1,9 +1,5 @@
-import { titleFont } from "@/src/config/fonts";
-import Image from "next/image";
 import { Grid } from "../../../components";
 import { getBrands } from "@/src/actions";
-import ImageWithLoader from "../../../components/image/ImageWithLoader";
-import { redirect } from "next/navigation";
 import { BrandCard } from "@/src/components/public/card/BrandCard";
 import { GooglePlacesResponse } from "@/src/interfaces/https/google-reviews";
 import { CarouselReviews } from "@/src/components/public/carousel/CarouselReviews";

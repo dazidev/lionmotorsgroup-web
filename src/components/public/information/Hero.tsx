@@ -24,7 +24,7 @@ export const Hero = () => {
             lifelong relationship."
           </p>
 
-          <div className="flex gap-4 items-center">
+          {/*<div className="flex gap-4 items-center">
             <a
               href="#nosotros"
               className="font-sans text-xs font-medium tracking-widest uppercase text-dark bg-gold px-9 py-4 no-underline inline-block transition-all duration-300 hover:bg-gold-light hover:-translate-y-px"
@@ -37,7 +37,7 @@ export const Hero = () => {
             >
               Agendar cita
             </a>
-          </div>
+          </div>*/}
         </div>
 
         <div className="scroll-line absolute bottom-10 left-1/2 bounce2 flex flex-col items-center gap-2 text-white/30 text-[0.65rem] tracking-[0.15em] uppercase">

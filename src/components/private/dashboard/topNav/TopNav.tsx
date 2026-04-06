@@ -14,8 +14,6 @@ export const TopNav = async () => {
 
   const { id, name, lastname, email, role } = session.user;
 
-  console.log(session.user); //! delete
-
   return (
     <nav className="fixed top-0 z-50 w-full px-[5%] h-20 bg-zinc-900 border-b shadow-2xl border-b-gold-700/50">
       <div className="flex flex-row px-3 py-3">

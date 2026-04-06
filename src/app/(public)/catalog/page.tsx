@@ -1,7 +1,8 @@
 "use server";
-import { VehicleCard } from "@/src/components";
-import { Grid } from "../../../components";
+
 import prisma from "@/src/lib/prisma";
+
+import { VehicleCatalog } from "@/src/components/public/catalog/VehicleCatalog";
 
 export default async function CatalogPage() {
   const vehicles = await prisma.vehicleGeneral.findMany({
@@ -27,22 +28,8 @@ export default async function CatalogPage() {
 
   return (
     <div className="flex justify-center pt-20">
-      <div className="sm:w-[1350px]">
-        <Grid option="vehicles">
-          {vehicles &&
-            vehicles.map((veh) => (
-              <VehicleCard
-                key={veh.id}
-                brand={veh.brand.name}
-                model={veh.model}
-                year={veh.year}
-                miles={veh.mileage}
-                price={veh.price}
-                image={veh.images[0].key}
-                link={`${veh.slug}-${veh.shortId}`}
-              />
-            ))}
-        </Grid>
+      <div className="flex flex-col items-start w-full sm:w-[1350px]">
+        <VehicleCatalog vehicles={vehicles} />
       </div>
     </div>
   );

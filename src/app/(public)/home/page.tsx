@@ -6,6 +6,8 @@ import { CarouselReviews } from "@/src/components/public/carousel/CarouselReview
 import { OurValues } from "@/src/components/public/information/OurValues";
 import { MissionVision } from "@/src/components/public/information/MissionVision";
 import { Hero } from "@/src/components/public/information/Hero";
+import prisma from "@/src/lib/prisma";
+import { CarouselVehicles } from "@/src/components/public/carousel/CarouselVehicles";
 
 const API_KEY = process.env.API_GOOGLE_KEY;
 const PLACE_ID = process.env.PLACE_ID;
@@ -21,19 +23,46 @@ export default async function HomePage() {
   const dataReview: GooglePlacesResponse = await responseReview.json();
   const reviews = dataReview.result.reviews;
 
+  const vehicles = await prisma.vehicleGeneral.findMany({
+    select: {
+      id: true,
+      brand: {
+        select: {
+          name: true,
+        },
+      },
+      slug: true,
+      shortId: true,
+      model: true,
+      year: true,
+      mileage: true,
+      price: true,
+      images: {
+        where: { position: 0 },
+        take: 1,
+      },
+    },
+  });
+
   return (
     <main className="mb-5">
       <Hero />
-      <OurValues />
-      <MissionVision />
       <section className="flex justify-center py-28" id="brands">
-        <div className="sm:w-[1350px]">
+        <div className="flex flex-col sm:w-[1350px]">
           <div className="text-center mb-20">
             <p className="line-both font-sans text-xl font-medium tracking-[0.2em] uppercase text-gold-700 mb-4 flex items-center justify-center gap-4">
               Our cars
             </p>
             <h2 className="text-4xl font-light text-white">
-              Available car <em className="italic text-gold-400">brands</em>
+              The most <em className="italic text-gold-400">recent</em>
+            </h2>
+          </div>
+          <div className="">
+            <CarouselVehicles vehicles={vehicles} />
+          </div>
+          <div className="text-center my-20">
+            <h2 className="text-4xl font-light text-white">
+              Available <em className="italic text-gold-400">brands</em>
             </h2>
           </div>
           <Grid option="brands">
@@ -44,6 +73,8 @@ export default async function HomePage() {
           </Grid>
         </div>
       </section>
+      <OurValues />
+      <MissionVision />
       <section className="flex flex-col items-center w-full py-28" id="reviews">
         <div className="w-full md:w-[1350px]">
           <div className="text-center mb-20">

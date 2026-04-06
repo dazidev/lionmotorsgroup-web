@@ -126,3 +126,23 @@ export interface BasicVehicleResponse {
   };
   investments: InvestmentResponse[];
 }
+
+export interface VehicleCardInterface {
+  id: string;
+  brand: {
+    name: string;
+  };
+  slug: string;
+  shortId: string | null;
+  model: string;
+  year: number;
+  mileage: number;
+  price: number;
+  images: {
+    // Prisma devuelve array porque es relación
+    key: string;
+    // agrega aquí otros campos si existen en tu modelo (ej: url, id)
+    // id: string;
+    // url: string;
+  }[];
+}

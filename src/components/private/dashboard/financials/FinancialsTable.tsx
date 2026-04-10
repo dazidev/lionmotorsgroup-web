@@ -134,8 +134,6 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
                   key={vehicle.id}
                   vehicle={vehicle}
                   handleOpenModal={handleOpenModal}
-                  setOpenConfirm={() => handleOpenModal}
-                  setOpenEdit={() => handleOpenModal}
                   setTargetId={setTargetId}
                 />
               ))}

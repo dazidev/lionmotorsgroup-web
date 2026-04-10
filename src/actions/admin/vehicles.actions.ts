@@ -223,6 +223,7 @@ export async function getBasicVehicles() {
         model: true,
         brand: true,
         status: true,
+        price: true,
         investment: true,
         investments: true,
         createdAt: true,

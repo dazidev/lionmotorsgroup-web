@@ -114,6 +114,7 @@ export interface BasicVehicleResponse {
   year: number;
   model: string;
   status: string;
+  price: number;
   investment: number;
   createdAt: Date;
   updatedAt: Date;

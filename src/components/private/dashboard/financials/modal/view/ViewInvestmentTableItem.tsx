@@ -56,7 +56,7 @@ export const ViewInvestmentTableItem = ({
       name: invest.name,
       description: invest.description,
       amount: invest.amount.toString(),
-      date: invest.date,
+      date: new Date(invest.date),
     };
     const response: ServerResponse<any> =
       await updateInvestmentById(investment);

@@ -1,6 +1,6 @@
 "use client";
 
-import { BasicVehicleResponse, Vehicle } from "@/src/interfaces";
+import { BasicVehicleResponse } from "@/src/interfaces";
 import React from "react";
 
 interface Modals {
@@ -12,22 +12,36 @@ type Options = keyof Modals;
 interface Props {
   vehicle: BasicVehicleResponse;
   handleOpenModal: (value: boolean, option: Options) => void;
-  setOpenConfirm: (value: boolean) => void;
-  setOpenEdit: (value: boolean) => void;
   setTargetId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const FinancialsTableItem = ({
   vehicle,
   handleOpenModal,
-  setOpenConfirm,
-  setOpenEdit,
   setTargetId,
 }: Props) => {
-  const { id, vin, brand, model, year, investment, status } = vehicle;
+  const {
+    id,
+    vin,
+    brand,
+    model,
+    year,
+    price,
+    investment,
+    status,
+    investments,
+  } = vehicle;
 
   const formatStatus = status.replace("_", " ").toUpperCase();
-  const formatPrice = new Intl.NumberFormat("en-US").format(investment);
+  const formatPrice = new Intl.NumberFormat("en-US").format(price);
+  const totalInvestments =
+    investments.reduce((acc, item) => acc + item.amount, 0) + investment;
+  const formatInvestment = new Intl.NumberFormat("en-US").format(
+    totalInvestments,
+  );
+  const formatRevenue = new Intl.NumberFormat("en-US").format(
+    price - totalInvestments,
+  );
 
   const getColorStatus = () => {
     if (status === "in_stock") return "bg-gray-600";
@@ -37,11 +51,6 @@ export const FinancialsTableItem = ({
   };
 
   const colorStatus = getColorStatus();
-
-  const handleClickDelete = () => {
-    setOpenConfirm(true);
-    setTargetId(id);
-  };
 
   const clickOpenModal = (option: Options) => {
     handleOpenModal(true, option);
@@ -71,6 +80,12 @@ export const FinancialsTableItem = ({
       </td>
       <td className="px-6 py-4">
         <span className="inline-flex items-centerrounded-full justify-end">{`$${formatPrice}`}</span>
+      </td>
+      <td className="px-6 py-4">
+        <span className="inline-flex items-centerrounded-full justify-end">{`$${formatInvestment}`}</span>
+      </td>
+      <td className="px-6 py-4">
+        <span className="inline-flex items-centerrounded-full justify-end">{`$${formatRevenue}`}</span>
       </td>
       <td className="pl-6 py-4">
         <div className="flex gap-2">

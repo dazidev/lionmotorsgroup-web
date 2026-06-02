@@ -74,24 +74,24 @@ enum StatusVehicle {
 }
 
 model VehicleGeneral {
-  id             String                  @id @default(uuid())
-  shortId        String?                 @unique
-  vin            String                  @unique
+  id             String                                   @id @default(uuid())
+  shortId        String?                                  @unique
+  vin            String                                   @unique
   slug           String
   year           Int
   brandId        String
   model          String
   series         String
   doors          Int
-  color_ext      String
-  color_int      String
+  colorExt       String                 @map("color_ext")
+  colorInt       String?                @map("color_int")
   mileage        Int
   price          Int
   status         StatusVehicle
   type           String
   investment     Int
-  createdAt      DateTime                @default(now())
-  updatedAt      DateTime                @updatedAt
+  createdAt      DateTime                                 @default(now())
+  updatedAt      DateTime                                 @updatedAt
 
   brand          Brand                  @relation(fields: [brandId], references: [id])
   technical      VehicleTechnical?
@@ -105,19 +105,19 @@ model VehicleGeneral {
 }
 
 model VehicleTechnical {
-  vehicleId            String          @id
-  engine_fuel_type     String
-  engine_configuration String
-  engine_cylinders     Int
-  engine_power         Int
-  engine_displacement  Float
-  engine_turbo         String
-  drivetrain           String
-  transmission         String
-  createdAt            DateTime        @default(now())
-  updatedAt            DateTime        @updatedAt
+  vehicleId           String                                      @id
+  engineFuelType      String         @map("engine_fuel_type")
+  engineConfiguration String         @map("engine_configuration")
+  engineCylinders     Int            @map("engine_cylinders")
+  enginePower         Int            @map("engine_power")
+  engineDisplacement  Float          @map("engine_displacement")
+  engineTurbo         String         @map("engine_turbo")
+  drivetrain          String
+  transmission        String
+  createdAt           DateTime                                    @default(now())
+  updatedAt           DateTime                                    @updatedAt
 
-  vehicle              VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  vehicle             VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
   @@map("vehicles_technical")
 }

@@ -104,20 +104,38 @@ model VehicleGeneral {
   @@map("vehicles_general")
 }
 
-model VehicleTechnical {
-  vehicleId           String                                      @id
-  engineFuelType      String         @map("engine_fuel_type")
-  engineConfiguration String         @map("engine_configuration")
-  engineCylinders     Int            @map("engine_cylinders")
-  enginePower         Int            @map("engine_power")
-  engineDisplacement  Float          @map("engine_displacement")
-  engineTurbo         String         @map("engine_turbo")
-  drivetrain          String
-  transmission        String
-  createdAt           DateTime                                    @default(now())
-  updatedAt           DateTime                                    @updatedAt
+enum FuelType {
+  gasoline
+  diesel
+  hybrid
+  electric
+  gas
+}
 
-  vehicle             VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+enum DrivetrainType {
+  FOUR_X_FOUR @map("4x4")
+  FOUR_X_TWO  @map("4x2")
+}
+
+enum TransmissionType {
+  automatic
+  manual
+}
+
+model VehicleTechnical {
+  vehicleId           String                                        @id
+  engineFuelType      FuelType         @map("engine_fuel_type")
+  engineConfiguration String           @map("engine_configuration")
+  engineCylinders     Int              @map("engine_cylinders")
+  enginePower         Int              @map("engine_power")
+  engineDisplacement  Float            @map("engine_displacement")
+  engineTurbo         String           @map("engine_turbo")
+  drivetrain          DrivetrainType
+  transmission        TransmissionType
+  createdAt           DateTime                                      @default(now())
+  updatedAt           DateTime                                      @updatedAt
+
+  vehicle             VehicleGeneral   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
   @@map("vehicles_technical")
 }

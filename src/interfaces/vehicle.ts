@@ -139,12 +139,12 @@ export interface VehicleCardInterface {
   year: number;
   mileage: number;
   price: number;
-  // technical: {
-  //   drivetrain: DrivetrainType;
-  //   transmission: TransmissionType;
-  //   engineFuelType: FuelType;
-  // } | null;
-  // colorExt: string;
+  technical: {
+    drivetrain: DrivetrainType;
+    transmission: TransmissionType;
+    engineFuelType: FuelType;
+  } | null;
+  colorExt: string;
   images: {
     // Prisma devuelve array porque es relación
     key: string;

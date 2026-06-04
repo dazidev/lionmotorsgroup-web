@@ -8,6 +8,7 @@ import { MissionVision } from "@/src/components/public/information/MissionVision
 import { Hero } from "@/src/components/public/information/Hero";
 import prisma from "@/src/lib/prisma";
 import { CarouselVehicles } from "@/src/components/public/carousel/CarouselVehicles";
+import { FuelType } from "../../../interfaces/vehicle";
 
 const API_KEY = process.env.API_GOOGLE_KEY;
 const PLACE_ID = process.env.PLACE_ID;
@@ -37,6 +38,14 @@ export default async function HomePage() {
       year: true,
       mileage: true,
       price: true,
+      technical: {
+        select: {
+          drivetrain: true,
+          transmission: true,
+          engineFuelType: true,
+        },
+      },
+      colorExt: true,
       images: {
         where: { position: 0 },
         take: 1,

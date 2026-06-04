@@ -19,6 +19,14 @@ export default async function CatalogPage() {
       year: true,
       mileage: true,
       price: true,
+      colorExt: true,
+      technical: {
+        select: {
+          drivetrain: true,
+          transmission: true,
+          engineFuelType: true,
+        },
+      },
       images: {
         where: { position: 0 },
         take: 1,

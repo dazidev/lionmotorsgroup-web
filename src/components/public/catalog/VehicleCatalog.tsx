@@ -35,6 +35,7 @@ interface Filters {
   fuel: string[];
   transmission: string[];
   drivetrain: string[];
+  color: string[];
   order: Order;
 }
 
@@ -76,6 +77,7 @@ export const VehicleCatalog = ({ vehicles }: Props) => {
     fuel: [],
     transmission: [],
     drivetrain: [],
+    color: [],
     order: "lower-price",
   });
 
@@ -137,6 +139,7 @@ export const VehicleCatalog = ({ vehicles }: Props) => {
       fuel: searchParams.get("fuel"),
       transmission: searchParams.get("transmission"),
       drivetrain: searchParams.get("drivetrain"),
+      color: searchParams.get("color"),
     };
 
     setFilters((prev) => ({
@@ -159,6 +162,7 @@ export const VehicleCatalog = ({ vehicles }: Props) => {
       fuel: param.fuel ? param.fuel.split(",") : [],
       transmission: param.transmission ? param.transmission.split(",") : [],
       drivetrain: param.drivetrain ? param.drivetrain.split(",") : [],
+      color: param.color ? param.color.split(",") : [],
     }));
   }, []);
 
@@ -200,6 +204,9 @@ export const VehicleCatalog = ({ vehicles }: Props) => {
           veh.technical.drivetrain &&
           filters.drivetrain.includes(veh.technical.drivetrain));
 
+      const matchColor =
+        filters.color.length === 0 || filters.color.includes(veh.colorExt);
+
       return (
         matchPrice &&
         matchBrand &&
@@ -208,7 +215,8 @@ export const VehicleCatalog = ({ vehicles }: Props) => {
         matchMilage &&
         matchFuel &&
         matchTransmission &&
-        matchDrivetrain
+        matchDrivetrain &&
+        matchColor
       );
     });
 
@@ -516,6 +524,29 @@ export const VehicleCatalog = ({ vehicles }: Props) => {
     router.push(`/catalog?${params.toString()}`);
   };
 
+  const handleColor = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    const currentColors = params.get("color");
+
+    let colors = currentColors ? currentColors.split(",") : [];
+
+    if (!colors.includes(value)) {
+      colors.push(value);
+    } else {
+      colors = colors.filter((color) => color !== value);
+    }
+
+    params.set("color", colors.join(","));
+
+    if (colors.length === 0) {
+      params.delete("color");
+    }
+
+    setFilters((prev) => ({ ...prev, color: colors }));
+
+    router.push(`/catalog?${params.toString()}`);
+  };
+
   return (
     <>
       <div className="flex flex-row w-full justify-between items-center bg-zinc-900 mt-5 py-3 px-4 border border-zinc-800 rounded-sm">
@@ -800,7 +831,39 @@ export const VehicleCatalog = ({ vehicles }: Props) => {
               </button>
               <div
                 className={`pt-2 ${open !== "color" ? "hidden" : "flex flex-col"}`}
-              ></div>
+              >
+                {filterData.colors.map((color) => {
+                  const isSelected = filters.color.includes(color);
+                  if (
+                    filters.brand.length !== 0 &&
+                    !filters.brand.includes(color)
+                  ) {
+                    return;
+                  }
+
+                  return (
+                    <span
+                      key={color}
+                      className="flex flex-row items-center gap-3 py-1"
+                    >
+                      <input
+                        type="checkbox"
+                        id={color}
+                        value={color}
+                        className="h-4.5 w-4.5 accent-yellow-500 cursor-pointer"
+                        checked={isSelected}
+                        onClick={() => handleColor(color)}
+                      />
+                      <label
+                        htmlFor={color}
+                        className={`cursor-pointer text-lg ${false ? "text-zinc-500" : "text-white"}`}
+                      >
+                        {color}
+                      </label>
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

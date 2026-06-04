@@ -76,14 +76,14 @@ export interface VehicleState {
   investment: string;
 
   //* Technical
-  engineFuelType: string;
+  engineFuelType: FuelType;
   engineConfiguration: string;
   engineCylinders: string;
   enginePower: string;
   engineDisplacement: string;
   engineTurbo: string;
-  drivetrain: string;
-  transmission: string;
+  drivetrain: DrivetrainType;
+  transmission: TransmissionType;
 }
 
 export interface Brands {
@@ -139,6 +139,12 @@ export interface VehicleCardInterface {
   year: number;
   mileage: number;
   price: number;
+  technical: {
+    drivetrain: string;
+    transmission: string;
+    engineFuelType: string;
+  } | null;
+  colorExt: string;
   images: {
     // Prisma devuelve array porque es relación
     key: string;
@@ -147,3 +153,7 @@ export interface VehicleCardInterface {
     // url: string;
   }[];
 }
+
+export type FuelType = "gasoline" | "diesel" | "hybrid" | "electric" | "gas";
+export type DrivetrainType = "FOUR_X_FOUR" | "FOUR_X_TWO";
+export type TransmissionType = "automatic" | "manual";

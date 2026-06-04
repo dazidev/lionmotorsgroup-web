@@ -13,6 +13,9 @@ import {
   ServerResponse,
   VehicleState,
   VehicleResponse,
+  FuelType,
+  DrivetrainType,
+  TransmissionType,
 } from "@/src/interfaces";
 import { regex } from "@/src/utils/regex";
 import { useEffect, useState } from "react";
@@ -39,6 +42,16 @@ interface Props {
 }
 
 const statusOptions = ["in_stock", "on_sale", "sold"];
+const fuelOptions: FuelType[] = [
+  "diesel",
+  "electric",
+  "gas",
+  "gasoline",
+  "hybrid",
+];
+const drivetrainOptions: DrivetrainType[] = ["FOUR_X_FOUR", "FOUR_X_TWO"];
+const transmissionOptions: TransmissionType[] = ["automatic", "manual"];
+
 const NUM_INITIAL_IMAGES = 5;
 
 const initialVehicleState = {
@@ -384,8 +397,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                 Technical Specifications
               </span>
               <div className="flex min-w-full gap-3">
-                <TextInput
+                <SelectInput
                   name={"Engine Fuel Type"}
+                  options={fuelOptions}
                   styles="flex-3"
                   value={vehicleData.engineFuelType}
                   valueOption="engineFuelType"
@@ -428,15 +442,17 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   valueOption="engineTurbo"
                   onChange={handleChange}
                 />
-                <TextInput
+                <SelectInput
                   name={"Drivetrain"}
+                  options={drivetrainOptions}
                   styles="flex-3"
                   value={vehicleData.drivetrain}
                   valueOption="drivetrain"
                   onChange={handleChange}
                 />
-                <TextInput
+                <SelectInput
                   name={"Transmission"}
+                  options={transmissionOptions}
                   styles="flex-3"
                   value={vehicleData.transmission}
                   valueOption="transmission"

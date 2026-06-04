@@ -10,7 +10,7 @@ interface Props {
   options: ValueOption;
   onChange: (
     value: string,
-    option: keyof VehicleState | "typeSpecification"
+    option: keyof VehicleState | "typeSpecification",
   ) => void;
   styles?: string;
 }
@@ -57,6 +57,10 @@ export const SelectInput = ({
               option === "sold"
             ) {
               formatOption = option.replace("_", " ").toUpperCase();
+            } else if (option === "FOUR_X_FOUR") {
+              formatOption = "4x4";
+            } else if (option === "FOUR_X_TWO") {
+              formatOption = "4x2";
             } else {
               formatOption = option;
             }

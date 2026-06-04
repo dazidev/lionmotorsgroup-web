@@ -3,6 +3,7 @@
 import prisma from "@/src/lib/prisma";
 
 import { VehicleCatalog } from "@/src/components/public/catalog/VehicleCatalog";
+import { Suspense } from "react";
 
 export default async function CatalogPage() {
   const vehicles = await prisma.vehicleGeneral.findMany({
@@ -37,7 +38,9 @@ export default async function CatalogPage() {
   return (
     <div className="flex justify-center pt-20">
       <div className="flex flex-col items-start w-full sm:w-[1350px]">
-        <VehicleCatalog vehicles={vehicles} />
+        <Suspense fallback={<div></div>}>
+          <VehicleCatalog vehicles={vehicles} />
+        </Suspense>
       </div>
     </div>
   );

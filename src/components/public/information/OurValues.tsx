@@ -16,7 +16,7 @@ export const OurValues = () => {
 
         <div className="grid grid-cols-5 max-w-[1100px] mx-auto gap-px border border-gold-border bg-gold-border max-[900px]:grid-cols-1">
           <div className="bg-stone-900 p-12 text-center hover:bg-stone-900/80 cursor-default">
-            <div className="font-serif text-5xl font-light text-gold-400/20 leading-none mb-5 duration-300">
+            <div className="font-serif text-5xl font-light text-gold-400 leading-none mb-5 duration-300">
               01
             </div>
             <div className="font-serif text-lg font-normal text-white leading-snug">
@@ -24,7 +24,7 @@ export const OurValues = () => {
             </div>
           </div>
           <div className="bg-stone-900 p-12 text-center hover:bg-stone-900/80 cursor-default">
-            <div className="font-serif text-5xl font-light text-gold-400/20 leading-none mb-5">
+            <div className="font-serif text-5xl font-light text-gold-400 leading-none mb-5">
               02
             </div>
             <div className="font-serif text-lg font-normal text-white leading-snug">
@@ -32,7 +32,7 @@ export const OurValues = () => {
             </div>
           </div>
           <div className="bg-stone-900 p-12 text-center hover:bg-stone-900/80 cursor-default">
-            <div className="font-serif text-5xl font-light text-gold-400/20 leading-none mb-5">
+            <div className="font-serif text-5xl font-light text-gold-400 leading-none mb-5">
               03
             </div>
             <div className="font-serif text-lg font-normal text-white leading-snug">
@@ -40,7 +40,7 @@ export const OurValues = () => {
             </div>
           </div>
           <div className="bg-stone-900 p-12 text-center hover:bg-stone-900/80 cursor-default">
-            <div className="font-serif text-5xl font-light text-gold-400/20 leading-none mb-5">
+            <div className="font-serif text-5xl font-light text-gold-400 leading-none mb-5">
               04
             </div>
             <div className="font-serif text-lg font-normal text-white leading-snug">
@@ -48,7 +48,7 @@ export const OurValues = () => {
             </div>
           </div>
           <div className="bg-stone-900 p-12 text-center hover:bg-stone-900/80 cursor-default">
-            <div className="font-serif text-5xl font-light text-gold-400/20 leading-none mb-5">
+            <div className="font-serif text-5xl font-light text-gold-400 leading-none mb-5">
               05
             </div>
             <div className="font-serif text-lg font-normal text-white leading-snug">

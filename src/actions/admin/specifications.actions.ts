@@ -22,7 +22,7 @@ export async function getSpecifications(): Promise<
 
 export async function addSpecification(
   name: string,
-  type: TypeSpecification
+  type: TypeSpecification,
 ): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
 
@@ -36,18 +36,18 @@ export async function addSpecification(
 
     return {
       success: true,
-      message: "The security specification has been create successfully.",
+      message: `The ${type} specification has been create successfully.`,
     };
   } catch (error) {
     return {
       success: false,
-      message: "There was an error creating the security specification.",
+      message: `There was an error creating the ${type} specification.`,
     };
   }
 }
 
 export async function deleteSpecification(
-  id: string
+  id: string,
 ): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {

@@ -155,6 +155,7 @@ model VehicleImage {
 enum TypeSpecification {
   security
   confort
+  visual
 }
 
 model Specification {

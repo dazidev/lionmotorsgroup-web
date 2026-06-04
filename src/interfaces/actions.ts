@@ -5,7 +5,7 @@ export interface ServerResponse<T> {
   message?: string;
 }
 
-type TypeSpecification = "security" | "confort";
+type TypeSpecification = "security" | "confort" | "visual";
 
 export interface Specification {
   id: string;

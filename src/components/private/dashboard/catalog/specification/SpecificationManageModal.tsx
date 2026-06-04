@@ -55,13 +55,14 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
     if (!field.specification) return;
     if (
       field.typeSpecification !== "security" &&
-      field.typeSpecification !== "confort"
+      field.typeSpecification !== "confort" &&
+      field.typeSpecification !== "visual"
     )
       return;
 
     const response = await addSpecification(
       field.specification,
-      field.typeSpecification
+      field.typeSpecification,
     );
 
     if (!response.success) return toast.error(`${response.message}`);
@@ -189,7 +190,7 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
                 />
                 <SelectInput
                   name="type"
-                  options={["security", "confort"]}
+                  options={["security", "confort", "visual"]}
                   value={field.typeSpecification}
                   onChange={handleChange}
                   valueOption="typeSpecification"

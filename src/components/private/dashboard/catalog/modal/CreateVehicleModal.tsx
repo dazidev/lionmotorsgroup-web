@@ -81,8 +81,7 @@ const initialVehicleState = {
 };
 
 export const CreateVehicleModal = ({ open, setOpen }: Props) => {
-  const [vehicleData, setVehicleData] =
-    useState<VehicleState>(initialVehicleState);
+  const [vehicleData, setVehicleData] = useState(initialVehicleState);
   const [loading, setLoading] = useState({
     searchVehicle: false,
     createVehicle: false,
@@ -93,6 +92,10 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
   const [images, setImages] = useState<ImagesState>([]);
 
   const amount = Array.from({ length: NUM_INITIAL_IMAGES }, (_, i) => i + 1);
+
+  const colors = specificationsData
+    .filter((spec) => spec.type === "visual")
+    .map((spec) => spec.name);
 
   useEffect(() => {
     if (open === false) {
@@ -188,7 +191,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
         }));
 
       const vehicle = await createVehicle(
-        vehicleData,
+        vehicleData as VehicleState,
         specifications,
         imagesData,
       );
@@ -344,15 +347,17 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   valueOption="doors"
                   onChange={handleChange}
                 />
-                <TextInput
+                <SelectInput
                   name={"Color Ext"}
+                  options={colors}
                   styles="flex-2"
                   value={vehicleData.colorExt}
                   valueOption="colorExt"
                   onChange={handleChange}
                 />
-                <TextInput
+                <SelectInput
                   name={"Color Int"}
+                  options={colors}
                   styles="flex-2"
                   value={vehicleData.colorInt}
                   valueOption="colorInt"

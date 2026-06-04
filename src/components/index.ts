@@ -1,3 +1,5 @@
+export * from "./public/footer/Footer";
+
 export * from "./private/dashboard/topNav/TopNav";
 export * from "./private/dashboard/table/Table";
 export * from "./private/dashboard/table-lead/LeadsTable";

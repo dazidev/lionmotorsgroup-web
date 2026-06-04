@@ -4,6 +4,7 @@ import prisma from "@/src/lib/prisma";
 
 import { VehicleCatalog } from "@/src/components/public/catalog/VehicleCatalog";
 import { Suspense } from "react";
+import { Footer } from "@/src/components";
 
 export default async function CatalogPage() {
   const vehicles = await prisma.vehicleGeneral.findMany({
@@ -36,12 +37,16 @@ export default async function CatalogPage() {
   });
 
   return (
-    <div className="flex justify-center pt-20">
-      <div className="flex flex-col items-start w-full sm:w-[1350px]">
-        <Suspense fallback={<div></div>}>
-          <VehicleCatalog vehicles={vehicles} />
-        </Suspense>
+    <div className="flex flex-col justify-center pt-20">
+      <div className="flex w-full justify-center">
+        <div className="flex flex-col items-start w-full mb-10 sm:w-[1350px]">
+          <Suspense fallback={<div></div>}>
+            <VehicleCatalog vehicles={vehicles} />
+          </Suspense>
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

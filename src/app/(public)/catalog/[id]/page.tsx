@@ -50,24 +50,24 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
     { name: "Year", value: vehicleData.year },
     { name: "Series", value: vehicleData.series },
     { name: "Doors", value: vehicleData.doors },
-    { name: "Exterior color", value: vehicleData.color_ext },
-    { name: "Interior color", value: vehicleData.color_int },
+    { name: "Exterior color", value: vehicleData.colorExt },
+    { name: "Interior color", value: vehicleData.colorInt },
     { name: "Type", value: vehicleData.type },
   ];
 
   const technicalData = [
-    { name: "Fuel type", value: vehicleData.technical?.engine_fuel_type },
+    { name: "Fuel type", value: vehicleData.technical?.engineFuelType },
     {
       name: "Configuration",
-      value: vehicleData.technical?.engine_configuration,
+      value: vehicleData.technical?.engineConfiguration,
     },
-    { name: "Cylinders", value: vehicleData.technical?.engine_cylinders },
-    { name: "Power", value: `${vehicleData.technical?.engine_power} HP` },
+    { name: "Cylinders", value: vehicleData.technical?.engineCylinders },
+    { name: "Power", value: `${vehicleData.technical?.enginePower} HP` },
     {
       name: "Displacement",
-      value: `${vehicleData.technical?.engine_displacement} L`,
+      value: `${vehicleData.technical?.engineDisplacement} L`,
     },
-    { name: "Turbo", value: vehicleData.technical?.engine_turbo },
+    { name: "Turbo", value: vehicleData.technical?.engineTurbo },
     { name: "Drivetrain", value: vehicleData.technical?.drivetrain },
     { name: "Transmission", value: vehicleData.technical?.transmission },
   ];

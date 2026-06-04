@@ -38,6 +38,17 @@ export const InformationCard = async ({
           data.map((item) => {
             if (isDataText(item)) {
               const { name, value } = item;
+
+              let formatValue = value;
+              if (typeof value === "string") {
+                formatValue = value.slice(0, 1).toUpperCase() + value.slice(1);
+                if (value === "FOUR_X_FOUR") {
+                  formatValue = "4x4";
+                } else if (value === "FOUR_X_TWO") {
+                  formatValue = "4x2";
+                }
+              }
+
               if (value) {
                 return (
                   <span
@@ -45,7 +56,7 @@ export const InformationCard = async ({
                     className="flex justify-between border-b border-b-gray-500/70 pb-3"
                   >
                     <p className="text-gray-500/70">{name}</p>
-                    <p className="font-bold">{value}</p>
+                    <p className="font-bold">{formatValue}</p>
                   </span>
                 );
               }

@@ -15,6 +15,7 @@ interface Props {
 
 export const LeadView = ({ leads, current, open, setOpen }: Props) => {
   const [lead, setLead] = useState<Lead>();
+  const typeLead = lead?.type.slice(0, 1).toUpperCase() + lead?.type.slice(1)!;
 
   useEffect(() => {
     if (!leads) return;
@@ -31,7 +32,7 @@ export const LeadView = ({ leads, current, open, setOpen }: Props) => {
 
   const viewVehicle = async () => {
     if (lead?.vehicleId === undefined) return;
-    const slug = await getVehicleSlug(lead.vehicleId);
+    const slug = await getVehicleSlug(lead.vehicleId!);
     if (!slug.success) return;
 
     const url = `/catalog/${slug.data?.slug}`;
@@ -49,7 +50,9 @@ export const LeadView = ({ leads, current, open, setOpen }: Props) => {
             {/*<!-- Modal content -->*/}
             <div className="relative bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
               <div className="sticky top-0 z-100 flex w-full border-b rounded-t-2xl border-stone-700 bg-zinc-800 p-5">
-                <h1 className="text-2xl font-semibold">Lead Details</h1>
+                <h1 className="text-2xl font-semibold">
+                  Lead Details <span>({typeLead})</span>
+                </h1>
                 <CloseButton onClick={setOpen} />
               </div>
               {lead && (
@@ -136,11 +139,13 @@ export const LeadView = ({ leads, current, open, setOpen }: Props) => {
                 </div>
               )}
               <div className="flex justify-end gap-3 pb-5 pr-5">
-                <DefaultButton
-                  name={"View Vehicle"}
-                  loading={false}
-                  onClick={viewVehicle}
-                />
+                {lead?.type === "vehicle" && (
+                  <DefaultButton
+                    name={"View Vehicle"}
+                    loading={false}
+                    onClick={viewVehicle}
+                  />
+                )}
                 {lead?.status === "unattended" && (
                   <DefaultButton
                     name="Attended"

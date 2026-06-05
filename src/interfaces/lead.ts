@@ -1,3 +1,5 @@
+import { TypeLead } from "@prisma/client";
+
 type StatusLead = "unattended" | "attended";
 
 export interface Lead {
@@ -8,8 +10,9 @@ export interface Lead {
   phoneNumber: string | null;
   zipcode: string | null;
   comments: string | null;
+  type: TypeLead;
   status: StatusLead;
-  vehicleId: string;
+  vehicleId: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -26,5 +29,6 @@ export interface FormLead {
   zipcode: string;
   phoneNumber: string;
   comments: string;
-  vehicleId: string;
+  type: TypeLead;
+  vehicleId?: string;
 }

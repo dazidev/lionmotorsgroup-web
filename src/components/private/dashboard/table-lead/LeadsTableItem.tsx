@@ -17,11 +17,13 @@ export const LeadsTableItem = ({
   setOpenView,
   setTargetId,
 }: Props) => {
-  const { id, name, lastname, email, phoneNumber, createdAt, status } = lead;
+  const { id, name, lastname, email, phoneNumber, createdAt, status, type } =
+    lead;
 
   const fullName = `${name} ${lastname}`;
   const date = new Date(createdAt);
   const statusColor = status == "attended" ? "bg-emerald-600" : "bg-red-800";
+  const typeColor = type == "vehicle" ? "bg-blue-600" : "bg-yellow-600";
 
   const formatUSA = FormatDate.complete(date);
 
@@ -49,6 +51,15 @@ export const LeadsTableItem = ({
         <td className="px-6 py-4">
           <span className="inline-flex items-centerrounded-full">
             {phoneNumber}
+          </span>
+        </td>
+        <td className="px-6 py-4">
+          <span className="inline-flex items-center gap-1.5">
+            <span
+              className={`flex w-30 justify-center h-auto rounded p-1 ${typeColor} font-bold`}
+            >
+              {type.toUpperCase()}
+            </span>
           </span>
         </td>
         <td className="px-6 py-4">

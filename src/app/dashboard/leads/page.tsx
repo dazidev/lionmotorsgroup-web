@@ -10,6 +10,7 @@ export default async function LeadsPage() {
     "Full Name",
     "Email",
     "Phone Number",
+    "Type",
     "Status",
     "Date",
     "Actions",

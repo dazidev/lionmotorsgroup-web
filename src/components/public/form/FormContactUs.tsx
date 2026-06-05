@@ -6,17 +6,14 @@ import { regex } from "@/src/utils/regex";
 import { FormEvent, useState } from "react";
 import { ErrorDialog } from "../../dialog/ErrorDialog";
 import { SuccessDialog } from "../../dialog/SuccessDialog";
-
-interface Props {
-  vehicleId: string;
-}
+import { TypeLead } from "@prisma/client";
 
 interface Loading {
   status: "" | "loading" | "loaded";
   message: string;
 }
 
-export const FormAvailability = ({ vehicleId }: Props) => {
+export const FormContactUs = () => {
   const initialStateForm = {
     name: "",
     lastname: "",
@@ -24,7 +21,7 @@ export const FormAvailability = ({ vehicleId }: Props) => {
     zipcode: "",
     phoneNumber: "",
     comments: "",
-    vehicleId: vehicleId,
+    type: "general" as TypeLead,
   };
   const [form, setForm] = useState<FormLead>(initialStateForm);
   const [error, setError] = useState("");
@@ -34,8 +31,7 @@ export const FormAvailability = ({ vehicleId }: Props) => {
   });
 
   const formValidation = (form: FormLead) => {
-    const { name, lastname, email, zipcode, phoneNumber, comments, vehicleId } =
-      form;
+    const { name, lastname, email, zipcode, phoneNumber, comments } = form;
     if (name.length > 16 || name.length < 2)
       return "Name must be between 2 and 16 characters.";
     if (lastname.length > 16 || lastname.length < 2)
@@ -43,11 +39,10 @@ export const FormAvailability = ({ vehicleId }: Props) => {
     if (!regex.email.test(email)) return "Please enter a valid email address.";
     if (zipcode && !regex.zipcode.test(zipcode))
       return "Please enter a valid ZIP code (e.g., 12345 or 12345-6789).";
-    if (phoneNumber && !regex.phoneNumber.test(phoneNumber))
+    if (!regex.phoneNumber.test(phoneNumber))
       return "Please enter a valid U.S. phone number.";
     if (comments && comments.length > 200)
       return "Comments cannot exceed 200 characters.";
-    if (!regex.uuidv4.test(vehicleId)) return "Unknown error.";
     return "";
   };
 
@@ -85,10 +80,18 @@ export const FormAvailability = ({ vehicleId }: Props) => {
 
   return (
     <form
-      className="flex flex-col h-auto w-full bg-stone-900 rounded-2xl text-center gap-5 p-5"
+      className="flex flex-col items h-auto w-[75%] bg-stone-900 rounded-2xl text-center gap-5 p-5"
       onSubmit={(e) => handleSubmit(e)}
     >
-      <h1 className="text-2xl text-left">Confirm Availability</h1>
+      <div className="text-center">
+        <h2 className="text-4xl font-light text-white">
+          Contact <em className="italic text-gold-400">Us</em>
+        </h2>
+      </div>
+      <p className="text-center text-gray-300 text-lg max-w-2xl mx-auto">
+        Have questions about a vehicle or our services? Fill out the form below
+        and our team will contact you shortly.
+      </p>
       <div className="flex flex-row gap-5">
         <input
           placeholder="First Name"
@@ -126,9 +129,8 @@ export const FormAvailability = ({ vehicleId }: Props) => {
       />
       <div className="flex flex-row gap-5">
         <input
-          placeholder="Zip Code"
+          placeholder="Zip Code (optional)"
           className="flex-1 min-w-0 px-4 py-3.5 bg-zinc-800/80 border-2 border-gray-200/20 rounded-xl text-white placeholder-zinc-500 outline-none transition-all duration-300 focus:bg-zinc-800 focus:border-gray-200 focus:ring-4 focus:ring-gold-500/10"
-          required
           value={form.zipcode}
           onChange={(e) => {
             handleChange(e.target.value, "zipcode");
@@ -164,7 +166,7 @@ export const FormAvailability = ({ vehicleId }: Props) => {
         disabled={loading.status === "loading" ? true : false}
         className="w-full px-6 py-4 bg-linear-to-r from-gold-500 to-gold-600 text-black text-base font-semibold rounded-xl transition-all duration-300 hover:from-gold-400 hover:to-gold-500 hover:-translate-y-0.5 active:translate-y-0 tracking-wide"
       >
-        {loading.status === "loading" ? "Loading..." : "Confirm Availability"}
+        {loading.status === "loading" ? "Loading..." : "Send"}
       </button>
 
       {error && <ErrorDialog error={error} />}

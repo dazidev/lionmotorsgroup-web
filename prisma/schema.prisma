@@ -37,20 +37,26 @@ enum StatusLead {
   attended
 }
 
+enum TypeLead {
+  vehicle
+  general
+}
+
 model Lead {
-  id          String          @id @default(uuid())
+  id          String           @id @default(uuid())
   name        String
   lastname    String
   email       String
   phoneNumber String?
   zipcode     String?
-  comments    String?         @db.Text
-  status      StatusLead      @default(unattended)
-  vehicleId   String
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  comments    String?          @db.Text
+  status      StatusLead       @default(unattended)
+  type        TypeLead
+  vehicleId   String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
 
-  vehicle     VehicleGeneral @relation(fields: [vehicleId], references: [id])
+  vehicle     VehicleGeneral? @relation(fields: [vehicleId], references: [id])
 
   @@map("leads")
 }

@@ -5,16 +5,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay } from "swiper/modules";
-import { Review } from "@/src/interfaces/https/google-reviews";
 import { ReviewCard } from "../review/ReviewCard";
 import { chunkArray } from "@/src/utils/chunkArray";
+import { Reviews } from "@prisma/client";
 
 interface Props {
-  reviews: Review[];
+  reviews: Reviews[];
 }
 
 export const CarouselReviews = ({ reviews }: Props) => {
-  const grouped = chunkArray(reviews, 3);
+  const grouped = chunkArray<Reviews>(reviews, 3);
 
   return (
     <>
@@ -34,8 +34,8 @@ export const CarouselReviews = ({ reviews }: Props) => {
                 <ReviewCard
                   key={j}
                   stars={review.rating}
-                  name={review.author_name}
-                  comment={review.text}
+                  name={review.name}
+                  comment={review.comment ?? ""}
                 />
               ))}
             </div>

@@ -205,3 +205,13 @@ model VehicleInvestment {
   @@index([vehicleId])
   @@map("vehicle_investment")
 }
+
+model Reviews {
+  id        String    @id @default(uuid())
+  name      String
+  rating    Int
+  comment   String?
+  CreatedAt DateTime  @default(now())
+
+  @@map("reviews")
+}

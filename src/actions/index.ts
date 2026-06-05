@@ -6,3 +6,4 @@ export * from "./admin/vehicles.actions";
 export * from "./admin/specifications.actions";
 export * from "./admin/brands.actions";
 export * from "./public/leads.actions";
+export * from "./public/reviews.actions";

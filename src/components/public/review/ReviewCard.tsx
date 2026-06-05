@@ -12,7 +12,7 @@ export const ReviewCard = ({ stars, name, comment }: Props) => {
 
   return (
     <div className="flex flex-col w-full md:max-w-100 p-5 bg-stone-900 rounded-2xl text-center">
-      <div className="flex-10">
+      <div className="flex flex-10 justify-center items-center">
         <ReadMore text={comment} maxLength={150} />
       </div>
 

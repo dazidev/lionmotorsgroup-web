@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay } from "swiper/modules";
-import { ReviewCard } from "../review/ReviewCard";
 import { chunkArray } from "@/src/utils/chunkArray";
 import { VehicleCardInterface } from "@/src/interfaces";
 import { VehicleCard } from "../catalog/VehicleCard";

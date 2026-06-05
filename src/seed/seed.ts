@@ -32,10 +32,17 @@ interface SeedVehicle {
   status: "in_stock" | "on_sale" | "sold";
 }
 
+interface SeedReview {
+  name: string;
+  rating: number;
+  comment?: string;
+}
+
 interface SeedData {
   users: SeedUser[];
   leads: SeedLead[];
   vehicles: SeedVehicle[];
+  reviews: SeedReview[];
 }
 
 export const initialData: SeedData = {
@@ -354,6 +361,101 @@ export const initialData: SeedData = {
       mileage: 43895,
       price: 33995,
       status: "sold",
+    },
+  ],
+  reviews: [
+    {
+      name: "Gabriel Lima",
+      rating: 5,
+    },
+    {
+      name: "Alexander Rada",
+      rating: 5,
+      comment:
+        "Excellent service, very serious and responsible people, and most importantly, they always look for a solution to your problems.",
+    },
+    {
+      name: "OlafoRutas Luzmy and George",
+      rating: 5,
+      comment: "A good team. Excellent service.",
+    },
+    {
+      name: "cristian ortiz",
+      rating: 5,
+      comment:
+        "I work using ride-sharing apps, and I bought a Toyota Prius. I haven't had to make use of the warranty at all—the cars at this dealership are excellent. I would recommend them without hesitation. Be sure to meet Mr. Gustavo; he is very attentive and is always looking out for the best options for you.",
+    },
+    {
+      name: "lion motors",
+      rating: 5,
+      comment:
+        "Definitely recommended! Even though they are just starting out in the business, they are very reliable. I bought a Toyota Prius from them, and they provided a warranty on the hybrid battery. I brought the car back because it developed a fault; they inspected and repaired it, and they stood by their word.",
+    },
+    {
+      name: "Andrea Esquivel Ortiz",
+      rating: 5,
+      comment: "An incredible work",
+    },
+    {
+      name: "Jeronimo Muñoz Esquivel",
+      rating: 5,
+      comment: "Simply an incredible job.",
+    },
+    {
+      name: "Lorenzo Cordero",
+      rating: 5,
+      comment:
+        "I just bought my car, I leave very happy with so much warranty, they gave me many options, recommended, here they are very friendly.",
+    },
+    {
+      name: "Drayton Linen",
+      rating: 5,
+      comment:
+        "Got a car from Lion Motors Group and couldn’t be happier. Good honest people with reasonable pricing and top tier customer service. Definitely recommend for all your vehicle needs.",
+    },
+    {
+      name: "Karen Daniela Peña Rodriguez",
+      rating: 5,
+      comment:
+        "Hoy adquirí mi vehículo con Lion Motors Group, la atención fue increíble, los precios bastante accesibles y tienen gran variedad de vehículos, este fue el que más me gustó me dieron garantía por varios meses y lo entregaron en condiciones increíbles, si lo que necesitas es un gran vehículo ten la seguridad de que aquí lo encontrarás… 😊🚘",
+    },
+    {
+      name: "Carlos Alberto Rojas",
+      rating: 5,
+      comment: "Great service and excellent cars, really recommended",
+    },
+    {
+      name: "ASTRID ENELIA NIETO GONZALEZ",
+      rating: 5,
+      comment: "I liked the service and they have very good cars.",
+    },
+    {
+      name: "sandra ortiz",
+      rating: 5,
+      comment:
+        "Great service, my car was exactly as described and costumer service was great",
+    },
+    {
+      name: "luis eduardo ladino giraldo",
+      rating: 5,
+      comment:
+        "Very good service, most importantly they offer a warranty on the cars.",
+    },
+    {
+      name: "Nazif Kangiwa",
+      rating: 5,
+      comment: "Very friendly and satisfied Saler",
+    },
+    {
+      name: "Chef Pabelo",
+      rating: 5,
+      comment: "Good service!",
+    },
+    {
+      name: "Rachel Winston",
+      rating: 5,
+      comment:
+        "I was the first customer they ever had and I will say they were amazing in working with me and finding me an affordable car. I 100% recommend them to anyone!",
     },
   ],
 };

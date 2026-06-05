@@ -35,7 +35,7 @@ export const TopNavMobileButtom = () => {
         <div className="fixed top-0 z-40 w-full min-h-screen pt-25 bg-stone-900 sm:hidden">
           <ul className="flex flex-col justify-center">
             <TopNavItem
-              path="/home"
+              path="/"
               labelText="Home"
               mobile={true}
               setClose={handleClose}
@@ -43,12 +43,6 @@ export const TopNavMobileButtom = () => {
             <TopNavItem
               path="/catalog"
               labelText="Catalog"
-              mobile={true}
-              setClose={handleClose}
-            />
-            <TopNavItem
-              path="/about-us"
-              labelText="About Us"
               mobile={true}
               setClose={handleClose}
             />

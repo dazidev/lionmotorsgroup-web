@@ -10,7 +10,8 @@ export * from "./public/carousel/Carousel";
 export * from "./public/carousel/CarouselVehicleImages";
 export * from "./public/topNav/TopNavPublic";
 export * from "./public/catalog/VehicleCard";
-export * from "./public/formAvailability/FormAvailability";
+export * from "./public/form/FormAvailability";
+export * from "./public/form/FormContactUs";
 export * from "./public/grid/Grid";
 
 export * from "./dialog/ErrorDialog";

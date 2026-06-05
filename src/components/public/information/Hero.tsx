@@ -29,9 +29,7 @@ export const Hero = () => {
                 Apply for Financing
               </Link>
               <Link
-                href="https://lionmotorsllc.startyourcreditapproval.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/#contact-us"
                 className="text-lg font-bold bg-gold-700/70 p-3 rounded-sm hover:scale-105 hover:bg-gold-600"
               >
                 Contact Us

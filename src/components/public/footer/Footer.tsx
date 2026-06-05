@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
@@ -18,17 +19,30 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-2 text-gold-500">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>Catalog</li>
-              <li>About Us</li>
-              <li>Contact</li>
+              <li>
+                <Link href="/#values">About Us</Link>
+              </li>
+              <li>
+                <Link href="/#contact-us">Contact Us</Link>
+              </li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold mb-2 text-gold-500">Services</h4>
             <ul className="space-y-2 text-sm">
-              <li>Inventory</li>
-              <li>Vehicle Financing</li>
+              <li>
+                <Link href={"/catalog"}>Catalog</Link>
+              </li>
+              <li>
+                <Link
+                  href={"https://lionmotorsllc.startyourcreditapproval.com"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apply for Financing
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -49,8 +63,20 @@ export const Footer = () => {
         <div className="border-t border-gold-500 mt-8 pt-5 flex flex-col md:flex-row justify-between gap-3 text-sm text-gold-500">
           <p>© 2026 Lion Motors Group. All rights reserved.</p>
           <div className="flex gap-4">
-            <span>Privacy Policy</span>
-            <span>Terms & Conditions</span>
+            <Link
+              href={"/privacy-policy"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href={"/terms-conditions"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Terms & Conditions
+            </Link>
           </div>
         </div>
       </div>

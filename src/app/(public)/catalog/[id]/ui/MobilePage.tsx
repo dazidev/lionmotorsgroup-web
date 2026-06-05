@@ -1,6 +1,7 @@
 import { CarouselVehicleImages, FormAvailability } from "@/src/components";
 import { GeneralCard } from "@/src/components/public/card/GeneralCard";
 import { InformationCard } from "@/src/components/public/card/InformationCard";
+import Link from "next/link";
 
 interface Props {
   images: any[];
@@ -59,7 +60,23 @@ export const MobilePage = ({
           data={specificationData}
           specificationType="confort"
         />
-
+        <div className="flex flex-col h-auto w-full bg-stone-900 rounded-2xl text-start gap-5 p-5">
+          <span className="text-2xl text-left">
+            Interested in this vehicle?
+          </span>
+          <p>
+            Confirm availability or apply for financing today. Our team will
+            contact you to help you with the next steps.
+          </p>
+          <Link
+            href="https://lionmotorsllc.startyourcreditapproval.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full px-6 py-4 bg-linear-to-r from-gold-500 to-gold-600 text-black text-center font-semibold rounded-xl transition-all duration-300 hover:from-gold-400 hover:to-gold-500 hover:-translate-y-0.5 active:translate-y-0 tracking-wide"
+          >
+            Apply for Financing
+          </Link>
+        </div>
         <FormAvailability vehicleId={vehicleData.id} />
       </div>
     </>

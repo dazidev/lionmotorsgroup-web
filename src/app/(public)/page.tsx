@@ -1,4 +1,4 @@
-import { Footer, Grid } from "../../../components";
+import { Footer, FormContactUs, Grid } from "../../components";
 import { getBrands } from "@/src/actions";
 import { BrandCard } from "@/src/components/public/card/BrandCard";
 import { GooglePlacesResponse } from "@/src/interfaces/https/google-reviews";
@@ -83,7 +83,7 @@ export default async function HomePage() {
       </section>
       <OurValues />
       <MissionVision />
-      <section className="flex flex-col items-center w-full py-28" id="reviews">
+      <section className="flex flex-col items-center w-full pb-28" id="reviews">
         <div className="w-full md:w-[1350px]">
           <div className="text-center mb-20">
             <p className="line-both font-sans text-xl font-medium tracking-[0.2em] uppercase text-gold-700 mb-4 flex items-center justify-center gap-4">
@@ -96,6 +96,17 @@ export default async function HomePage() {
           <div className="flex flex-row mt-10 gap-5 w-full px-5 md:px-0">
             <CarouselReviews reviews={reviews} />
           </div>
+        </div>
+      </section>
+      <section
+        className="flex flex-col items-center w-full py-28"
+        id="contact-us"
+      >
+        <div
+          className="flex justify-center w-full md:w-[1350px]"
+          id="contact-us"
+        >
+          <FormContactUs />
         </div>
       </section>
       <Footer />

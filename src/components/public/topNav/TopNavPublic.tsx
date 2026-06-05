@@ -25,9 +25,8 @@ export const TopNavPublic = async () => {
 
           <div className="">
             <ul className="hidden sm:flex flex-row justify-center">
-              <TopNavItem path="/home" labelText="Home" />
+              <TopNavItem path="/" labelText="Home" />
               <TopNavItem path="/catalog" labelText="Catalog" />
-              <TopNavItem path="/about-us" labelText="About Us" />
             </ul>
           </div>
         </div>

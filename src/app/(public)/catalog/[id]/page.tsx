@@ -3,6 +3,7 @@
 import prisma from "@/src/lib/prisma";
 import { DesktopPage } from "./ui/DesktopPage";
 import { MobilePage } from "./ui/MobilePage";
+import { Footer } from "@/src/components";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -105,6 +106,7 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
           priceFormat={priceFormat}
         />
       </div>
+      <Footer />
     </>
   );
 }

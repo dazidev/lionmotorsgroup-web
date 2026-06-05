@@ -37,7 +37,7 @@ export default async function CatalogPage() {
   });
 
   return (
-    <div className="flex flex-col justify-center pt-20">
+    <div className="flex flex-col h-full justify-between pt-20">
       <div className="flex w-full justify-center">
         <div className="flex flex-col items-start w-full mb-10 sm:w-[1350px]">
           <Suspense fallback={<div></div>}>

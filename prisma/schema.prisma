@@ -196,6 +196,7 @@ model VehicleInvestment {
   name        String
   amount      Int
   description String
+  invoiceKey  String
   date        DateTime
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt

@@ -3,6 +3,7 @@ export interface Investment {
   name: string;
   description: string;
   amount: string;
+  invoiceKey: string;
   date: Date;
 }
 

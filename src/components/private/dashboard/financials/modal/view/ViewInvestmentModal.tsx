@@ -33,7 +33,14 @@ export const ViewInvestmentModal = ({ open, setOpen, vehicleData }: Props) => {
                 <CloseButton onClick={() => setOpen(false, "manage")} />
               </div>
               <ViewInvestmentTable
-                headers={["Name", "Description", "Amount", "Date", "Actions"]}
+                headers={[
+                  "Name",
+                  "Description",
+                  "Amount",
+                  "Invoice",
+                  "Date",
+                  "Actions",
+                ]}
                 vehicleData={vehicleData!}
               />
             </div>

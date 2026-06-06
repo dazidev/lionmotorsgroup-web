@@ -1,6 +1,7 @@
 "use client";
 
 import { CloseButton } from "@/src/components/button/CloseButton";
+import { ImageInput } from "@/src/components/input/ImageInput";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
 import { BasicVehicleResponse } from "@/src/interfaces";
 import { Investment } from "@/src/interfaces/investment";
@@ -17,6 +18,10 @@ interface Props {
   setOpen: (value: boolean, options: Options) => void;
   handleAction: (investment: Investment) => Promise<boolean>;
   type: "create" | "edit";
+  file: File | null;
+  setFile: (f: File | null) => void;
+  preview: string | null;
+  setPreview: (f: string | null) => void;
   vehicle?: BasicVehicleResponse;
 }
 
@@ -25,6 +30,10 @@ export const AddInvestmentModal = ({
   setOpen,
   handleAction,
   type,
+  file,
+  setFile,
+  preview,
+  setPreview,
   vehicle,
 }: Props) => {
   const [field, setField] = useState({
@@ -53,6 +62,8 @@ export const AddInvestmentModal = ({
       amount: "",
       date: "",
     }));
+    setFile(null);
+    setPreview(null);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,6 +73,7 @@ export const AddInvestmentModal = ({
       id: vehicle?.id!,
       name: field.name,
       description: field.description,
+      invoiceKey: "",
       amount: field.amount,
       date: new Date(field.date),
     };
@@ -70,6 +82,11 @@ export const AddInvestmentModal = ({
     if (!response) return;
     clearFields();
     setOpen(false, "create");
+  };
+
+  const handleClose = () => {
+    setOpen(false, "create");
+    clearFields();
   };
 
   useLockBodyScroll(open);
@@ -81,15 +98,15 @@ export const AddInvestmentModal = ({
         <div
           id="crud-modal"
           tabIndex={-1}
-          className="overflow-y-auto overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-full bg-zinc-800/90"
+          className="overflow-x-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-screen max-h-screen bg-zinc-800/90"
         >
           <div className="relative p-4 w-full max-w-lg max-h-full">
             {/*<!-- Modal content -->*/}
-            <div className="relative bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
+            <div className="relative bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700 max-h-[90vh] overflow-y-auto">
               {/*<!-- Modal header -->*/}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t-2xl bg-zinc-800 border-stone-700">
                 <h3 className="text-2xl font-semibold">Add Investment</h3>
-                <CloseButton onClick={() => setOpen(false, "create")} />
+                <CloseButton onClick={handleClose} />
               </div>
               {/*<!-- Modal body -->*/}
               <form className="p-4 md:p-5" onSubmit={handleSubmit}>
@@ -195,7 +212,14 @@ export const AddInvestmentModal = ({
                       }}
                     />
                   </div>
+                  <div className="flex w-full"></div>
                 </div>
+                <ImageInput
+                  file={file}
+                  setFile={setFile}
+                  preview={preview}
+                  setPreview={setPreview}
+                />
                 <div className="flex justify-end mt-10">
                   <button
                     type="submit"

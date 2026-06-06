@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import { BasicVehicleResponse, Vehicle } from "@/src/interfaces/index";
+import { BasicVehicleResponse, DataImage } from "@/src/interfaces/index";
 import { useSearchParams } from "next/navigation";
 import { Pagination } from "../table/pagination/Pagination";
 import { FinancialsTableItem } from "./FinancialsTableItem";
 import { AddInvestmentModal } from "./modal/AddInvestmentModal";
 import { Investment } from "@/src/interfaces/investment";
-import { addInvestment } from "@/src/actions/private/financials.actions";
-import { ServerResponse } from "../../../../interfaces/actions";
+import {
+  addInvestment,
+  attachInvestmentInvoice,
+} from "@/src/actions/private/financials.actions";
 import toast from "react-hot-toast";
 import { ViewInvestmentModal } from "./modal/view/ViewInvestmentModal";
 import { useFinancial } from "@/src/context/FinancialProvider";
@@ -39,6 +41,9 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
     limitInf: 1,
     limitSup: vehiclesData?.length ?? 20,
   });
+
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
@@ -84,15 +89,45 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
     setOpenModal((prev) => ({ ...prev, [option]: value }));
   };
 
-  const handleAddInvestment = async (investment: Investment) => {
-    const response: ServerResponse<any> = await addInvestment(investment);
+  const handleAddInvestment = async (
+    investment: Investment,
+  ): Promise<boolean> => {
+    try {
+      if (!file) throw "Select image!";
 
-    if (!response.success) {
-      toast.error(response.error ?? "Unknow error.");
+      const dataImage: DataImage = {
+        mime: file.type,
+        ext: file.name.split(".").pop(),
+        size: file.size,
+      };
+
+      const response = await addInvestment(investment, dataImage);
+
+      if (!response.success) {
+        toast.error(response.error ?? "Unknow error.");
+        return false;
+      }
+
+      const { url, key, investmentId } = response.data;
+
+      const putRes = await fetch(url, {
+        method: "PUT",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+
+      if (!putRes.ok) throw "There was an error uploading the image.";
+
+      const attachResponse = await attachInvestmentInvoice(investmentId, key);
+
+      if (!attachResponse.success)
+        throw "There was an error attaching the image.";
+
+      toast.success(`${response.message}`);
+      return true;
+    } catch (error) {
       return false;
     }
-    toast.success(response.message ?? "");
-    return true;
   };
 
   return (
@@ -154,6 +189,10 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
         handleAction={handleAddInvestment}
         type={"create"}
         vehicle={dataList && dataList.find((veh) => veh.id === targetId)}
+        file={file}
+        setFile={setFile}
+        preview={preview}
+        setPreview={setPreview}
       />
       <ViewInvestmentModal
         open={openModal.manage}

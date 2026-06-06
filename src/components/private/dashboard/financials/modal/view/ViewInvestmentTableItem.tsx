@@ -4,6 +4,7 @@ import { updateInvestmentById } from "@/src/actions/private/financials.actions";
 import { useFinancial } from "@/src/context/FinancialProvider";
 import { ServerResponse } from "@/src/interfaces";
 import { Investment } from "@/src/interfaces/investment";
+import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -12,8 +13,11 @@ interface Props {
   name: string;
   description: string;
   amount: number;
+  invoice: string;
   date: Date;
   vehicleId: string;
+  handleOpenModal: (value: boolean, option: string) => void;
+  setTargetId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const ViewInvestmentTableItem = ({
@@ -21,19 +25,24 @@ export const ViewInvestmentTableItem = ({
   name,
   description,
   amount,
+  invoice,
   date,
+  handleOpenModal,
+  setTargetId,
 }: Props) => {
   const { revalidateData } = useFinancial();
   const [initialInvest, setInitialInvest] = useState({
     name,
     description,
     amount,
+    invoice,
     date,
   });
   const [invest, setInvest] = useState({
     name,
     description,
     amount,
+    invoice,
     date,
   });
 
@@ -56,6 +65,7 @@ export const ViewInvestmentTableItem = ({
       name: invest.name,
       description: invest.description,
       amount: invest.amount.toString(),
+      invoiceKey: invest.invoice,
       date: new Date(invest.date),
     };
     const response: ServerResponse<any> =
@@ -71,6 +81,16 @@ export const ViewInvestmentTableItem = ({
     setInitialInvest(invest);
     revalidateData();
     return;
+  };
+
+  const handleClickDelete = () => {
+    handleOpenModal(true, "confirm");
+    setTargetId(id);
+  };
+
+  const handleClickViewInvoice = () => {
+    handleOpenModal(true, "invoice");
+    setTargetId(id);
   };
 
   return (
@@ -103,6 +123,14 @@ export const ViewInvestmentTableItem = ({
           }
         />
       </td>
+      <td className="px-7 py-4">
+        <button
+          className="w-auto py-1 px-2 bg-gray-600 rounded border border-gray-500 hover:bg-gray-500 hover:cursor-pointer"
+          onClick={handleClickViewInvoice}
+        >
+          <span className="">View</span>
+        </button>
+      </td>
       <td className="px-2 py-4">
         <input
           type="date"
@@ -114,7 +142,7 @@ export const ViewInvestmentTableItem = ({
       <td className="pl-6 py-4">
         <div className="flex gap-2">
           <button
-            className={`w-16 h-8 rounded-md border border-stone-700 ${updated ? `bg-gray-800` : `bg-green-900 hover:bg-green-600`} flex items-center justify-center transition-all`}
+            className={`w-16 h-8 rounded-md border border-stone-700 ${updated ? `bg-gray-800` : `bg-green-900 hover:bg-green-600`} flex items-center justify-center transition-all hover:cursor-pointer`}
             onClick={updateInvestment}
             disabled={updated}
           >
@@ -122,8 +150,8 @@ export const ViewInvestmentTableItem = ({
           </button>
 
           <button
-            className="w-16 h-8 rounded-md border border-stone-700 bg-red-900 hover:bg-red-600 flex items-center justify-center transition-all"
-            onClick={() => {}}
+            className="w-16 h-8 rounded-md border border-stone-700 bg-red-900 hover:bg-red-600 flex items-center justify-center transition-all hover:cursor-pointer"
+            onClick={handleClickDelete}
           >
             <span>Delete</span>
           </button>

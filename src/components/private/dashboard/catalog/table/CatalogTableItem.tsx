@@ -5,8 +5,8 @@ import React from "react";
 
 interface Props {
   vehicle: Vehicle;
-  setOpenConfirm: (value: boolean) => void;
-  setOpenEdit: (value: boolean) => void;
+  setOpenConfirm: (value: boolean, option: string) => void;
+  setOpenEdit: (value: boolean, option: string) => void;
   setTargetId: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -31,12 +31,12 @@ export const CatalogTableItem = ({
   const colorStatus = getColorStatus();
 
   const handleClickDelete = () => {
-    setOpenConfirm(true);
+    setOpenConfirm(true, "confirm");
     setTargetId(id);
   };
 
   const handleClickEdit = () => {
-    setOpenEdit(true);
+    setOpenEdit(true, "update");
     setTargetId(id);
   };
 

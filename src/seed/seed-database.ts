@@ -2,13 +2,12 @@ import prisma from "../lib/prisma";
 import { initialData } from "./seed";
 
 async function main() {
-  await prisma.user.deleteMany();
-
   const { users, leads, vehicles, reviews } = initialData;
 
-  /*await prisma.user.createMany({
+  await prisma.user.deleteMany();
+  await prisma.user.createMany({
     data: users,
-  });*/
+  });
 
   /*await prisma.lead.createMany({
     data: leads,
@@ -18,9 +17,9 @@ async function main() {
     data: vehicles,
   });*/
 
-  await prisma.reviews.createMany({
+  /*await prisma.reviews.createMany({
     data: reviews,
-  });
+  });*/
 
   console.log("DB sync successfull!");
 }

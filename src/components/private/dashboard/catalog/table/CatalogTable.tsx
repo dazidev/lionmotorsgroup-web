@@ -12,18 +12,19 @@ import { SpecificationManageModal } from "../specification/SpecificationManageMo
 import { CreateVehicleModal } from "../modal/CreateVehicleModal";
 import { useSearchParams } from "next/navigation";
 import { Pagination } from "../../table/pagination/Pagination";
+import { UpdateVehicleModal } from "../modal/UpdateVehicleModal";
 
 interface Props {
   name: string;
   headers: string[];
-  data?: any[]; //! change to interface vehicle
+  data?: Vehicle[]; //! change to interface vehicle
   amountPages: number;
 }
 
 interface Modals {
   create: boolean;
+  update: boolean;
   confirm: boolean;
-  edit: boolean;
   addBrand: boolean;
 }
 
@@ -37,8 +38,8 @@ export const CatalogTable = ({
   const [dataList, setDataList] = useState<Vehicle[]>();
   const [openModal, setOpenModal] = useState<Modals>({
     create: false,
+    update: false,
     confirm: false,
-    edit: false,
     addBrand: false,
   });
   const [targetId, setTargetId] = useState("");
@@ -71,7 +72,7 @@ export const CatalogTable = ({
 
     const dataFounds = data.filter((row) => {
       const fullmodel = `
-        ${row.brand.toLowerCase()} 
+        ${row.brand.name.toLowerCase()} 
         ${row.model.toLowerCase()} 
         ${row.year}
       `;
@@ -108,7 +109,7 @@ export const CatalogTable = ({
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.email)) return false;
     if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
-        field.password
+        field.password,
       )
     )
       return false;
@@ -189,8 +190,8 @@ export const CatalogTable = ({
                 <CatalogTableItem
                   key={vehicle.id}
                   vehicle={vehicle}
-                  setOpenConfirm={() => handleOpenModal}
-                  setOpenEdit={() => handleOpenModal}
+                  setOpenConfirm={handleOpenModal}
+                  setOpenEdit={handleOpenModal}
                   setTargetId={setTargetId}
                 />
               ))}
@@ -217,10 +218,15 @@ export const CatalogTable = ({
       />
       <ConfirmModal
         open={openModal.confirm}
-        setOpen={() => handleOpenModal}
+        setOpen={handleOpenModal}
         handleRemove={handleRemove}
       />
       <CreateVehicleModal open={openModal.create} setOpen={handleOpenModal} />
+      <UpdateVehicleModal
+        open={openModal.update}
+        setOpen={handleOpenModal}
+        vehicle={data?.find((veh) => veh.id === targetId)!}
+      />
     </>
   );
 };

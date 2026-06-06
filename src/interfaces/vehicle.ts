@@ -25,39 +25,74 @@ export interface VehicleResponse {
 
 type StatusVehicle = "in_stock" | "on_sale" | "sold";
 
-export interface Vehicle {
-  //* General
+export type Vehicle = {
   id: string;
+  shortId: string | null;
   vin: string;
+  slug: string;
   year: number;
-  brand: {
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    name: string;
-    imagePath: string;
-  };
+  brandId: string;
   model: string;
   series: string;
-  mileage: number;
-  price: number;
-  status: StatusVehicle;
   doors: number;
   colorExt: string;
-  colorInt: string;
+  colorInt: string | null;
+  mileage: number;
+  price: number;
+  status: string;
   type: string;
   investment: number;
+  createdAt: Date;
+  updatedAt: Date;
 
-  //* Technical
-  engineFuelType: string;
+  brand: Brand;
+  technical: VehicleTechnical | null;
+  specifications: VehicleSpecification[];
+  images: ImagesVehicle[];
+};
+
+export type ImagesVehicle = {
+  id: string;
+  key: string;
+  vehicleId: string;
+  position: number;
+};
+
+export type Brand = {
+  id: string;
+  name: string;
+  imagePath: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type VehicleTechnical = {
+  vehicleId: string;
+  engineFuelType: FuelType;
   engineConfiguration: string;
   engineCylinders: number;
   enginePower: number;
   engineDisplacement: number;
   engineTurbo: string;
-  drivetrain: string;
-  transmission: string;
-}
+  drivetrain: "FOUR_X_FOUR" | "FOUR_X_TWO";
+  transmission: "automatic" | "manual";
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type VehicleSpecification = {
+  vehicleId: string;
+  specificationId: string;
+  specification: Specification;
+};
+
+export type Specification = {
+  id: string;
+  type: "security" | "confort" | "visual";
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export interface VehicleState {
   //* General

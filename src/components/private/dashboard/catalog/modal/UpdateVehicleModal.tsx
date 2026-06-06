@@ -1,23 +1,18 @@
 "use client";
-import {
-  attachVehicleImages,
-  createVehicle,
-  getVehiclesDetailsByVin,
-} from "@/src/actions";
+
+import { attachVehicleImages, createVehicle } from "@/src/actions";
 import { DefaultButton } from "@/src/components/button/DefaultButton";
 import { CloseButton } from "@/src/components/button/CloseButton";
 import { SelectInput } from "@/src/components/input/SelectInput";
 import { TextInput } from "@/src/components/input/TextInput";
 import { Carousel } from "@/src/components/public/carousel/Carousel";
 import {
-  ServerResponse,
   VehicleState,
-  VehicleResponse,
   FuelType,
   DrivetrainType,
   TransmissionType,
+  Vehicle,
 } from "@/src/interfaces";
-import { regex } from "@/src/utils/regex";
 import { useEffect, useState } from "react";
 import { SecuritySpecificationModal } from "./specification/SecuritySpecificationModal";
 import { ConfortSpecificationModal } from "./specification/ConfortSpecificationModal";
@@ -29,19 +24,36 @@ import { ImageInput } from "@/src/components/input/ImageInput";
 import { LuMinus, LuPlus } from "react-icons/lu";
 import toast from "react-hot-toast";
 
+const NUM_INITIAL_IMAGES = 5;
+const MAX_IMAGES = 15;
+const R2_PUBLIC_URL = "https://images.lionmotorsgroup.com";
+
 type ImageItem = {
+  id?: string;
+  key?: string;
+  position: number;
   file: File | null;
   image: string | null;
+  isExisting: boolean;
 };
 
 type ImagesState = ImageItem[];
 
+const createEmptyImage = (position: number): ImageItem => ({
+  position,
+  file: null,
+  image: null,
+  isExisting: false,
+});
+
 interface Props {
   open: boolean;
   setOpen: (value: boolean, option: string) => void;
+  vehicle?: Vehicle | null;
 }
 
 const statusOptions = ["in_stock", "on_sale", "sold"];
+
 const fuelOptions: FuelType[] = [
   "diesel",
   "electric",
@@ -49,13 +61,42 @@ const fuelOptions: FuelType[] = [
   "gasoline",
   "hybrid",
 ];
+
 const drivetrainOptions: DrivetrainType[] = ["FOUR_X_FOUR", "FOUR_X_TWO"];
+
 const transmissionOptions: TransmissionType[] = ["automatic", "manual"];
 
-const NUM_INITIAL_IMAGES = 5;
-
-const initialVehicleState = {
+type InitialVehicleState = {
   //* General
+  id: string;
+  vin: string;
+  year: string;
+  brand: string;
+  model: string;
+  series: string;
+  doors: string;
+  colorExt: string;
+  colorInt: string;
+  mileage: string;
+  price: string;
+  status: string;
+  type: string;
+  investment: string;
+
+  //* Technical
+  engineFuelType: string;
+  engineConfiguration: string;
+  engineCylinders: string;
+  enginePower: string;
+  engineDisplacement: string;
+  engineTurbo: string;
+  drivetrain: string;
+  transmission: string;
+};
+
+const InitialState: InitialVehicleState = {
+  //* General
+  id: "",
   vin: "",
   year: "",
   brand: "",
@@ -69,6 +110,7 @@ const initialVehicleState = {
   status: "",
   type: "",
   investment: "",
+
   //* Technical
   engineFuelType: "",
   engineConfiguration: "",
@@ -80,176 +122,232 @@ const initialVehicleState = {
   transmission: "",
 };
 
-export const CreateVehicleModal = ({ open, setOpen }: Props) => {
-  const [vehicleData, setVehicleData] = useState(initialVehicleState);
+export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
+  const [vehicleData, setVehicleData] =
+    useState<InitialVehicleState>(InitialState);
+
   const [loading, setLoading] = useState({
-    searchVehicle: false,
-    createVehicle: false,
+    updateVehicle: false,
   });
+
   const { brandsData, specificationsData, resetCheckedSpec } = useCatalog();
 
   const [imageAmount, setImageAmount] = useState(NUM_INITIAL_IMAGES);
-  const [images, setImages] = useState<ImagesState>([]);
 
-  const amount = Array.from({ length: NUM_INITIAL_IMAGES }, (_, i) => i + 1);
+  const [images, setImages] = useState<ImagesState>(() =>
+    Array.from({ length: NUM_INITIAL_IMAGES }, (_, index) =>
+      createEmptyImage(index),
+    ),
+  );
+
+  useLockBodyScroll(open);
 
   const colors = specificationsData
     .filter((spec) => spec.type === "visual")
     .map((spec) => spec.name);
 
-  useEffect(() => {
-    if (open === false) {
-      clearData();
-    }
-    if (images.length === 0) {
-      resetImagesState();
-    }
-    // add
-    else if (imageAmount > images.length) {
-      setImages((prev) => {
-        return [...prev, { file: null, image: null }];
-      });
-    }
-    // subtract
-    else if (imageAmount < images.length) {
-      setImages((prev) => prev.slice(0, -1));
-    }
-  }, [imageAmount, open]);
-
   const resetImagesState = () => {
-    const initialImages = amount.map(() => {
-      return {
-        file: null,
-        image: null,
-      };
-    });
-
-    setImages(initialImages);
-  };
-
-  const handleSearch = async () => {
-    if (!regex.vin.test(vehicleData.vin)) return;
-
-    const searchResponse: ServerResponse<any> = await getVehiclesDetailsByVin(
-      vehicleData.vin,
-      vehicleData.year,
+    const initialImages = Array.from(
+      { length: NUM_INITIAL_IMAGES },
+      (_, index) => createEmptyImage(index),
     );
 
-    if (!searchResponse.success) return;
-
-    const data: VehicleResponse = searchResponse.data;
-
-    setVehicleData({
-      vin: data.general.vin,
-      year: data.general.year,
-      brand: data.general.brand,
-      model: data.general.model,
-      series: data.general.series,
-      doors: data.general.doors,
-      colorExt: "",
-      colorInt: "",
-      mileage: "",
-      price: "",
-      status: "",
-      type: "",
-      investment: "",
-      engineFuelType: data.technical.fuelType,
-      engineConfiguration: data.technical.engine.configuration,
-      engineCylinders: data.technical.engine.cylinders,
-      enginePower: data.technical.engine.power,
-      engineDisplacement: data.technical.engine.displacement,
-      engineTurbo: data.technical.engine.turbo,
-      drivetrain: data.technical.drivetrain,
-      transmission: data.technical.transmission,
-    });
-  };
-
-  const handleChange = (value: string, option: string | undefined) => {
-    if (option === undefined) return;
-    setVehicleData((prev) => ({ ...prev, [option]: value }));
-  };
-
-  const handleImageAmount = (value: number) => {
-    if (value < imageAmount && imageAmount <= 5) return;
-    if (value > imageAmount && imageAmount >= 15) return;
-    setImageAmount(value);
-  };
-
-  const handleCreateVehicle = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    try {
-      setLoading((prev) => ({ ...prev, createVehicle: true }));
-      const specifications = specificationsData
-        .filter((spec) => spec.checked)
-        .map((spec) => spec.id);
-
-      const imagesData = images
-        .filter((img): img is typeof img & { file: File } => img.file !== null)
-        .map((img) => ({
-          mime: img.file.type,
-          ext: img.file.name.split(".").pop(),
-          size: img.file.size,
-        }));
-
-      const vehicle = await createVehicle(
-        vehicleData as VehicleState,
-        specifications,
-        imagesData,
-      );
-
-      if (!vehicle.success) throw new Error(vehicle.message);
-
-      if (vehicle.data === undefined || vehicle.data?.urls.length === 0)
-        throw new Error("Unknown error.");
-
-      const imagesToUpload = images.filter(
-        (img): img is typeof img & { file: File } => img.file !== null,
-      );
-
-      for (let index = 0; index < imagesToUpload.length; index++) {
-        const file = imagesToUpload[index].file;
-        const url = vehicle.data.urls[index].url;
-
-        const putRes = await fetch(url, {
-          method: "PUT",
-          headers: { "Content-Type": file.type },
-          body: file,
-        });
-
-        if (!putRes.ok)
-          throw new Error("There was an error uploading the images.");
-      }
-
-      const keys = vehicle.data.urls.map(({ url, key }) => key);
-      const vehicleId = vehicle.data.vehicleId;
-
-      const imagesResponse = await attachVehicleImages(vehicleId, keys);
-
-      if (!imagesResponse.success) throw new Error(imagesResponse.message);
-
-      toast.success(imagesResponse.message);
-      setLoading((prev) => ({ ...prev, createVehicle: false }));
-      clearData();
-    } catch (error) {
-      console.log(error);
-      toast.error(
-        `${error instanceof Error ? error.message : "Unknown error."}`,
-      );
-      setLoading((prev) => ({ ...prev, createVehicle: false }));
-      return;
-    }
+    setImages(initialImages);
   };
 
   const clearData = () => {
     setImageAmount(NUM_INITIAL_IMAGES);
     resetImagesState();
     resetCheckedSpec();
-    setVehicleData(initialVehicleState);
+    setVehicleData(InitialState);
   };
 
-  useLockBodyScroll(open);
+  const handleChange = (value: string, option: string | undefined) => {
+    if (option === undefined) return;
+
+    setVehicleData((prev) => ({
+      ...prev,
+      [option]: value,
+    }));
+  };
+
+  const handleImageAmount = (value: number) => {
+    if (value < NUM_INITIAL_IMAGES) return;
+    if (value > MAX_IMAGES) return;
+
+    setImageAmount(value);
+  };
+
+  useEffect(() => {
+    if (!vehicle) return;
+
+    setVehicleData({
+      //* General
+      id: vehicle.id,
+      vin: vehicle.vin,
+      year: vehicle.year.toString(),
+      brand: vehicle.brand.id,
+      model: vehicle.model,
+      series: vehicle.series,
+      doors: vehicle.doors.toString(),
+      colorExt: vehicle.colorExt ?? "",
+      colorInt: vehicle.colorInt ?? "",
+      mileage: vehicle.mileage.toString(),
+      price: vehicle.price.toString(),
+      status: vehicle.status,
+      type: vehicle.type ?? "",
+      investment: vehicle.investment.toString(),
+
+      //* Technical
+      engineFuelType: vehicle.technical?.engineFuelType ?? "",
+      engineConfiguration: vehicle.technical?.engineConfiguration ?? "",
+      engineCylinders: vehicle.technical?.engineCylinders.toString() ?? "",
+      enginePower: vehicle.technical?.enginePower.toString() ?? "",
+      engineDisplacement:
+        vehicle.technical?.engineDisplacement.toString() ?? "",
+      engineTurbo: vehicle.technical?.engineTurbo ?? "",
+      drivetrain: vehicle.technical?.drivetrain ?? "",
+      transmission: vehicle.technical?.transmission ?? "",
+    });
+
+    const orderedImages: ImagesState = [...vehicle.images]
+      .sort((a, b) => a.position - b.position)
+      .map((img) => ({
+        id: img.id,
+        key: img.key,
+        position: img.position,
+        file: null,
+        image: `${R2_PUBLIC_URL}/${img.key}`,
+        isExisting: true,
+      }));
+
+    console.log("ORDERED IMAGES:", orderedImages);
+
+    const imagesToShow =
+      orderedImages.length >= NUM_INITIAL_IMAGES
+        ? orderedImages
+        : [
+            ...orderedImages,
+            ...Array.from(
+              { length: NUM_INITIAL_IMAGES - orderedImages.length },
+              (_, index) => createEmptyImage(orderedImages.length + index),
+            ),
+          ];
+
+    setImages(imagesToShow);
+    setImageAmount(imagesToShow.length);
+  }, [vehicle]);
+
+  useEffect(() => {
+    if (!open) {
+      clearData();
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    setImages((prev) => {
+      if (imageAmount > prev.length) {
+        const newImages = Array.from(
+          { length: imageAmount - prev.length },
+          (_, index) => createEmptyImage(prev.length + index),
+        );
+
+        return [...prev, ...newImages];
+      }
+
+      if (imageAmount < prev.length) {
+        return prev.slice(0, imageAmount);
+      }
+
+      return prev;
+    });
+  }, [imageAmount, open]);
+
+  const handleUpdateVehicle = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      setLoading((prev) => ({ ...prev, updateVehicle: true }));
+
+      const specifications = specificationsData
+        .filter((spec) => spec.checked)
+        .map((spec) => spec.id);
+
+      const imagesWithFile = images.filter(
+        (img): img is ImageItem & { file: File } => img.file !== null,
+      );
+
+      const imagesData = imagesWithFile.map((img) => ({
+        mime: img.file.type,
+        ext: img.file.name.split(".").pop(),
+        size: img.file.size,
+      }));
+
+      /*
+        Por ahora dejo tu lógica base con createVehicle.
+        Cuando tengas la action updateVehicle, aquí se cambia por esa.
+      */
+      const vehicleResponse = await createVehicle(
+        vehicleData as VehicleState,
+        specifications,
+        imagesData,
+      );
+
+      if (!vehicleResponse.success) {
+        throw new Error(vehicleResponse.message);
+      }
+
+      if (
+        vehicleResponse.data === undefined ||
+        vehicleResponse.data.urls.length === 0
+      ) {
+        throw new Error("Unknown error.");
+      }
+
+      for (let index = 0; index < imagesWithFile.length; index++) {
+        const file = imagesWithFile[index].file;
+        const url = vehicleResponse.data.urls[index].url;
+
+        const putRes = await fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": file.type,
+          },
+          body: file,
+        });
+
+        if (!putRes.ok) {
+          throw new Error("There was an error uploading the images.");
+        }
+      }
+
+      const keys = vehicleResponse.data.urls.map(({ key }) => key);
+      const vehicleId = vehicleResponse.data.vehicleId;
+
+      const imagesResponse = await attachVehicleImages(vehicleId, keys);
+
+      if (!imagesResponse.success) {
+        throw new Error(imagesResponse.message);
+      }
+
+      toast.success(imagesResponse.message);
+      clearData();
+      setOpen(false, "update");
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        `${error instanceof Error ? error.message : "Unknown error."}`,
+      );
+    } finally {
+      setLoading((prev) => ({ ...prev, updateVehicle: false }));
+    }
+  };
+
   if (!open) return null;
+  if (!vehicle) return null;
+
   return (
     <div
       tabIndex={-1}
@@ -258,43 +356,21 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
       <div className="relative p-4 w-full max-w-5xl max-h-full">
         <div className="relative h-[calc(100vh-5rem)] overflow-y-auto no-scrollbar bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
           <div className="sticky top-0 z-100 flex w-full border-b rounded-t-2xl border-stone-700 bg-zinc-800 p-5">
-            <span className="text-2xl font-semibold">Create Vehicle</span>
-            <CloseButton onClick={setOpen} element="create" />
+            <span className="text-2xl font-semibold">Update Vehicle</span>
+            <CloseButton onClick={setOpen} element="update" />
           </div>
-          <div className="flex p-5 border-b rounded-t border-stone-700">
-            <div className="flex justify-left items-end w-150 gap-3">
-              <TextInput
-                name={"VIN"}
-                styles="flex-3"
-                value={vehicleData.vin}
-                valueOption="vin"
-                onChange={handleChange}
-              />
-              <TextInput
-                name={"Year"}
-                styles="flex-1"
-                value={vehicleData.year}
-                valueOption="year"
-                onChange={handleChange}
-              />
-              <DefaultButton
-                name="Search Vehicle"
-                onClick={handleSearch}
-                size="w-40"
-                loading={loading.searchVehicle}
-              />
-            </div>
-          </div>
-          <form className="gap-3" onSubmit={handleCreateVehicle}>
+
+          <form className="gap-3" onSubmit={handleUpdateVehicle}>
             <fieldset
-              disabled={loading.createVehicle}
+              disabled={loading.updateVehicle}
               className="contents disabled:opacity-60"
             >
               <div className="flex flex-col p-5 gap-3 border-b rounded-t border-stone-700">
                 <span className="text-xl font-semibold">Financials</span>
+
                 <div className="flex max-w-70 gap-3">
                   <TextInput
-                    name={"Initial Investment"}
+                    name="Initial Investment"
                     styles="flex-3"
                     value={vehicleData.investment}
                     valueOption="investment"
@@ -303,29 +379,33 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                 </div>
               </div>
+
               <div className="flex flex-col p-5 gap-3 border-b rounded-t border-stone-700">
                 <span className="text-xl font-semibold">
                   General Specifications
                 </span>
+
                 <div className="flex min-w-full gap-3">
                   <TextInput
-                    name={"VIN *"}
+                    name="VIN *"
                     styles="flex-2"
                     value={vehicleData.vin}
                     valueOption="vin"
                     onChange={handleChange}
                     required
                   />
+
                   <TextInput
-                    name={"Year *"}
+                    name="Year *"
                     styles="flex-1"
                     value={vehicleData.year}
                     valueOption="year"
                     onChange={handleChange}
                     required
                   />
+
                   <SelectInput
-                    name={"Brand *"}
+                    name="Brand *"
                     options={brandsData}
                     styles="flex-2"
                     value={vehicleData.brand}
@@ -333,8 +413,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     onChange={handleChange}
                     required
                   />
+
                   <TextInput
-                    name={"Model *"}
+                    name="Model *"
                     styles="flex-2"
                     value={vehicleData.model}
                     valueOption="model"
@@ -345,21 +426,23 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
 
                 <div className="flex min-w-full gap-3">
                   <TextInput
-                    name={"Series"}
+                    name="Series"
                     styles="flex-3"
                     value={vehicleData.series}
                     valueOption="series"
                     onChange={handleChange}
                   />
+
                   <TextInput
-                    name={"Doors"}
+                    name="Doors"
                     styles="flex-2"
                     value={vehicleData.doors}
                     valueOption="doors"
                     onChange={handleChange}
                   />
+
                   <SelectInput
-                    name={"Color Ext *"}
+                    name="Color Ext *"
                     options={colors}
                     styles="flex-2"
                     value={vehicleData.colorExt}
@@ -367,8 +450,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     onChange={handleChange}
                     required
                   />
+
                   <SelectInput
-                    name={"Color Int"}
+                    name="Color Int"
                     options={colors}
                     styles="flex-2"
                     value={vehicleData.colorInt}
@@ -376,25 +460,28 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     onChange={handleChange}
                   />
                 </div>
+
                 <div className="flex min-w-full gap-3">
                   <TextInput
-                    name={"Mileage *"}
+                    name="Mileage *"
                     styles="flex-2"
                     value={vehicleData.mileage}
                     valueOption="mileage"
                     onChange={handleChange}
                     required
                   />
+
                   <TextInput
-                    name={"Price *"}
+                    name="Price *"
                     styles="flex-2"
                     value={vehicleData.price}
                     valueOption="price"
                     onChange={handleChange}
                     required
                   />
+
                   <SelectInput
-                    name={"Status *"}
+                    name="Status *"
                     options={statusOptions}
                     styles="flex-2"
                     value={vehicleData.status}
@@ -402,8 +489,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     onChange={handleChange}
                     required
                   />
+
                   <TextInput
-                    name={"Type"}
+                    name="Type"
                     styles="flex-2"
                     value={vehicleData.type}
                     valueOption="type"
@@ -416,9 +504,10 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                 <span className="text-xl font-semibold">
                   Technical Specifications
                 </span>
+
                 <div className="flex min-w-full gap-3">
                   <SelectInput
-                    name={"Engine Fuel Type *"}
+                    name="Engine Fuel Type *"
                     options={fuelOptions}
                     styles="flex-3"
                     value={vehicleData.engineFuelType}
@@ -426,45 +515,51 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     onChange={handleChange}
                     required
                   />
+
                   <TextInput
-                    name={"Engine Configuration"}
+                    name="Engine Configuration"
                     styles="flex-4"
                     value={vehicleData.engineConfiguration}
                     valueOption="engineConfiguration"
                     onChange={handleChange}
                   />
+
                   <TextInput
-                    name={"Engine Cylinders"}
+                    name="Engine Cylinders"
                     styles="flex-3"
                     value={vehicleData.engineCylinders}
                     valueOption="engineCylinders"
                     onChange={handleChange}
                   />
+
                   <TextInput
-                    name={"Engine Power"}
+                    name="Engine Power"
                     styles="flex-3"
                     value={vehicleData.enginePower}
                     valueOption="enginePower"
                     onChange={handleChange}
                   />
                 </div>
+
                 <div className="flex min-w-full gap-3">
                   <TextInput
-                    name={"Engine Displacement"}
+                    name="Engine Displacement"
                     styles="flex-3"
                     value={vehicleData.engineDisplacement}
                     valueOption="engineDisplacement"
                     onChange={handleChange}
                   />
+
                   <TextInput
-                    name={"Engine Turbo"}
+                    name="Engine Turbo"
                     styles="flex-2"
                     value={vehicleData.engineTurbo}
                     valueOption="engineTurbo"
                     onChange={handleChange}
                   />
+
                   <SelectInput
-                    name={"Drivetrain *"}
+                    name="Drivetrain *"
                     options={drivetrainOptions}
                     styles="flex-3"
                     value={vehicleData.drivetrain}
@@ -472,8 +567,9 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     onChange={handleChange}
                     required
                   />
+
                   <SelectInput
-                    name={"Transmission *"}
+                    name="Transmission *"
                     options={transmissionOptions}
                     styles="flex-3"
                     value={vehicleData.transmission}
@@ -483,29 +579,43 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                 </div>
               </div>
+
               <SecuritySpecificationModal />
               <ConfortSpecificationModal />
+
               <div className="flex flex-col items-end w-full h-auto p-10 gap-5 border-b border-stone-700">
                 <Carousel>
                   {images.map((img, index) => (
                     <SwiperSlide
-                      key={index}
+                      key={img.id ?? `new-image-${index}`}
                       className="flex items-center justify-center"
                     >
                       <ImageInput
-                        file={img.file ?? null}
-                        setFile={(f: File | null) =>
+                        file={img.file}
+                        setFile={(file: File | null) =>
                           setImages((prev) =>
-                            prev.map((img, i) =>
-                              i === index ? { ...img, file: f } : img,
+                            prev.map((item, i) =>
+                              i === index
+                                ? {
+                                    ...item,
+                                    file,
+                                    position: index,
+                                  }
+                                : item,
                             ),
                           )
                         }
-                        preview={img.image ?? null}
-                        setPreview={(f: string | null) =>
+                        preview={img.image}
+                        setPreview={(image: string | null) =>
                           setImages((prev) =>
-                            prev.map((img, i) =>
-                              i === index ? { ...img, image: f } : img,
+                            prev.map((item, i) =>
+                              i === index
+                                ? {
+                                    ...item,
+                                    image,
+                                    position: index,
+                                  }
+                                : item,
                             ),
                           )
                         }
@@ -515,6 +625,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     </SwiperSlide>
                   ))}
                 </Carousel>
+
                 <div className="flex flex-row items-center w-50 h-10 text-2xl border border-gray-50 rounded-xl">
                   <button
                     type="button"
@@ -523,9 +634,11 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   >
                     <LuMinus className="transition-transform active:scale-130" />
                   </button>
+
                   <span className="flex flex-2 justify-center items-center h-10">
                     {imageAmount}
                   </span>
+
                   <button
                     type="button"
                     className="flex flex-1 h-10 items-center justify-center cursor-pointer border-l"
@@ -535,12 +648,13 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   </button>
                 </div>
               </div>
+
               <div className="flex p-5 justify-end">
                 <DefaultButton
                   type="submit"
-                  name="Create Vehicle"
+                  name="Update Vehicle"
                   size="w-40"
-                  loading={loading.createVehicle}
+                  loading={loading.updateVehicle}
                 />
               </div>
             </fieldset>

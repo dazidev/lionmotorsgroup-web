@@ -4,13 +4,14 @@ import {
   CreateVehicleResponse,
   DataImage,
   ServerResponse,
+  Vehicle,
   VehicleState,
   VpicDecodeVinValuesResponse,
 } from "@/src/interfaces";
 import { r2 } from "@/src/lib/cloudflare-r2";
 import prisma from "@/src/lib/prisma";
 import { normalizeToSlug } from "@/src/utils/format";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { DeleteObjectsCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { StatusVehicle } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -88,51 +89,60 @@ export async function createVehicle(
 
     const slug = normalizeToSlug(`${brand.name}-${data.model}-${data.year}`);
 
-    const vehicle = await prisma.vehicleGeneral.create({
-      data: {
-        vin: data.vin,
-        slug: slug,
-        year: Number(data.year),
-        brand: { connect: { id: data.brand } },
-        model: data.model,
-        series: data.series,
-        doors: Number(data.doors),
-        colorExt: data.colorExt,
-        colorInt: data.colorInt,
-        mileage: Number(data.mileage),
-        price: Number(data.price),
-        status: data.status as StatusVehicle,
-        type: data.type,
-        investment: Number(data.investment),
-      },
-    });
+    const vehicle = await prisma.$transaction(async (tx) => {
+      const createdVehicle = await tx.vehicleGeneral.create({
+        data: {
+          vin: data.vin,
+          slug,
+          year: Number(data.year),
+          brand: { connect: { id: data.brand } },
+          model: data.model,
+          series: data.series,
+          doors: Number(data.doors),
+          colorExt: data.colorExt,
+          colorInt: data.colorInt,
+          mileage: Number(data.mileage),
+          price: Number(data.price),
+          status: data.status as StatusVehicle,
+          type: data.type,
+          investment: Number(data.investment),
+        },
+      });
 
-    const shortId = vehicle.id.replace(/-/g, "").slice(0, 10);
+      const shortId = createdVehicle.id.replace(/-/g, "").slice(0, 10);
 
-    await prisma.vehicleGeneral.update({
-      data: { shortId: shortId },
-      where: { id: vehicle.id },
-    });
+      await tx.vehicleGeneral.update({
+        where: { id: createdVehicle.id },
+        data: { shortId },
+      });
 
-    await prisma.vehicleTechnical.create({
-      data: {
-        vehicle: { connect: { id: vehicle.id } },
-        engineFuelType: data.engineFuelType,
-        engineConfiguration: data.engineConfiguration,
-        engineCylinders: Number(data.engineCylinders),
-        enginePower: Number(data.enginePower),
-        engineDisplacement: Number(data.engineDisplacement),
-        engineTurbo: data.engineTurbo,
-        drivetrain: data.drivetrain,
-        transmission: data.transmission,
-      },
-    });
+      await tx.vehicleTechnical.create({
+        data: {
+          vehicle: { connect: { id: createdVehicle.id } },
+          engineFuelType: data.engineFuelType,
+          engineConfiguration: data.engineConfiguration,
+          engineCylinders: Number(data.engineCylinders),
+          enginePower: Number(data.enginePower),
+          engineDisplacement: Number(data.engineDisplacement),
+          engineTurbo: data.engineTurbo,
+          drivetrain: data.drivetrain,
+          transmission: data.transmission,
+        },
+      });
 
-    await prisma.vehicleSpecification.createMany({
-      data: specifications.map((s) => ({
-        vehicleId: vehicle.id,
-        specificationId: s,
-      })),
+      if (specifications.length > 0) {
+        await tx.vehicleSpecification.createMany({
+          data: specifications.map((s) => ({
+            vehicleId: createdVehicle.id,
+            specificationId: s,
+          })),
+        });
+      }
+
+      return {
+        ...createdVehicle,
+        shortId,
+      };
     });
 
     const urls = await Promise.all(
@@ -195,11 +205,24 @@ export async function attachVehicleImages(id: string, keys: string[]) {
   }
 }
 
-export async function getVehicles(amount?: number) {
+export async function getVehicles(
+  amount?: number,
+): Promise<ServerResponse<Vehicle[]>> {
   try {
     const vehicles = await prisma.vehicleGeneral.findMany({
       include: {
         brand: true,
+        technical: true,
+        specifications: {
+          include: {
+            specification: true,
+          },
+        },
+        images: {
+          orderBy: {
+            position: "asc",
+          },
+        },
       },
     });
     if (!vehicles) return { success: false };
@@ -242,19 +265,55 @@ export async function getBasicVehicles() {
 }
 
 export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
-  //! todo: makes validations!!!!!
   try {
-    await prisma.vehicleGeneral.delete({ where: { id } });
+    const vehicle = await prisma.vehicleGeneral.findUnique({
+      where: { id },
+      include: {
+        images: true,
+      },
+    });
+
+    if (!vehicle) {
+      throw new Error("Vehicle not found.");
+    }
+
+    const imageKeys = vehicle.images.map((image) => image.key);
+
+    if (imageKeys.length > 0) {
+      const command = new DeleteObjectsCommand({
+        Bucket: BUCKET,
+        Delete: {
+          Objects: imageKeys.map((key) => ({
+            Key: key,
+          })),
+          Quiet: true,
+        },
+      });
+
+      await r2.send(command);
+    }
+
+    await prisma.vehicleGeneral.delete({
+      where: { id },
+    });
 
     revalidatePath("/dashboard/catalog");
+    revalidatePath("/catalog");
+    revalidatePath("/home");
+
     return {
       success: true,
-      message: "The vehicle has been delete successfully",
+      message: "The vehicle and its images have been deleted successfully.",
     };
   } catch (error) {
+    console.log(error);
+
     return {
       success: false,
-      message: "There was an error deleting the vehicle.",
+      message:
+        error instanceof Error
+          ? error.message
+          : "There was an error deleting the vehicle.",
     };
   }
 }

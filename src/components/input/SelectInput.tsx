@@ -13,6 +13,7 @@ interface Props {
     option: keyof VehicleState | "typeSpecification",
   ) => void;
   styles?: string;
+  required?: boolean;
 }
 
 export const SelectInput = ({
@@ -22,6 +23,7 @@ export const SelectInput = ({
   options,
   onChange,
   styles,
+  required = false,
 }: Props) => {
   const handleChange = (value: string) => {
     if (valueOption === "typeSpecification") {
@@ -45,8 +47,9 @@ export const SelectInput = ({
         onChange={(e) => {
           handleChange(e.target.value);
         }}
+        required={required}
       >
-        <option value="">{`Select ${name}`}</option>
+        <option value="">{`Select ${name.replace("*", "")}`}</option>
         {options.map((option) => {
           let formatOption;
 

@@ -12,6 +12,7 @@ interface Props {
   onChange: OnChange;
   styles?: string;
   label?: boolean;
+  required?: boolean;
 }
 
 export const TextInput = ({
@@ -22,6 +23,7 @@ export const TextInput = ({
   onChange,
   styles,
   label = true,
+  required = false,
 }: Props) => {
   const handleChange = (value: string) => {
     if (valueOption !== "specification") return onChange(value, valueOption);
@@ -42,8 +44,10 @@ export const TextInput = ({
         name={valueOption}
         type="text"
         className="w-full h-12 p-2.5 bg-zinc-800/80 border-2 border-gold-500/20 rounded-xl text-white placeholder-zinc-500 outline-none focus:bg-zinc-800 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
-        placeholder={placeholder ? placeholder : `Enter ${name}`}
-        required
+        placeholder={
+          placeholder ? placeholder : `Enter ${name.replace("*", "")}`
+        }
+        required={required}
         value={value}
         onChange={(e) => {
           handleChange(e.target.value);

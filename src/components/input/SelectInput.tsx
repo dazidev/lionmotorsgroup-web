@@ -57,6 +57,7 @@ export const SelectInput = ({
             if (
               option === "in_stock" ||
               option === "on_sale" ||
+              option === "reserved" ||
               option === "sold"
             ) {
               formatOption = option.replace("_", " ").toUpperCase();

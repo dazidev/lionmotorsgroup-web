@@ -34,6 +34,9 @@ export default async function CatalogPage() {
         take: 1,
       },
     },
+    where: {
+      status: "on_sale",
+    },
   });
 
   return (

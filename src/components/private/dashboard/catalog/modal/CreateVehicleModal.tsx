@@ -41,7 +41,7 @@ interface Props {
   setOpen: (value: boolean, option: string) => void;
 }
 
-const statusOptions = ["in_stock", "on_sale", "sold"];
+const statusOptions = ["in_stock", "on_sale", "reserved", "sold"];
 const fuelOptions: FuelType[] = [
   "diesel",
   "electric",
@@ -232,7 +232,6 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
       setLoading((prev) => ({ ...prev, createVehicle: false }));
       clearData();
     } catch (error) {
-      console.log(error);
       toast.error(
         `${error instanceof Error ? error.message : "Unknown error."}`,
       );
@@ -294,7 +293,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                 <span className="text-xl font-semibold">Financials</span>
                 <div className="flex max-w-70 gap-3">
                   <TextInput
-                    name={"Initial Investment"}
+                    name={"Initial Investment *"}
                     styles="flex-3"
                     value={vehicleData.investment}
                     valueOption="investment"

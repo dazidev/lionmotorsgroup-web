@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BasicVehicleResponse, DataImage } from "@/src/interfaces/index";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Pagination } from "../table/pagination/Pagination";
 import { FinancialsTableItem } from "./FinancialsTableItem";
 import { AddInvestmentModal } from "./modal/AddInvestmentModal";
@@ -29,7 +29,7 @@ interface Modals {
 type Options = keyof Modals;
 
 export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
-  const { vehiclesData } = useFinancial();
+  const { vehiclesData, revalidateData } = useFinancial();
   const [search, setSearch] = useState("");
   const [dataList, setDataList] = useState<BasicVehicleResponse[]>();
   const [openModal, setOpenModal] = useState<Modals>({
@@ -47,6 +47,7 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
 
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
+  const router = useRouter();
 
   useEffect(() => {
     if (vehiclesData) {
@@ -123,7 +124,11 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
       if (!attachResponse.success)
         throw "There was an error attaching the image.";
 
+      await revalidateData();
+
       toast.success(`${response.message}`);
+
+      router.refresh();
       return true;
     } catch (error) {
       return false;

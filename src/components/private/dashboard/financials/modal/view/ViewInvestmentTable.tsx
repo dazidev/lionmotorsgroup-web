@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import { ConfirmModal } from "../../../modal/ConfirmModal";
 import { useState } from "react";
 import { ViewInvoiceModal } from "./ViewInvoiceModal";
+import { useRouter } from "next/navigation";
+import { useFinancial } from "@/src/context/FinancialProvider";
 
 interface Props {
   headers: string[];
@@ -17,6 +19,7 @@ type Modals = {
 };
 
 export const ViewInvestmentTable = ({ headers, vehicleData }: Props) => {
+  const { revalidateData } = useFinancial();
   const { year, brand, model, vin } = vehicleData;
 
   const [openModal, setOpenModal] = useState<Modals>({
@@ -25,6 +28,8 @@ export const ViewInvestmentTable = ({ headers, vehicleData }: Props) => {
   });
   const [targetId, setTargetId] = useState("");
 
+  const router = useRouter();
+
   const handleOpenModal = (value: boolean, option: string) => {
     setOpenModal((prev) => ({ ...prev, [option]: value }));
   };
@@ -32,12 +37,18 @@ export const ViewInvestmentTable = ({ headers, vehicleData }: Props) => {
   const handleRemoveInvestment = async () => {
     try {
       const remove = await deleteInvestment(targetId);
-      if (!remove.success) return toast.error(remove.message as string);
-      return toast.success(`${remove.message}`);
-    } catch (error) {
-      toast.error(`${error}`);
-    } finally {
+
+      if (!remove.success) {
+        return toast.error(remove.message as string);
+      }
+
+      await revalidateData();
+
       setTargetId("");
+
+      toast.success(`${remove.message}`);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : String(error));
     }
   };
 

@@ -52,7 +52,7 @@ interface Props {
   vehicle?: Vehicle | null;
 }
 
-const statusOptions = ["in_stock", "on_sale", "sold"];
+const statusOptions = ["in_stock", "on_sale", "reserved", "sold"];
 
 const fuelOptions: FuelType[] = [
   "diesel",

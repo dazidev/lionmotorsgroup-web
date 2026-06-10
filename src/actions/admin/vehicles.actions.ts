@@ -166,7 +166,9 @@ export async function createVehicle(
         };
       }),
     );
-
+    revalidatePath("/dashboard/catalog");
+    revalidatePath("/catalog");
+    revalidatePath("/");
     return {
       success: true,
       data: {
@@ -299,7 +301,7 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
 
     revalidatePath("/dashboard/catalog");
     revalidatePath("/catalog");
-    revalidatePath("/home");
+    revalidatePath("/");
 
     return {
       success: true,

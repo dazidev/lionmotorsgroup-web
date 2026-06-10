@@ -4,6 +4,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -12,7 +13,7 @@ import { getBasicVehicles } from "../actions";
 
 type FinancialContextValue = {
   vehiclesData: BasicVehicleResponse[];
-  revalidateData: () => void;
+  revalidateData: () => Promise<void>;
 };
 
 const FinancialContext = createContext<FinancialContextValue | null>(null);
@@ -26,10 +27,16 @@ export function FinancialProvider({ children, vehiclesData }: Props) {
   const [vehicles, setVehicles] =
     useState<BasicVehicleResponse[]>(vehiclesData);
 
+  useEffect(() => {
+    setVehicles(vehiclesData);
+  }, [vehiclesData]);
+
   const revalidateData = useCallback(async () => {
     const vehiclesResponse = await getBasicVehicles();
-    if (!vehiclesResponse.success) return;
-    setVehicles(vehiclesResponse.data!);
+
+    if (!vehiclesResponse.success || !vehiclesResponse.data) return;
+
+    setVehicles(vehiclesResponse.data);
   }, []);
 
   const value = useMemo<FinancialContextValue>(
@@ -49,7 +56,10 @@ export function FinancialProvider({ children, vehiclesData }: Props) {
 
 export function useFinancial() {
   const context = useContext(FinancialContext);
-  if (!context)
+
+  if (!context) {
     throw new Error("useFinancial must be used inside FinancialProvider");
+  }
+
   return context;
 }

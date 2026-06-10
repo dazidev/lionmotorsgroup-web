@@ -24,6 +24,7 @@ export const CatalogTableItem = ({
   const getColorStatus = () => {
     if (status === "in_stock") return "bg-gray-600";
     else if (status === "on_sale") return "bg-green-600";
+    else if (status === "reserved") return "bg-orange-600";
     else if (status === "sold") return "bg-blue-700";
     return "";
   };

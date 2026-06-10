@@ -39,6 +39,9 @@ export default async function HomePage() {
         take: 1,
       },
     },
+    where: {
+      status: "on_sale",
+    },
   });
 
   const reviews = await getReviews();

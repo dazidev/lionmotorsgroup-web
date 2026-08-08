@@ -45,7 +45,7 @@ export const FormAvailability = ({ vehicleId }: Props) => {
     if (!regex.email.test(email)) return "Please enter a valid email address.";
     if (zipcode && !regex.zipcode.test(zipcode))
       return "Please enter a valid ZIP code (e.g., 12345 or 12345-6789).";
-    if (phoneNumber && !regex.phoneNumber.test(phoneNumber))
+    if (!regex.phoneNumber.test(phoneNumber))
       return "Please enter a valid U.S. phone number.";
     if (comments && comments.length > 200)
       return "Comments cannot exceed 200 characters.";
@@ -129,7 +129,7 @@ export const FormAvailability = ({ vehicleId }: Props) => {
       />
       <div className="flex flex-row gap-5">
         <input
-          placeholder="Zip Code"
+          placeholder="Zip Code (optional)"
           className="flex-1 min-w-0 px-4 py-3.5 bg-zinc-800/80 border-2 border-gray-200/20 rounded-xl text-white placeholder-zinc-500 outline-none transition-all duration-300 focus:bg-zinc-800 focus:border-gray-200 focus:ring-4 focus:ring-gold-500/10"
           required
           value={form.zipcode}

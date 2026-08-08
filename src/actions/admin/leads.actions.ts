@@ -1,10 +1,13 @@
 "use server";
 import { ServerResponse } from "@/src/interfaces";
+import { requireAuth } from "@/src/lib";
 import prisma from "@/src/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function getLeads() {
   try {
+    await requireAuth("admin");
+
     const leads = await prisma.lead.findMany();
     if (!leads) return { success: false };
 
@@ -19,6 +22,8 @@ export async function getLeads() {
 
 export async function setAttend(id: string) {
   try {
+    await requireAuth("admin");
+
     await prisma.lead.update({
       where: { id },
       data: { status: "attended" },
@@ -40,6 +45,8 @@ export async function setAttend(id: string) {
 export async function deleteLead(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
+    await requireAuth("admin");
+
     await prisma.lead.delete({ where: { id } });
 
     revalidatePath("/dashboard/leads");

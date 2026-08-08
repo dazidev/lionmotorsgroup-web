@@ -1,6 +1,7 @@
 "use server";
 
 import { DataImage, ServerResponse } from "@/src/interfaces";
+import { requireAuth } from "@/src/lib";
 import { deleteByKey, r2 } from "@/src/lib/cloudflare-r2";
 import prisma from "@/src/lib/prisma";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
@@ -25,11 +26,13 @@ export async function getBrands() {
 
 export async function addBrand(
   name: string,
-  dataImage: DataImage
+  dataImage: DataImage,
 ): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
 
   try {
+    await requireAuth("admin");
+
     const { mime, ext, size } = dataImage;
 
     //* Image validation
@@ -78,9 +81,11 @@ export async function addBrand(
 
 export async function attachBrandImage(
   id: string,
-  key: string
+  key: string,
 ): Promise<ServerResponse<any>> {
   try {
+    await requireAuth("admin");
+
     await prisma.brand.update({ where: { id }, data: { imagePath: key } });
     return { success: true };
   } catch (error) {
@@ -91,6 +96,8 @@ export async function attachBrandImage(
 export async function deleteBrand(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
+    await requireAuth("admin");
+
     const brand = await prisma.brand.delete({
       where: { id },
       select: { imagePath: true },

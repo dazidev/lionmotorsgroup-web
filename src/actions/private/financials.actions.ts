@@ -9,6 +9,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { deleteByKey, r2 } from "@/src/lib/cloudflare-r2";
 import { revalidatePath } from "next/cache";
+import { requireAuth } from "@/src/lib";
 
 const MAX_BYTES = Number(process.env.MAX_UPLOAD_BYTES ?? 5_000_000);
 const BUCKET = process.env.R2_BUCKET!;
@@ -18,6 +19,8 @@ export async function addInvestment(
   dataImage: DataImage,
 ): Promise<ServerResponse<any>> {
   try {
+    await requireAuth("admin");
+
     const data = investmentSchema.safeParse(investment);
 
     if (!data.success) {
@@ -104,6 +107,8 @@ export async function attachInvestmentInvoice(
   key: string,
 ): Promise<ServerResponse<any>> {
   try {
+    await requireAuth("admin");
+
     await prisma.vehicleInvestment.update({
       where: { id },
       data: { invoiceKey: key },
@@ -116,6 +121,8 @@ export async function attachInvestmentInvoice(
 
 export async function getInvestmentByVehicle(id: string) {
   try {
+    await requireAuth("admin");
+
     const response = await prisma.vehicleInvestment.findMany({
       where: { vehicleId: id },
     });
@@ -137,6 +144,8 @@ export async function getInvestmentByVehicle(id: string) {
 
 export async function getInvestments() {
   try {
+    await requireAuth("admin");
+
     const response = await prisma.vehicleInvestment.findMany();
 
     if (!response)
@@ -156,6 +165,8 @@ export async function getInvestments() {
 
 export async function updateInvestmentById(investment: Investment) {
   try {
+    await requireAuth("admin");
+
     const data = investmentSchema.safeParse(investment);
     if (!data.success) throw new Error(data.error.issues[0]?.message);
 
@@ -191,6 +202,8 @@ export async function deleteInvestment(
 ): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
+    await requireAuth("admin");
+
     const investment = await prisma.vehicleInvestment.delete({
       where: { id },
       select: { invoiceKey: true },

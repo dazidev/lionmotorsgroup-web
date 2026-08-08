@@ -1,6 +1,7 @@
 "use server";
 
 import { AdminForm, ServerResponse } from "@/src/interfaces";
+import { requireAuth } from "@/src/lib";
 import prisma from "@/src/lib/prisma";
 import { regex } from "@/src/utils/regex";
 import { Roles } from "@prisma/client";
@@ -9,6 +10,7 @@ import { revalidatePath } from "next/cache";
 
 export async function getAdmins() {
   try {
+    await requireAuth("admin");
     const admins = await prisma.user.findMany({
       select: {
         id: true,
@@ -39,6 +41,8 @@ export async function createAdmin(
   if (!password) return { success: false };
 
   try {
+    await requireAuth("admin");
+
     await prisma.user.create({
       data: {
         name,
@@ -59,6 +63,8 @@ export async function createAdmin(
 export async function deleteAdmin(id: string): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
+    await requireAuth("admin");
+
     await prisma.user.delete({ where: { id } });
 
     revalidatePath("/dashboard/admins");
@@ -83,6 +89,8 @@ export async function editAdmin(
   if (!regex.roles.test(role)) return { success: false };
 
   try {
+    await requireAuth("admin");
+
     await prisma.user.update({
       data: { name, lastname, email, role: role as Roles },
       where: { id },
@@ -108,6 +116,8 @@ export async function changeAdminPassword(
 ): Promise<ServerResponse<any>> {
   //! todo: makes validations!!!!!
   try {
+    await requireAuth("admin");
+
     await prisma.user.update({
       data: { password: bcrypt.hashSync(password, 10) },
       where: { id },

@@ -8,6 +8,7 @@ import {
   VehicleState,
   VpicDecodeVinValuesResponse,
 } from "@/src/interfaces";
+import { requireAuth } from "@/src/lib";
 import { r2 } from "@/src/lib/cloudflare-r2";
 import prisma from "@/src/lib/prisma";
 import { normalizeToSlug } from "@/src/utils/format";
@@ -23,6 +24,8 @@ export async function getVehicleSlug(
   id: string,
 ): Promise<ServerResponse<{ slug: string }>> {
   try {
+    await requireAuth("admin");
+
     const vehicle = await prisma.vehicleGeneral.findUnique({
       where: { id },
       select: { slug: true, shortId: true },
@@ -60,6 +63,8 @@ export async function createVehicle(
   ];
 
   try {
+    await requireAuth("admin");
+
     // todo: make important validations
     const investment = Number(data.investment);
     if (!Number.isFinite(investment))
@@ -187,6 +192,8 @@ export async function createVehicle(
 
 export async function attachVehicleImages(id: string, keys: string[]) {
   try {
+    await requireAuth("admin");
+
     await prisma.vehicleImage.createMany({
       data: keys.map((key, index) => ({
         vehicleId: id,
@@ -211,6 +218,8 @@ export async function getVehicles(
   amount?: number,
 ): Promise<ServerResponse<Vehicle[]>> {
   try {
+    await requireAuth("admin");
+
     const vehicles = await prisma.vehicleGeneral.findMany({
       include: {
         brand: true,
@@ -240,6 +249,8 @@ export async function getVehicles(
 
 export async function getBasicVehicles() {
   try {
+    await requireAuth("admin");
+
     const vehicles = await prisma.vehicleGeneral.findMany({
       select: {
         id: true,
@@ -268,6 +279,8 @@ export async function getBasicVehicles() {
 
 export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
   try {
+    await requireAuth("admin");
+
     const vehicle = await prisma.vehicleGeneral.findUnique({
       where: { id },
       include: {
@@ -329,6 +342,8 @@ export async function getVehiclesDetailsByVin(
   const url = `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/${formatVin}?format=json&modelyear=${year}`;
 
   try {
+    await requireAuth("admin");
+
     const res: VpicDecodeVinValuesResponse = await fetch(url, {
       cache: "no-store",
     })

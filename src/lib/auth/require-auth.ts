@@ -9,7 +9,7 @@ export async function requireAuth(role: Roles) {
   }
 
   if (session.user.role !== role) {
-    throw new Error("Forbbiden.");
+    throw new Error("Forbidden.");
   }
 
   return session;

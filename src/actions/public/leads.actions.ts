@@ -1,19 +1,20 @@
 "use server";
 import { FormLead, ServerResponse } from "@/src/interfaces";
 import prisma from "@/src/lib/prisma";
+import { getSchemaErrorMessage, leadSchema } from "@/src/schemas";
 
 export async function saveLead(form: FormLead): Promise<ServerResponse<any>> {
-  const {
-    name,
-    lastname,
-    email,
-    zipcode,
-    phoneNumber,
-    comments,
-    vehicleId,
-    type,
-  } = form;
-  //! todo: makes validations!!!!!
+  const result = leadSchema.safeParse(form);
+
+  if (!result.success) {
+    return {
+      success: false,
+      message: getSchemaErrorMessage(result.error, "lead", "backend"),
+    };
+  }
+
+  const { name, lastname, email, zipcode, phoneNumber, comments, type } =
+    result.data;
 
   try {
     await prisma.lead.create({
@@ -24,7 +25,7 @@ export async function saveLead(form: FormLead): Promise<ServerResponse<any>> {
         zipcode,
         phoneNumber,
         comments,
-        vehicleId,
+        vehicleId: type === "vehicle" ? result.data.vehicleId : null,
         type,
       },
     });
@@ -35,7 +36,6 @@ export async function saveLead(form: FormLead): Promise<ServerResponse<any>> {
         "Your information has been sent successfully. We'll reach out to you as soon as possible. Thank you for your interest!",
     };
   } catch (error) {
-    console.log(error);
     return {
       success: false,
       message:

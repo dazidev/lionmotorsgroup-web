@@ -7,6 +7,7 @@ import { FormEvent, useState } from "react";
 import { ErrorDialog } from "../../dialog/ErrorDialog";
 import { SuccessDialog } from "../../dialog/SuccessDialog";
 import { TypeLead } from "@prisma/client";
+import { getSchemaErrorMessage, leadSchema } from "@/src/schemas";
 
 interface Props {
   vehicleId: string;
@@ -35,25 +36,6 @@ export const FormAvailability = ({ vehicleId }: Props) => {
     message: "",
   });
 
-  const formValidation = (form: FormLead) => {
-    const { name, lastname, email, zipcode, phoneNumber, comments, vehicleId } =
-      form;
-    if (name.length > 16 || name.length < 2)
-      return "Name must be between 2 and 16 characters.";
-    if (lastname.length > 16 || lastname.length < 2)
-      return "Last name must be between 2 and 16 characters.";
-    if (!regex.email.test(email)) return "Please enter a valid email address.";
-    if (zipcode && !regex.zipcode.test(zipcode))
-      return "Please enter a valid ZIP code (e.g., 12345 or 12345-6789).";
-    if (!regex.phoneNumber.test(phoneNumber))
-      return "Please enter a valid U.S. phone number.";
-    if (comments && comments.length > 200)
-      return "Comments cannot exceed 200 characters.";
-    if (!vehicleId) return "Unknown error.";
-    if (!regex.uuidv4.test(vehicleId)) return "Unknown error.";
-    return "";
-  };
-
   const cleanForm = () => {
     setForm(initialStateForm);
   };
@@ -61,8 +43,12 @@ export const FormAvailability = ({ vehicleId }: Props) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const validation = formValidation(form);
-    if (validation) return setError(validation);
+    const result = leadSchema.safeParse(form);
+
+    if (!result.success) {
+      const error = getSchemaErrorMessage(result.error, "lead", "frontend");
+      return setError(error);
+    }
     setError("");
 
     setLoading((prev) => ({ ...prev, status: "loading" }));

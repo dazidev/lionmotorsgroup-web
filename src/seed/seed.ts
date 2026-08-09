@@ -1,5 +1,9 @@
 import bcrypt from "bcrypt";
 
+import { config } from "dotenv";
+
+config();
+
 type UserRoles = "admin" | "moderator" | "user";
 
 interface SeedUser {
@@ -50,15 +54,15 @@ export const initialData: SeedData = {
     {
       name: "Daniel",
       lastname: "Zipa",
-      email: "redacted@example.com",
-      password: bcrypt.hashSync("REDACTED", 10),
+      email: `${process.env.USER_EMAIL_SEED}`,
+      password: bcrypt.hashSync(`${process.env.USER_PASSWORD_SEED}`, 10),
       role: "admin",
     },
     {
       name: "Juan",
       lastname: "D'Agostini",
       email: "juan@outlook.com",
-      password: bcrypt.hashSync("REDACTED", 10),
+      password: bcrypt.hashSync(`${process.env.USER_PASSWORD_SEED}`, 10),
       role: "admin",
     },
   ],

@@ -5,16 +5,6 @@ export interface ServerResponse<T> {
   message?: string;
 }
 
-type TypeSpecification = "security" | "confort" | "visual";
-
-export interface Specification {
-  id: string;
-  type: TypeSpecification;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 type TypeDataImage = {
   url: string;
   key: string;

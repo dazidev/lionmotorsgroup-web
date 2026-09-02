@@ -1,11 +1,11 @@
 "use client";
 
-import { Brands, Specifications } from "@/src/interfaces";
-import Image from "next/image";
+import { Brands, Specification } from "@/src/interfaces";
 import React, { useEffect, useState } from "react";
 import ImageWithLoader from "../../../../image/ImageWithLoader";
+import { CatalogSpec } from "@/src/context/CatalogProvider";
 
-type Data = Specifications | Brands;
+type Data = CatalogSpec | Brands;
 
 interface Props {
   data: Data;
@@ -17,7 +17,7 @@ function isBrand(data: Data): data is Brands {
   return "imagePath" in data;
 }
 
-function isSpec(data: Data): data is Specifications {
+function isSpec(data: Data): data is CatalogSpec {
   return "type" in data;
 }
 
@@ -44,6 +44,7 @@ export const SpecificationTableItem = ({
         type: data.type,
         createdAt: new Date(data.createdAt),
         updatedAt: new Date(data.updatedAt),
+        checked: data.checked,
       });
     }
   }, [data]);

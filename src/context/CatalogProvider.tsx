@@ -91,7 +91,7 @@ export function CatalogProvider({
           return { ...spec, checked: !spec.checked };
         }
         return spec;
-      })
+      }),
     );
   }, []);
 
@@ -99,7 +99,7 @@ export function CatalogProvider({
     setSpecifications((prev) =>
       prev.map((spec) => {
         return { ...spec, checked: false };
-      })
+      }),
     );
   }, []);
 
@@ -117,7 +117,7 @@ export function CatalogProvider({
       revalidateData,
       handleCheckedSpec,
       resetCheckedSpec,
-    ]
+    ],
   );
 
   return (

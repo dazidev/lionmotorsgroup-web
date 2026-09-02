@@ -1,19 +1,19 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { SpecificationTableItem } from "./SpecificationTableItem";
-import { Brands, Specifications } from "@/src/interfaces/index";
+import { Brands } from "@/src/interfaces/index";
 import { deleteBrand, deleteSpecification } from "@/src/actions";
 import { ConfirmModal } from "../../modal/ConfirmModal";
-import { useCatalog } from "@/src/context/CatalogProvider";
+import { CatalogSpec, useCatalog } from "@/src/context/CatalogProvider";
 import { DefaultButton } from "../../../../button/DefaultButton";
 
 interface Props {
   name: string;
   headers: string[];
-  data?: Specifications[] | Brands[];
+  data?: CatalogSpec[] | Brands[];
   setOpenAddBrand: () => void;
 }
 
@@ -31,7 +31,7 @@ export const SpecificationTable = ({
 }: Props) => {
   const { revalidateData } = useCatalog();
   const [search, setSearch] = useState("");
-  const [dataList, setDataList] = useState<Specifications[] | Brands[]>();
+  const [dataList, setDataList] = useState<CatalogSpec[] | Brands[]>();
   const [openModal, setOpenModal] = useState<Modals>({
     create: false,
     confirm: false,

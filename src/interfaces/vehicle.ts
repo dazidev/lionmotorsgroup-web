@@ -80,18 +80,20 @@ export type VehicleTechnical = {
   updatedAt: Date;
 };
 
+type TypeSpecification = "security" | "confort" | "visual";
+
+export interface Specification {
+  id: string;
+  type: TypeSpecification;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type VehicleSpecification = {
   vehicleId: string;
   specificationId: string;
   specification: Specification;
-};
-
-export type Specification = {
-  id: string;
-  type: "security" | "confort" | "visual";
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
 };
 
 export interface VehicleState {
@@ -125,14 +127,6 @@ export interface Brands {
   id: string;
   name: string;
   imagePath: string;
-  createdAt: Date | string;
-  updatedAt: Date | string;
-}
-
-export interface Specifications {
-  id: string;
-  type: string;
-  name: string;
   createdAt: Date | string;
   updatedAt: Date | string;
 }

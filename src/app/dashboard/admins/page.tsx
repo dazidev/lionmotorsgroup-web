@@ -8,7 +8,7 @@ export default async function AdminsPage() {
 
   const listHeaders = ["Full Name", "Email", "Role", "Status", "Actions"];
   return (
-    <div className="flex flex-col items-center justify-between min-h-[calc(100vh-8.25rem)] w-[90%]">
+    <div className="flex flex-col items-center justify-between w-[90%] min-h-full">
       <div className="m-8 w-full">
         <Table name={"Administrators"} headers={listHeaders} data={data} />
       </div>

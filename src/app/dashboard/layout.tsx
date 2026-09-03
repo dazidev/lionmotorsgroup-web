@@ -1,5 +1,3 @@
-import { auth } from "@/src/auth.config";
-import { redirect } from "next/navigation";
 import { TopNav } from "../../components/private/dashboard/topNav/TopNav";
 
 export default async function Authlayout({
@@ -8,14 +6,12 @@ export default async function Authlayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex flex-col items-center min-h-screen overflow-hidden">
+    <main className="flex flex-col items-center min-h-screen overflow-hidden bg-zinc-950">
       <header className="flex flex-col items-center">
         <TopNav />
       </header>
 
-      <div className="flex justify-center pt-28 w-full bg-zinc-950 flex-1">
-        {children}
-      </div>
+      <div className="flex justify-center pt-28 w-full flex-1">{children}</div>
     </main>
   );
 }

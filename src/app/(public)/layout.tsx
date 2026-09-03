@@ -1,6 +1,4 @@
-import { auth } from "@/src/auth.config";
 import { TopNavPublic } from "@/src/components";
-import { redirect } from "next/navigation";
 
 export default async function Authlayout({
   children,

@@ -36,7 +36,7 @@ export const VehicleCard = ({
           alt={`Ford`}
           width={800}
           height={600}
-          className="object-cover w-full h-full rounded-t-sm"
+          className="object-cover w-full max-h-50 rounded-t-sm"
         />
       </div>
       <div className="p-2">

@@ -1,9 +1,5 @@
 "use client";
-import {
-  attachVehicleImages,
-  createVehicle,
-  getVehiclesDetailsByVin,
-} from "@/src/actions";
+import { getVehiclesDetailsByVin } from "@/src/actions";
 import { DefaultButton } from "@/src/components/button/DefaultButton";
 import { CloseButton } from "@/src/components/button/CloseButton";
 import { SelectInput } from "@/src/components/input/SelectInput";
@@ -175,68 +171,58 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
     setImageAmount(value);
   };
 
-  const handleCreateVehicle = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateVehicle = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      setLoading((prev) => ({ ...prev, createVehicle: true }));
+      setLoading((prev) => ({
+        ...prev,
+        createVehicle: true,
+      }));
+
       const specifications = specificationsData
         .filter((spec) => spec.checked)
         .map((spec) => spec.id);
-
-      const imagesData = images
-        .filter((img): img is typeof img & { file: File } => img.file !== null)
-        .map((img) => ({
-          mime: img.file.type,
-          ext: img.file.name.split(".").pop(),
-          size: img.file.size,
-        }));
-
-      const vehicle = await createVehicle(
-        vehicleData as VehicleState,
-        specifications,
-        imagesData,
-      );
-
-      if (!vehicle.success) throw new Error(vehicle.message);
-
-      if (vehicle.data === undefined || vehicle.data?.urls.length === 0)
-        throw new Error("Unknown error.");
 
       const imagesToUpload = images.filter(
         (img): img is typeof img & { file: File } => img.file !== null,
       );
 
-      for (let index = 0; index < imagesToUpload.length; index++) {
-        const file = imagesToUpload[index].file;
-        const url = vehicle.data.urls[index].url;
+      const formData = new FormData();
 
-        const putRes = await fetch(url, {
-          method: "PUT",
-          headers: { "Content-Type": file.type },
-          body: file,
-        });
+      formData.append("vehicle", JSON.stringify(vehicleData));
 
-        if (!putRes.ok)
-          throw new Error("There was an error uploading the images.");
+      formData.append("specifications", JSON.stringify(specifications));
+
+      imagesToUpload.forEach(({ file }) => {
+        formData.append("images", file);
+      });
+
+      const response = await fetch("/api/admin/vehicles", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message ?? "There was an error creating the vehicle.",
+        );
       }
 
-      const keys = vehicle.data.urls.map(({ url, key }) => key);
-      const vehicleId = vehicle.data.vehicleId;
+      toast.success(
+        result.message ?? "The vehicle has been created successfully!",
+      );
 
-      const imagesResponse = await attachVehicleImages(vehicleId, keys);
-
-      if (!imagesResponse.success) throw new Error(imagesResponse.message);
-
-      toast.success(imagesResponse.message);
-      setLoading((prev) => ({ ...prev, createVehicle: false }));
       clearData();
     } catch (error) {
-      toast.error(
-        `${error instanceof Error ? error.message : "Unknown error."}`,
-      );
-      setLoading((prev) => ({ ...prev, createVehicle: false }));
-      return;
+      toast.error(error instanceof Error ? error.message : "Unknown error.");
+    } finally {
+      setLoading((prev) => ({
+        ...prev,
+        createVehicle: false,
+      }));
     }
   };
 

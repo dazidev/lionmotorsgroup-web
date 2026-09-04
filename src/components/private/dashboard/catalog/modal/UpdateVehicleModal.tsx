@@ -1,13 +1,11 @@
 "use client";
 
-import { attachVehicleImages, createVehicle } from "@/src/actions";
 import { DefaultButton } from "@/src/components/button/DefaultButton";
 import { CloseButton } from "@/src/components/button/CloseButton";
 import { SelectInput } from "@/src/components/input/SelectInput";
 import { TextInput } from "@/src/components/input/TextInput";
 import { Carousel } from "@/src/components/public/carousel/Carousel";
 import {
-  VehicleState,
   FuelType,
   DrivetrainType,
   TransmissionType,
@@ -20,13 +18,13 @@ import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
 import { useCatalog } from "@/src/context/CatalogProvider";
 import { SwiperSlide } from "swiper/react";
 import { ImageInput } from "@/src/components/input/ImageInput";
+import { getImageUrl } from "@/src/utils/images";
 
 import { LuMinus, LuPlus } from "react-icons/lu";
 import toast from "react-hot-toast";
 
 const NUM_INITIAL_IMAGES = 5;
 const MAX_IMAGES = 15;
-const R2_PUBLIC_URL = "https://images.lionmotorsgroup.com";
 
 type ImageItem = {
   id?: string;
@@ -130,7 +128,8 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
     updateVehicle: false,
   });
 
-  const { brandsData, specificationsData, resetCheckedSpec } = useCatalog();
+  const { brandsData, specificationsData, resetCheckedSpec, setCheckedSpecs } =
+    useCatalog();
 
   const [imageAmount, setImageAmount] = useState(NUM_INITIAL_IMAGES);
 
@@ -210,6 +209,8 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
       transmission: vehicle.technical?.transmission ?? "",
     });
 
+    setCheckedSpecs(vehicle.specifications.map((spec) => spec.specificationId));
+
     const orderedImages: ImagesState = [...vehicle.images]
       .sort((a, b) => a.position - b.position)
       .map((img) => ({
@@ -217,11 +218,9 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
         key: img.key,
         position: img.position,
         file: null,
-        image: `${R2_PUBLIC_URL}/${img.key}`,
+        image: getImageUrl(img.key),
         isExisting: true,
       }));
-
-    console.log("ORDERED IMAGES:", orderedImages);
 
     const imagesToShow =
       orderedImages.length >= NUM_INITIAL_IMAGES
@@ -236,7 +235,7 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
 
     setImages(imagesToShow);
     setImageAmount(imagesToShow.length);
-  }, [vehicle]);
+  }, [vehicle, setCheckedSpecs]);
 
   useEffect(() => {
     if (!open) {
@@ -265,83 +264,84 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
     });
   }, [imageAmount, open]);
 
-  const handleUpdateVehicle = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdateVehicle = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      setLoading((prev) => ({ ...prev, updateVehicle: true }));
+      setLoading((prev) => ({
+        ...prev,
+        updateVehicle: true,
+      }));
 
       const specifications = specificationsData
         .filter((spec) => spec.checked)
         .map((spec) => spec.id);
 
-      const imagesWithFile = images.filter(
-        (img): img is ImageItem & { file: File } => img.file !== null,
-      );
+      const imageManifest = images.flatMap((image, index) => {
+        const hasExistingImage = Boolean(image.id);
 
-      const imagesData = imagesWithFile.map((img) => ({
-        mime: img.file.type,
-        ext: img.file.name.split(".").pop(),
-        size: img.file.size,
-      }));
+        const hasNewFile = image.file !== null;
 
-      /*
-        Por ahora dejo tu lógica base con createVehicle.
-        Cuando tengas la action updateVehicle, aquí se cambia por esa.
-      */
-      const vehicleResponse = await createVehicle(
-        vehicleData as VehicleState,
-        specifications,
-        imagesData,
-      );
-
-      if (!vehicleResponse.success) {
-        throw new Error(vehicleResponse.message);
-      }
-
-      if (
-        vehicleResponse.data === undefined ||
-        vehicleResponse.data.urls.length === 0
-      ) {
-        throw new Error("Unknown error.");
-      }
-
-      for (let index = 0; index < imagesWithFile.length; index++) {
-        const file = imagesWithFile[index].file;
-        const url = vehicleResponse.data.urls[index].url;
-
-        const putRes = await fetch(url, {
-          method: "PUT",
-          headers: {
-            "Content-Type": file.type,
-          },
-          body: file,
-        });
-
-        if (!putRes.ok) {
-          throw new Error("There was an error uploading the images.");
+        if (!hasExistingImage && !hasNewFile) {
+          return [];
         }
+
+        return [
+          {
+            id: image.id ?? null,
+            position: index,
+            fileField: hasNewFile ? `image-${index}` : null,
+          },
+        ];
+      });
+
+      if (imageManifest.length < NUM_INITIAL_IMAGES) {
+        throw new Error(
+          `The vehicle must have at least ${NUM_INITIAL_IMAGES} images.`,
+        );
       }
 
-      const keys = vehicleResponse.data.urls.map(({ key }) => key);
-      const vehicleId = vehicleResponse.data.vehicleId;
+      const formData = new FormData();
 
-      const imagesResponse = await attachVehicleImages(vehicleId, keys);
+      formData.append("vehicle", JSON.stringify(vehicleData));
 
-      if (!imagesResponse.success) {
-        throw new Error(imagesResponse.message);
+      formData.append("specifications", JSON.stringify(specifications));
+
+      formData.append("imageManifest", JSON.stringify(imageManifest));
+
+      images.forEach((image, index) => {
+        if (!image.file) return;
+
+        formData.append(`image-${index}`, image.file);
+      });
+
+      const response = await fetch(`/api/admin/vehicles/${vehicleData.id}`, {
+        method: "PATCH",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message ?? "There was an error updating the vehicle.",
+        );
       }
 
-      toast.success(imagesResponse.message);
+      toast.success(result.message);
+
       clearData();
+
       setOpen(false, "update");
     } catch (error) {
-      console.log(error);
-      toast.error(
-        `${error instanceof Error ? error.message : "Unknown error."}`,
-      );
+      console.error(error);
+
+      toast.error(error instanceof Error ? error.message : "Unknown error.");
     } finally {
-      setLoading((prev) => ({ ...prev, updateVehicle: false }));
+      setLoading((prev) => ({
+        ...prev,
+        updateVehicle: false,
+      }));
     }
   };
 

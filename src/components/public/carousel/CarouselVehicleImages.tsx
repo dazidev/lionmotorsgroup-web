@@ -7,6 +7,7 @@ import { Skeleton } from "../../loading/Skeleton";
 import { useState } from "react";
 import { CarouselPreview } from "./CarouselPreview";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
+import { getImageUrl } from "@/src/utils/images";
 
 interface Props {
   images: string[];
@@ -53,7 +54,7 @@ export const CarouselVehicleImages = ({ images }: Props) => {
                 )}
 
                 <Image
-                  src={`https://images.lionmotorsgroup.com/${src}`}
+                  src={getImageUrl(src)}
                   alt={`Vehicle-${index + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

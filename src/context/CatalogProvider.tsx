@@ -34,6 +34,7 @@ type CatalogContextValue = {
   revalidateData: (option: DataOptions) => void;
   handleCheckedSpec: (id: string) => void;
   resetCheckedSpec: () => void;
+  setCheckedSpecs: (ids: string[]) => void;
 };
 
 const CatalogContext = createContext<CatalogContextValue | null>(null);
@@ -103,6 +104,17 @@ export function CatalogProvider({
     );
   }, []);
 
+  const setCheckedSpecs = useCallback((ids: string[]) => {
+    const selectedIds = new Set(ids);
+
+    setSpecifications((prev) =>
+      prev.map((spec) => ({
+        ...spec,
+        checked: selectedIds.has(spec.id),
+      })),
+    );
+  }, []);
+
   const value = useMemo<CatalogContextValue>(
     () => ({
       specificationsData: specifications,
@@ -110,6 +122,7 @@ export function CatalogProvider({
       revalidateData,
       handleCheckedSpec,
       resetCheckedSpec,
+      setCheckedSpecs,
     }),
     [
       specifications,
@@ -117,6 +130,7 @@ export function CatalogProvider({
       revalidateData,
       handleCheckedSpec,
       resetCheckedSpec,
+      setCheckedSpecs,
     ],
   );
 

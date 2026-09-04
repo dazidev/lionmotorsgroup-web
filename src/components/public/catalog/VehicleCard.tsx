@@ -1,4 +1,5 @@
 "use client";
+import { getImageUrl } from "@/src/utils/images";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
@@ -21,7 +22,6 @@ export const VehicleCard = ({
   image,
   link,
 }: Props) => {
-  const linkImage = `https://images.lionmotorsgroup.com/${image}`;
   const milesFormat = new Intl.NumberFormat("en-US").format(miles);
   const priceFormat = new Intl.NumberFormat("en-US").format(price);
 
@@ -32,7 +32,7 @@ export const VehicleCard = ({
     >
       <div>
         <Image
-          src={linkImage}
+          src={getImageUrl(image)}
           alt={`Ford`}
           width={800}
           height={600}

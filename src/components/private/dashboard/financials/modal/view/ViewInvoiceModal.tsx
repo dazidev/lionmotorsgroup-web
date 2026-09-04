@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { CloseButton } from "@/src/components";
 import { InvestmentResponse } from "@/src/interfaces";
+import { getImageUrl } from "@/src/utils/images";
 
 interface Props {
   open: boolean;
@@ -11,14 +12,12 @@ interface Props {
   investment: InvestmentResponse;
 }
 
-const R2_PUBLIC_URL = "https://images.lionmotorsgroup.com";
-
 export const ViewInvoiceModal = ({ open, setOpen, investment }: Props) => {
   const [downloading, setDownloading] = useState(false);
 
   if (!open) return null;
 
-  const imageUrl = `${R2_PUBLIC_URL}/${investment.invoiceKey}`;
+  const imageUrl = getImageUrl(investment.invoiceKey);
 
   const handleDownload = async () => {
     try {

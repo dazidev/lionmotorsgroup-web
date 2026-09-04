@@ -2,16 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import { BasicVehicleResponse, DataImage } from "@/src/interfaces/index";
+import { BasicVehicleResponse } from "@/src/interfaces/index";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Pagination } from "../table/pagination/Pagination";
 import { FinancialsTableItem } from "./FinancialsTableItem";
 import { AddInvestmentModal } from "./modal/AddInvestmentModal";
 import { Investment } from "@/src/interfaces/investment";
-import {
-  addInvestment,
-  attachInvestmentInvoice,
-} from "@/src/actions/private/financials.actions";
 import toast from "react-hot-toast";
 import { ViewInvestmentModal } from "./modal/view/ViewInvestmentModal";
 import { useFinancial } from "@/src/context/FinancialProvider";
@@ -94,43 +90,41 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
     investment: Investment,
   ): Promise<boolean> => {
     try {
-      if (!file) throw "Select image!";
-
-      const dataImage: DataImage = {
-        mime: file.type,
-        ext: file.name.split(".").pop(),
-        size: file.size,
-      };
-
-      const response = await addInvestment(investment, dataImage);
-
-      if (!response.success) {
-        toast.error(response.error ?? "Unknow error.");
-        return false;
+      if (!file) {
+        throw new Error("Select image!");
       }
 
-      const { url, key, investmentId } = response.data;
+      const formData = new FormData();
 
-      const putRes = await fetch(url, {
-        method: "PUT",
-        headers: { "Content-Type": file.type },
-        body: file,
+      formData.append("investment", JSON.stringify(investment));
+
+      formData.append("image", file);
+
+      const response = await fetch("/api/admin/investments", {
+        method: "POST",
+        body: formData,
       });
 
-      if (!putRes.ok) throw "There was an error uploading the image.";
+      const result = await response.json();
 
-      const attachResponse = await attachInvestmentInvoice(investmentId, key);
-
-      if (!attachResponse.success)
-        throw "There was an error attaching the image.";
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message ?? "There was an error creating the investment.",
+        );
+      }
 
       await revalidateData();
 
-      toast.success(`${response.message}`);
+      toast.success(
+        result.message ?? "The investment has been created successfully.",
+      );
 
       router.refresh();
+
       return true;
     } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unknown error.");
+
       return false;
     }
   };

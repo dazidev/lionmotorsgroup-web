@@ -12,11 +12,12 @@ export const LoginForm = () => {
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
-    undefined
+    undefined,
   );
 
   return (
     <form action={formAction} className="flex flex-col">
+      <input type="hidden" name="redirectTo" value={callbackUrl} />
       <label htmlFor="email">Email</label>
       <input
         placeholder="Enter you email..."

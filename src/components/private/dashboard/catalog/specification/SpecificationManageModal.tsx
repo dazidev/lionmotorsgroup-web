@@ -6,11 +6,11 @@ import { useState } from "react";
 import { SpecificationTable } from "./SpecificationTable";
 import { useCatalog } from "@/src/context/CatalogProvider";
 import { SelectInput } from "@/src/components/input/SelectInput";
-import { addBrand, addSpecification, attachBrandImage } from "@/src/actions";
+import { addSpecification } from "@/src/actions";
 import toast from "react-hot-toast";
 import { useLockBodyScroll } from "@/src/hooks/useLockBodyScroll";
 import { AddBrandModal } from "./AddBrandModal";
-import { DataImage, PromiseResponse } from "@/src/interfaces";
+import { PromiseResponse } from "@/src/interfaces";
 
 interface Props {
   open: boolean;
@@ -78,44 +78,47 @@ export const SpecificationManageModal = ({ open, setOpen }: Props) => {
 
   const handleAddBrand = async (): Promise<PromiseResponse> => {
     try {
-      if (!field.brand) throw "Insert brand!";
-      if (!file) throw "Select image!";
+      if (!field.brand.trim()) {
+        throw new Error("Insert brand!");
+      }
 
-      const dataImage: DataImage = {
-        mime: file.type,
-        ext: file.name.split(".").pop(),
-        size: file.size,
-      };
+      if (!file) {
+        throw new Error("Select image!");
+      }
 
-      const response = await addBrand(field.brand, dataImage);
+      const formData = new FormData();
 
-      if (!response.success) throw response.message;
+      formData.append("name", field.brand.trim());
+      formData.append("image", file);
 
-      const { url, key, brandId } = response.data;
-
-      const putRes = await fetch(url, {
-        method: "PUT",
-        headers: { "Content-Type": file.type },
-        body: file,
+      const response = await fetch("/api/admin/brands", {
+        method: "POST",
+        body: formData,
       });
 
-      if (!putRes.ok) throw "There was an error uploading the image.";
+      const result = await response.json();
 
-      const attachResponse = await attachBrandImage(brandId, key);
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message ?? "There was an error creating the brand.",
+        );
+      }
 
-      if (!attachResponse.success)
-        throw "There was an error attaching the image.";
+      toast.success(
+        result.message ?? "The brand has been created successfully.",
+      );
 
-      toast.success(`${response.message}`);
       revalidateData("brands");
+
       clearFields();
+
       return {
         success: true,
       };
     } catch (error) {
       return {
         success: false,
-        message: typeof error === "string" ? error : "Unknown error.",
+        message: error instanceof Error ? error.message : "Unknown error.",
       };
     }
   };

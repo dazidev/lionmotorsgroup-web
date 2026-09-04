@@ -1,13 +1,15 @@
 "use client";
 import { redirect } from "next/navigation";
 import ImageWithLoader from "../../image/ImageWithLoader";
+import { getImageUrl } from "@/src/utils/images";
+import { Brands } from "@/src/interfaces";
 
 interface Props {
-  brand: any;
+  brand: Brands;
 }
 
 export const BrandCard = ({ brand }: Props) => {
-  const linkImage = `https://images.lionmotorsgroup.com/${brand.imagePath}`;
+  const linkImage = getImageUrl(brand.imagePath);
 
   return (
     <div

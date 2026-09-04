@@ -1,9 +1,10 @@
 "use client";
 
-import { Brands, Specification } from "@/src/interfaces";
+import { Brands } from "@/src/interfaces";
 import React, { useEffect, useState } from "react";
 import ImageWithLoader from "../../../../image/ImageWithLoader";
 import { CatalogSpec } from "@/src/context/CatalogProvider";
+import { getImageUrl } from "@/src/utils/images";
 
 type Data = CatalogSpec | Brands;
 
@@ -61,10 +62,9 @@ export const SpecificationTableItem = ({
           .filter(([key]) => !["id", "createdAt", "updatedAt"].includes(key))
           .map(([key, value]) => {
             if (key === "imagePath") {
-              const linkImage = `https://images.lionmotorsgroup.com/${value}`;
               return (
                 <td key={key} className="flex px-6 py-4 h-20">
-                  <ImageWithLoader src={linkImage} alt="brand-logo" />
+                  <ImageWithLoader src={getImageUrl(value)} alt="brand-logo" />
                 </td>
               );
             }

@@ -35,16 +35,27 @@ export const AddBrandModal = ({
   const clearFields = () => {
     setBrand("", "brand");
     setFile(null);
+    setPreview(null);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    const response = await addBrand();
-    if (!response.success) return toast.error(`${response.message}`);
-    setLoading(false);
-    clearFields();
-    setOpen(false);
+
+    try {
+      setLoading(true);
+
+      const response = await addBrand();
+
+      if (!response.success) {
+        toast.error(`${response.message}`);
+        return;
+      }
+
+      clearFields();
+      setOpen(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!open) return null;

@@ -13,6 +13,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# local storage
+uploads/
+
 # testing
 /coverage
 

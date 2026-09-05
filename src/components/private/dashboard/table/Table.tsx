@@ -82,33 +82,63 @@ export const Table = ({ name, headers, data }: Props) => {
     }
   };
 
-  const handleCreate = async (field: any): Promise<boolean> => {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.email)) return false;
-    if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
-        field.password
-      )
-    )
+  interface CreateAdminFields {
+    name: string;
+    lastname: string;
+    email: string;
+    password: string;
+    role: string;
+  }
+
+  const handleCreate = async (fields: CreateAdminFields): Promise<boolean> => {
+    const { name, lastname, email, password, role } = fields;
+
+    if (!name || !lastname || !email || !password || !role) {
+      toast.error("Please complete all required fields");
       return false;
-    if (
-      !field.name ||
-      !field.lastname ||
-      !field.email ||
-      !field.password ||
-      !field.role
-    )
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email.trim())) {
+      toast.error("Please enter a valid email address");
       return false;
+    }
+
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Your password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.",
+      );
+      return false;
+    }
+
     try {
-      const response = await createAdmin(field);
+      const response = await createAdmin({
+        ...fields,
+        name: name.trim(),
+        lastname: lastname.trim(),
+        email: email.trim().toLowerCase(),
+      });
+
       if (!response.success) {
-        toast.error(`${response.message}`);
+        toast.error(response.message ?? "Unable to create the administrator");
         return false;
       }
 
       toast.success("The administrator has been created successfully");
+
       return true;
     } catch (error) {
-      toast.error(`${error}`);
+      console.error("Error creating administrator:", error);
+
+      const message =
+        error instanceof Error ? error.message : "An unexpected error occurred";
+
+      toast.error(message);
+
       return false;
     }
   };

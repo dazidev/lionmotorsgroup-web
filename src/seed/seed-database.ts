@@ -9,16 +9,17 @@ async function main() {
     data: users,
   });
 
+  await prisma.reviews.deleteMany();
+  await prisma.reviews.createMany({
+    data: reviews,
+  });
+
   /*await prisma.lead.createMany({
     data: leads,
   });*/
 
   /*await prisma.vehicleGeneral.createMany({
     data: vehicles,
-  });*/
-
-  /*await prisma.reviews.createMany({
-    data: reviews,
   });*/
 
   console.log("DB sync successfull!");

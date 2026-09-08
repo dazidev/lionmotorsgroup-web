@@ -70,9 +70,11 @@ export const SpecificationTableItem = ({
             }
 
             return (
-              <td key={key} className="px-6 py-4">
-                <span className="">{value}</span>
-              </td>
+              value && (
+                <td key={key} className="px-6 py-4">
+                  <span className="">{value}</span>
+                </td>
+              )
             );
           })}
       <td className="pl-6 py-4">

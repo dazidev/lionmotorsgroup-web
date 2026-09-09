@@ -117,6 +117,11 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
         id: true,
         createdAt: true,
         deletedAt: true,
+        investments: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
 
@@ -127,31 +132,42 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
     if (vehicle.deletedAt) {
       return {
         success: true,
-        message: "The vehicle is already deleted.",
+        message: "The vehicle has already been deleted.",
       };
     }
 
-    const ageMs = Date.now() - vehicle.createdAt.getTime();
-
-    const canHardDelete = ageMs < HARD_DELETE_WINDOW_MS;
+    const vehicleAge = Date.now() - vehicle.createdAt.getTime();
+    const canHardDelete = vehicleAge < HARD_DELETE_WINDOW_MS;
 
     if (canHardDelete) {
       await prisma.vehicleGeneral.delete({
         where: { id },
       });
 
-      try {
-        await deleteDirectory(`catalog/vehicles/images/${id}`);
-      } catch (error) {
-        console.error(
-          `[deleteVehicle] Failed to delete vehicle files ${id}`,
-          error,
-        );
-      }
+      const cleanupResults = await Promise.allSettled([
+        deleteDirectory(`catalog/vehicles/images/${id}`),
+        ...vehicle.investments.map((investment) =>
+          deleteDirectory(`financials/invoices/images/${investment.id}`),
+        ),
+      ]);
+
+      cleanupResults.forEach((result) => {
+        if (result.status === "rejected") {
+          console.error(
+            `[deleteVehicle] Filesystem cleanup failed for vehicle ${id}:`,
+            result.reason,
+          );
+        }
+      });
+
+      revalidatePath("/dashboard/catalog");
+      revalidatePath("/dashboard/financials");
+      revalidatePath("/catalog");
+      revalidatePath("/");
 
       return {
         success: true,
-        message: "Vehicle permanently deleted.",
+        message: "The vehicle has been permanently deleted successfully.",
       };
     }
 
@@ -163,20 +179,31 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
     });
 
     try {
-      await moveDirectoryIfExists(
+      const moved = await moveDirectoryIfExists(
         `catalog/vehicles/images/${id}`,
         `catalog/vehicles/deleted/${id}`,
       );
+
+      if (!moved) {
+        console.warn(
+          `[deleteVehicle] Vehicle ${id} was soft-deleted but no image directory existed.`,
+        );
+      }
     } catch (error) {
       console.error(
-        `[deleteVehicle] Vehicle ${id} was soft-deleted but its images could not be moved.`,
+        `[deleteVehicle] Vehicle ${id} was soft-deleted but its image directory could not be moved.`,
         error,
       );
     }
 
+    revalidatePath("/dashboard/catalog");
+    revalidatePath("/dashboard/financials");
+    revalidatePath("/catalog");
+    revalidatePath("/");
+
     return {
       success: true,
-      message: "Vehicle deleted successfully.",
+      message: "The vehicle has been deleted successfully.",
     };
   } catch (error) {
     console.error("[deleteVehicle]", error);
@@ -188,10 +215,6 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
           ? error.message
           : "There was an error deleting the vehicle.",
     };
-  } finally {
-    revalidatePath("/dashboard/catalog");
-    revalidatePath("/catalog");
-    revalidatePath("/");
   }
 }
 

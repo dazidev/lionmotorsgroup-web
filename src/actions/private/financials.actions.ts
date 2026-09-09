@@ -6,7 +6,12 @@ import { Investment } from "@/src/interfaces/investment";
 import { ServerResponse } from "@/src/interfaces";
 import { revalidatePath } from "next/cache";
 import { requireAuth } from "@/src/lib";
-import { deleteDirectory } from "@/src/lib/storage/local-storage";
+import {
+  deleteDirectory,
+  moveDirectoryIfExists,
+} from "@/src/lib/storage/local-storage";
+
+const HARD_DELETE_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 export async function getInvestmentByVehicle(id: string) {
   try {
@@ -35,7 +40,14 @@ export async function getInvestments() {
   try {
     await requireAuth("admin");
 
-    const response = await prisma.vehicleInvestment.findMany();
+    const response = await prisma.vehicleInvestment.findMany({
+      where: {
+        deletedAt: null,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
     if (!response)
       throw new Error("There is an error, please try again later.");
@@ -93,11 +105,11 @@ export async function deleteInvestment(
     await requireAuth("admin");
 
     const investment = await prisma.vehicleInvestment.findUnique({
-      where: {
-        id,
-      },
+      where: { id },
       select: {
         id: true,
+        createdAt: true,
+        deletedAt: true,
       },
     });
 
@@ -105,31 +117,62 @@ export async function deleteInvestment(
       throw new Error("Investment not found.");
     }
 
-    await prisma.vehicleInvestment.delete({
-      where: {
-        id,
+    if (investment.deletedAt) {
+      return {
+        success: true,
+        message: "Investment already deleted.",
+      };
+    }
+
+    const ageMs = Date.now() - investment.createdAt.getTime();
+
+    const canHardDelete = ageMs < HARD_DELETE_WINDOW_MS;
+
+    if (canHardDelete) {
+      await prisma.vehicleInvestment.delete({
+        where: { id },
+      });
+
+      try {
+        await deleteDirectory(`financials/invoices/images/${id}`);
+      } catch (error) {
+        console.error(
+          `[deleteInvestment] Investment ${id} was deleted from DB but invoice directory could not be deleted.`,
+          error,
+        );
+      }
+
+      return {
+        success: true,
+        message: "Investment permanently deleted.",
+      };
+    }
+
+    await prisma.vehicleInvestment.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
       },
     });
 
     try {
-      await deleteDirectory(`financials/invoices/images/${id}`);
+      await moveDirectoryIfExists(
+        `financials/invoices/images/${id}`,
+        `financials/invoices/deleted/${id}`,
+      );
     } catch (error) {
-      /*
-       * La inversión ya no existe en BD.
-       * Un archivo huérfano es preferible a
-       * reportar que la eliminación completa falló.
-       */
-      console.error("Could not delete investment invoice directory:", error);
+      console.error(
+        `[deleteInvestment] Investment ${id} was soft-deleted but invoice directory could not be moved.`,
+        error,
+      );
     }
-
-    revalidatePath("/dashboard/financials");
 
     return {
       success: true,
-      message: "The investment has been delete successfully.",
+      message: "Investment deleted successfully.",
     };
   } catch (error) {
-    console.error(error);
+    console.error("[deleteInvestment]", error);
 
     return {
       success: false,
@@ -138,5 +181,7 @@ export async function deleteInvestment(
           ? error.message
           : "There was an error deleting the investment.",
     };
+  } finally {
+    revalidatePath("/dashboard/financials");
   }
 }

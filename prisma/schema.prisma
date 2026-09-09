@@ -202,6 +202,7 @@ model VehicleInvestment {
   date        DateTime
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt
+  deletedAt   DateTime?
 
   vehicle     VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 

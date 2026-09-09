@@ -8,15 +8,25 @@ export async function getLeads() {
   try {
     await requireAuth("admin");
 
-    const leads = await prisma.lead.findMany();
-    if (!leads) return { success: false };
+    const leads = await prisma.lead.findMany({
+      where: {
+        deletedAt: null,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
     return {
       success: true,
       data: leads,
     };
   } catch (error) {
-    return { success: false };
+    console.error("[getLeads]", error);
+
+    return {
+      success: false,
+    };
   }
 }
 

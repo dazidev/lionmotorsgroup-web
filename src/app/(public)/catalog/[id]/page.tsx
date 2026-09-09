@@ -17,13 +17,27 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
   const slug = id.slice(0, lastDashIndex);
   const shortId = id.slice(lastDashIndex + 1);
 
-  const vehicleData = await prisma.vehicleGeneral.findUnique({
-    where: { slug, shortId },
+  const vehicleData = await prisma.vehicleGeneral.findFirst({
+    where: {
+      slug,
+      shortId,
+      deletedAt: null,
+    },
     include: {
       brand: true,
       technical: true,
-      images: true,
+      images: {
+        where: {
+          deletedAt: null,
+        },
+        orderBy: {
+          position: "asc",
+        },
+      },
       specifications: {
+        where: {
+          deletedAt: null,
+        },
         include: {
           specification: true,
         },

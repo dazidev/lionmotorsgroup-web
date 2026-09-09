@@ -55,6 +55,7 @@ model Lead {
   vehicleId   String?
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
+  deletedAt   DateTime?
 
   vehicle     VehicleGeneral? @relation(fields: [vehicleId], references: [id])
 
@@ -109,6 +110,7 @@ model VehicleGeneral {
   investments    VehicleInvestment[]
 
   @@unique([slug, shortId])
+  @@index([deletedAt])
   @@map("vehicles_general")
 }
 
@@ -142,6 +144,7 @@ model VehicleTechnical {
   transmission        TransmissionType
   createdAt           DateTime                                      @default(now())
   updatedAt           DateTime                                      @updatedAt
+  deletedAt           DateTime?
 
   vehicle             VehicleGeneral   @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
@@ -153,6 +156,7 @@ model VehicleImage {
   vehicleId String
   key       String
   position  Int
+  deletedAt DateTime?
 
   vehicle   VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
@@ -185,6 +189,7 @@ model VehicleSpecification {
 
   vehicle         VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   specification   Specification  @relation(fields: [specificationId], references: [id], onDelete: Cascade)
+  deletedAt       DateTime?
 
   @@id([vehicleId, specificationId])
   @@index([vehicleId])
@@ -207,6 +212,7 @@ model VehicleInvestment {
   vehicle     VehicleGeneral @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
   @@index([vehicleId])
+  @@index([deletedAt])
   @@map("vehicle_investment")
 }
 

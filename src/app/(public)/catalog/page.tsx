@@ -8,6 +8,10 @@ import { Footer } from "@/src/components";
 
 export default async function CatalogPage() {
   const vehicles = await prisma.vehicleGeneral.findMany({
+    where: {
+      status: "on_sale",
+      deletedAt: null,
+    },
     select: {
       id: true,
       brand: {
@@ -30,12 +34,12 @@ export default async function CatalogPage() {
         },
       },
       images: {
-        where: { position: 0 },
+        where: {
+          position: 0,
+          deletedAt: null,
+        },
         take: 1,
       },
-    },
-    where: {
-      status: "on_sale",
     },
   });
 

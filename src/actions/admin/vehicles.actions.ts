@@ -21,12 +21,20 @@ export async function getVehicleSlug(
   try {
     await requireAuth("admin");
 
-    const vehicle = await prisma.vehicleGeneral.findUnique({
-      where: { id },
-      select: { slug: true, shortId: true },
+    const vehicle = await prisma.vehicleGeneral.findFirst({
+      where: {
+        id,
+        deletedAt: null,
+      },
+      select: {
+        slug: true,
+        shortId: true,
+      },
     });
 
-    if (!vehicle) throw new Error("Vehicle doesn't exists.");
+    if (!vehicle) {
+      throw new Error("Vehicle doesn't exists.");
+    }
 
     const slug = `${vehicle.slug}-${vehicle.shortId}`;
 
@@ -51,29 +59,42 @@ export async function getVehicles(
     await requireAuth("admin");
 
     const vehicles = await prisma.vehicleGeneral.findMany({
+      where: {
+        deletedAt: null,
+      },
+      take: amount,
       include: {
         brand: true,
         technical: true,
         specifications: {
+          where: {
+            deletedAt: null,
+          },
           include: {
             specification: true,
           },
         },
         images: {
+          where: {
+            deletedAt: null,
+          },
           orderBy: {
             position: "asc",
           },
         },
       },
     });
-    if (!vehicles) return { success: false };
 
     return {
       success: true,
       data: vehicles,
     };
   } catch (error) {
-    return { success: false };
+    console.error("[getVehicles]", error);
+
+    return {
+      success: false,
+    };
   }
 }
 
@@ -82,6 +103,9 @@ export async function getBasicVehicles() {
     await requireAuth("admin");
 
     const vehicles = await prisma.vehicleGeneral.findMany({
+      where: {
+        deletedAt: null,
+      },
       select: {
         id: true,
         vin: true,
@@ -91,19 +115,26 @@ export async function getBasicVehicles() {
         status: true,
         price: true,
         investment: true,
-        investments: true,
+        investments: {
+          where: {
+            deletedAt: null,
+          },
+        },
         createdAt: true,
         updatedAt: true,
       },
     });
-    if (!vehicles) return { success: false };
 
     return {
       success: true,
       data: vehicles,
     };
   } catch (error) {
-    return { success: false };
+    console.error("[getBasicVehicles]", error);
+
+    return {
+      success: false,
+    };
   }
 }
 
@@ -136,8 +167,12 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
       };
     }
 
-    const vehicleAge = Date.now() - vehicle.createdAt.getTime();
-    const canHardDelete = vehicleAge < HARD_DELETE_WINDOW_MS;
+    const canHardDelete =
+      Date.now() - vehicle.createdAt.getTime() < HARD_DELETE_WINDOW_MS;
+
+    const investmentIds = vehicle.investments.map(
+      (investment) => investment.id,
+    );
 
     if (canHardDelete) {
       await prisma.vehicleGeneral.delete({
@@ -146,9 +181,11 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
 
       const cleanupResults = await Promise.allSettled([
         deleteDirectory(`catalog/vehicles/images/${id}`),
-        ...vehicle.investments.map((investment) =>
-          deleteDirectory(`financials/invoices/images/${investment.id}`),
-        ),
+        deleteDirectory(`catalog/vehicles/deleted/${id}`),
+        ...investmentIds.flatMap((investmentId) => [
+          deleteDirectory(`financials/invoices/images/${investmentId}`),
+          deleteDirectory(`financials/invoices/deleted/${investmentId}`),
+        ]),
       ]);
 
       cleanupResults.forEach((result) => {
@@ -162,48 +199,110 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
 
       revalidatePath("/dashboard/catalog");
       revalidatePath("/dashboard/financials");
+      revalidatePath("/dashboard/leads");
       revalidatePath("/catalog");
       revalidatePath("/");
 
       return {
         success: true,
-        message: "The vehicle has been permanently deleted successfully.",
+        message: "The vehicle has been permanently deleted.",
       };
     }
 
-    await prisma.vehicleGeneral.update({
-      where: { id },
-      data: {
-        deletedAt: new Date(),
-      },
+    const deletedAt = new Date();
+
+    await prisma.$transaction(async (tx) => {
+      await tx.vehicleGeneral.update({
+        where: {
+          id,
+        },
+        data: {
+          deletedAt,
+        },
+      });
+
+      await tx.vehicleTechnical.updateMany({
+        where: {
+          vehicleId: id,
+          deletedAt: null,
+        },
+        data: {
+          deletedAt,
+        },
+      });
+
+      await tx.vehicleImage.updateMany({
+        where: {
+          vehicleId: id,
+          deletedAt: null,
+        },
+        data: {
+          deletedAt,
+        },
+      });
+
+      await tx.vehicleSpecification.updateMany({
+        where: {
+          vehicleId: id,
+          deletedAt: null,
+        },
+        data: {
+          deletedAt,
+        },
+      });
+
+      await tx.vehicleInvestment.updateMany({
+        where: {
+          vehicleId: id,
+          deletedAt: null,
+        },
+        data: {
+          deletedAt,
+        },
+      });
+
+      await tx.lead.updateMany({
+        where: {
+          vehicleId: id,
+          deletedAt: null,
+        },
+        data: {
+          deletedAt,
+        },
+      });
     });
 
-    try {
-      const moved = await moveDirectoryIfExists(
+    const moveResults = await Promise.allSettled([
+      moveDirectoryIfExists(
         `catalog/vehicles/images/${id}`,
         `catalog/vehicles/deleted/${id}`,
-      );
+      ),
+      ...investmentIds.map((investmentId) =>
+        moveDirectoryIfExists(
+          `financials/invoices/images/${investmentId}`,
+          `financials/invoices/deleted/${investmentId}`,
+        ),
+      ),
+    ]);
 
-      if (!moved) {
-        console.warn(
-          `[deleteVehicle] Vehicle ${id} was soft-deleted but no image directory existed.`,
+    moveResults.forEach((result) => {
+      if (result.status === "rejected") {
+        console.error(
+          `[deleteVehicle] Filesystem move failed for vehicle ${id}:`,
+          result.reason,
         );
       }
-    } catch (error) {
-      console.error(
-        `[deleteVehicle] Vehicle ${id} was soft-deleted but its image directory could not be moved.`,
-        error,
-      );
-    }
+    });
 
     revalidatePath("/dashboard/catalog");
     revalidatePath("/dashboard/financials");
+    revalidatePath("/dashboard/leads");
     revalidatePath("/catalog");
     revalidatePath("/");
 
     return {
       success: true,
-      message: "The vehicle has been deleted successfully.",
+      message: "The vehicle has been deleted.",
     };
   } catch (error) {
     console.error("[deleteVehicle]", error);

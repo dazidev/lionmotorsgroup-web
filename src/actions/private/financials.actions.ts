@@ -18,11 +18,19 @@ export async function getInvestmentByVehicle(id: string) {
     await requireAuth("admin");
 
     const response = await prisma.vehicleInvestment.findMany({
-      where: { vehicleId: id },
+      where: {
+        vehicleId: id,
+        deletedAt: null,
+        vehicle: {
+          is: {
+            deletedAt: null,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
-
-    if (!response)
-      throw new Error("There is an error, please try again later.");
 
     return {
       success: true,
@@ -43,14 +51,16 @@ export async function getInvestments() {
     const response = await prisma.vehicleInvestment.findMany({
       where: {
         deletedAt: null,
+        vehicle: {
+          is: {
+            deletedAt: null,
+          },
+        },
       },
       orderBy: {
         createdAt: "desc",
       },
     });
-
-    if (!response)
-      throw new Error("There is an error, please try again later.");
 
     return {
       success: true,
@@ -104,12 +114,23 @@ export async function deleteInvestment(
   try {
     await requireAuth("admin");
 
-    const investment = await prisma.vehicleInvestment.findUnique({
-      where: { id },
+    const investment = await prisma.vehicleInvestment.findFirst({
+      where: {
+        id,
+        deletedAt: null,
+        vehicle: {
+          is: {
+            deletedAt: null,
+          },
+        },
+      },
       select: {
         id: true,
-        createdAt: true,
-        deletedAt: true,
+        vehicle: {
+          select: {
+            createdAt: true,
+          },
+        },
       },
     });
 
@@ -117,30 +138,30 @@ export async function deleteInvestment(
       throw new Error("Investment not found.");
     }
 
-    if (investment.deletedAt) {
-      return {
-        success: true,
-        message: "Investment already deleted.",
-      };
-    }
-
-    const ageMs = Date.now() - investment.createdAt.getTime();
-
-    const canHardDelete = ageMs < HARD_DELETE_WINDOW_MS;
+    const canHardDelete =
+      Date.now() - investment.vehicle.createdAt.getTime() <
+      HARD_DELETE_WINDOW_MS;
 
     if (canHardDelete) {
       await prisma.vehicleInvestment.delete({
         where: { id },
       });
 
-      try {
-        await deleteDirectory(`financials/invoices/images/${id}`);
-      } catch (error) {
-        console.error(
-          `[deleteInvestment] Investment ${id} was deleted from DB but invoice directory could not be deleted.`,
-          error,
-        );
-      }
+      const cleanupResults = await Promise.allSettled([
+        deleteDirectory(`financials/invoices/images/${id}`),
+        deleteDirectory(`financials/invoices/deleted/${id}`),
+      ]);
+
+      cleanupResults.forEach((result) => {
+        if (result.status === "rejected") {
+          console.error(
+            `[deleteInvestment] Filesystem cleanup failed for investment ${id}:`,
+            result.reason,
+          );
+        }
+      });
+
+      revalidatePath("/dashboard/financials");
 
       return {
         success: true,
@@ -162,10 +183,12 @@ export async function deleteInvestment(
       );
     } catch (error) {
       console.error(
-        `[deleteInvestment] Investment ${id} was soft-deleted but invoice directory could not be moved.`,
+        `[deleteInvestment] Filesystem move failed for investment ${id}:`,
         error,
       );
     }
+
+    revalidatePath("/dashboard/financials");
 
     return {
       success: true,
@@ -181,7 +204,5 @@ export async function deleteInvestment(
           ? error.message
           : "There was an error deleting the investment.",
     };
-  } finally {
-    revalidatePath("/dashboard/financials");
   }
 }

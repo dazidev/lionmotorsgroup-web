@@ -99,6 +99,7 @@ model VehicleGeneral {
   investment     Int
   createdAt      DateTime                                 @default(now())
   updatedAt      DateTime                                 @updatedAt
+  deletedAt      DateTime?
 
   brand          Brand                  @relation(fields: [brandId], references: [id])
   technical      VehicleTechnical?

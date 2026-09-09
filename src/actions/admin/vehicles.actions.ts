@@ -8,7 +8,12 @@ import {
 import { requireAuth } from "@/src/lib";
 import prisma from "@/src/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { deleteDirectory } from "@/src/lib/storage/local-storage";
+import {
+  deleteDirectory,
+  moveDirectoryIfExists,
+} from "@/src/lib/storage/local-storage";
+
+const HARD_DELETE_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 export async function getVehicleSlug(
   id: string,
@@ -110,6 +115,8 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
       where: { id },
       select: {
         id: true,
+        createdAt: true,
+        deletedAt: true,
       },
     });
 
@@ -117,22 +124,62 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
       throw new Error("Vehicle not found.");
     }
 
-    await prisma.vehicleGeneral.delete({
+    if (vehicle.deletedAt) {
+      return {
+        success: true,
+        message: "The vehicle is already deleted.",
+      };
+    }
+
+    const ageMs = Date.now() - vehicle.createdAt.getTime();
+
+    const canHardDelete = ageMs < HARD_DELETE_WINDOW_MS;
+
+    if (canHardDelete) {
+      await prisma.vehicleGeneral.delete({
+        where: { id },
+      });
+
+      try {
+        await deleteDirectory(`catalog/vehicles/images/${id}`);
+      } catch (error) {
+        console.error(
+          `[deleteVehicle] Failed to delete vehicle files ${id}`,
+          error,
+        );
+      }
+
+      return {
+        success: true,
+        message: "Vehicle permanently deleted.",
+      };
+    }
+
+    await prisma.vehicleGeneral.update({
       where: { id },
+      data: {
+        deletedAt: new Date(),
+      },
     });
 
-    await deleteDirectory(`catalog/vehicles/images/${id}`);
-
-    revalidatePath("/dashboard/catalog");
-    revalidatePath("/catalog");
-    revalidatePath("/");
+    try {
+      await moveDirectoryIfExists(
+        `catalog/vehicles/images/${id}`,
+        `catalog/vehicles/deleted/${id}`,
+      );
+    } catch (error) {
+      console.error(
+        `[deleteVehicle] Vehicle ${id} was soft-deleted but its images could not be moved.`,
+        error,
+      );
+    }
 
     return {
       success: true,
-      message: "The vehicle and its images have been deleted successfully.",
+      message: "Vehicle deleted successfully.",
     };
   } catch (error) {
-    console.error(error);
+    console.error("[deleteVehicle]", error);
 
     return {
       success: false,
@@ -141,6 +188,10 @@ export async function deleteVehicle(id: string): Promise<ServerResponse<any>> {
           ? error.message
           : "There was an error deleting the vehicle.",
     };
+  } finally {
+    revalidatePath("/dashboard/catalog");
+    revalidatePath("/catalog");
+    revalidatePath("/");
   }
 }
 

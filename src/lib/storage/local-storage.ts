@@ -90,3 +90,19 @@ export async function moveDirectory(
 
   await rename(sourcePath, destinationPath);
 }
+
+export async function moveDirectoryIfExists(
+  sourceKey: string,
+  destinationKey: string,
+): Promise<boolean> {
+  try {
+    await moveDirectory(sourceKey, destinationKey);
+    return true;
+  } catch (error) {
+    if (error instanceof Error && "code" in error && error.code === "ENOENT") {
+      return false;
+    }
+
+    throw error;
+  }
+}

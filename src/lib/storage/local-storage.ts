@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { mkdir, rename, rm, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -43,7 +44,15 @@ export async function saveFile(key: string, data: Uint8Array): Promise<void> {
     recursive: true,
   });
 
-  await writeFile(filePath, data);
+  const tempPath = `${filePath}.${randomUUID()}.tmp`;
+
+  try {
+    await writeFile(tempPath, data);
+    await rename(tempPath, filePath);
+  } catch (error) {
+    await unlink(tempPath).catch(() => undefined);
+    throw error;
+  }
 }
 
 export async function deleteFile(key: string): Promise<void> {

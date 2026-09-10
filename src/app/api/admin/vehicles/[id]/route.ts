@@ -103,17 +103,22 @@ export async function PATCH(
         position: index,
       }));
 
-    const currentVehicle = await prisma.vehicleGeneral.findUnique({
+    const currentVehicle = await prisma.vehicleGeneral.findFirst({
       where: {
         id,
+        deletedAt: null,
       },
       include: {
-        images: true,
+        images: {
+          where: {
+            deletedAt: null,
+          },
+        },
       },
     });
 
     if (!currentVehicle) {
-      throw new Error("Vehicle not found.");
+      throw new Error("Vehicle not found or has been deleted.");
     }
 
     const duplicatedVin = await prisma.vehicleGeneral.findFirst({

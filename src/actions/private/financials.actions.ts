@@ -79,12 +79,36 @@ export async function updateInvestmentById(investment: Investment) {
     await requireAuth("admin");
 
     const data = investmentSchema.safeParse(investment);
-    if (!data.success) throw new Error(data.error.issues[0]?.message);
+
+    if (!data.success) {
+      throw new Error(data.error.issues[0]?.message);
+    }
 
     const { id, name, description, amount, date } = data.data;
 
-    const response = await prisma.vehicleInvestment.update({
-      where: { id },
+    const currentInvestment = await prisma.vehicleInvestment.findFirst({
+      where: {
+        id,
+        deletedAt: null,
+        vehicle: {
+          is: {
+            deletedAt: null,
+          },
+        },
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!currentInvestment) {
+      throw new Error("Investment not found or has been deleted.");
+    }
+
+    await prisma.vehicleInvestment.update({
+      where: {
+        id,
+      },
       data: {
         name,
         description,
@@ -93,14 +117,15 @@ export async function updateInvestmentById(investment: Investment) {
       },
     });
 
-    if (!response)
-      throw new Error("There is an error, please try again later.");
+    revalidatePath("/dashboard/financials");
 
     return {
       success: true,
       message: "The investment has updated successfully.",
     };
   } catch (error) {
+    console.error("[updateInvestmentById]", error);
+
     return {
       success: false,
       message: error instanceof Error ? error.message : "Unknown error.",

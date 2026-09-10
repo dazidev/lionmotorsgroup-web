@@ -34,20 +34,56 @@ export async function setAttend(id: string) {
   try {
     await requireAuth("admin");
 
+    const lead = await prisma.lead.findFirst({
+      where: {
+        id,
+        deletedAt: null,
+        OR: [
+          {
+            vehicleId: null,
+          },
+          {
+            vehicle: {
+              is: {
+                deletedAt: null,
+              },
+            },
+          },
+        ],
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!lead) {
+      throw new Error("Lead not found or has been deleted.");
+    }
+
     await prisma.lead.update({
-      where: { id },
-      data: { status: "attended" },
+      where: {
+        id,
+      },
+      data: {
+        status: "attended",
+      },
     });
 
     revalidatePath("/dashboard/leads");
+
     return {
       success: true,
       message: "The status has been updated.",
     };
   } catch (error) {
+    console.error("[setAttend]", error);
+
     return {
       success: false,
-      message: "An error occurred while changing the status.",
+      message:
+        error instanceof Error
+          ? error.message
+          : "An error occurred while changing the status.",
     };
   }
 }

@@ -65,9 +65,10 @@ export async function POST(request: Request) {
 
     const { id: vehicleId, name, description, amount, date } = data.data;
 
-    const vehicle = await prisma.vehicleGeneral.findUnique({
+    const vehicle = await prisma.vehicleGeneral.findFirst({
       where: {
         id: vehicleId,
+        deletedAt: null,
       },
       select: {
         id: true,
@@ -75,7 +76,7 @@ export async function POST(request: Request) {
     });
 
     if (!vehicle) {
-      throw new Error("Vehicle not found.");
+      throw new Error("Vehicle not found or has been deleted.");
     }
 
     const investmentId = randomUUID();

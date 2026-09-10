@@ -81,7 +81,7 @@ export async function getVehicles(
             deletedAt: null,
           },
           orderBy: {
-            position: "asc",
+            position: "desc",
           },
         },
       },

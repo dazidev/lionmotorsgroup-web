@@ -7,7 +7,6 @@ import { TextInput } from "@/src/components/input/TextInput";
 import { Carousel } from "@/src/components/public/carousel/Carousel";
 import {
   ServerResponse,
-  VehicleState,
   VehicleResponse,
   FuelType,
   DrivetrainType,
@@ -24,6 +23,7 @@ import { ImageInput } from "@/src/components/input/ImageInput";
 
 import { LuMinus, LuPlus } from "react-icons/lu";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 type ImageItem = {
   file: File | null;
@@ -83,7 +83,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
     createVehicle: false,
   });
   const { brandsData, specificationsData, resetCheckedSpec } = useCatalog();
-
+  const router = useRouter();
   const [imageAmount, setImageAmount] = useState(NUM_INITIAL_IMAGES);
   const [images, setImages] = useState<ImagesState>([]);
 
@@ -216,6 +216,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
       );
 
       clearData();
+      router.refresh();
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unknown error.");
     } finally {
@@ -223,6 +224,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
         ...prev,
         createVehicle: false,
       }));
+      router.refresh();
     }
   };
 

@@ -5,8 +5,7 @@ import { BiSearch } from "react-icons/bi";
 import toast from "react-hot-toast";
 import { CatalogTableItem } from "./CatalogTableItem";
 import { Vehicle } from "@/src/interfaces/index";
-import { createAdmin, deleteVehicle, editAdmin } from "@/src/actions";
-import { FormModal } from "../../modal/FormModal";
+import { deleteVehicle } from "@/src/actions";
 import { ConfirmModal } from "../../modal/ConfirmModal";
 import { SpecificationManageModal } from "../specification/SpecificationManageModal";
 import { CreateVehicleModal } from "../modal/CreateVehicleModal";
@@ -104,37 +103,6 @@ export const CatalogTable = ({
     }
   };
 
-  const handleCreate = async (field: any): Promise<boolean> => {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.email)) return false;
-    if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
-        field.password,
-      )
-    )
-      return false;
-    if (
-      !field.name ||
-      !field.lastname ||
-      !field.email ||
-      !field.password ||
-      !field.role
-    )
-      return false;
-    try {
-      const response = await createAdmin(field);
-      if (!response.success) {
-        toast.error(`${response.message}`);
-        return false;
-      }
-
-      toast.success("The administrator has been created successfully");
-      return true;
-    } catch (error) {
-      toast.error(`${error}`);
-      return false;
-    }
-  };
-
   return (
     <>
       <div className="relative overflow-x-auto shadow-sm sm:rounded-lg m-5 bg-zinc-900 border border-stone-700">
@@ -205,12 +173,6 @@ export const CatalogTable = ({
           />
         )}
       </div>
-      <FormModal
-        open={openModal.create}
-        setOpen={() => handleOpenModal}
-        handleAction={handleCreate}
-        type="create"
-      />
       <SpecificationManageModal
         open={openModal.addBrand}
         setOpen={handleOpenModal}

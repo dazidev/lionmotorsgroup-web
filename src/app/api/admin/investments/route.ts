@@ -1,7 +1,12 @@
 import { investmentSchema } from "@/src/actions/private/schema";
 import { requireAuth } from "@/src/lib";
 import prisma from "@/src/lib/prisma";
-import { deleteDirectory, saveFile } from "@/src/lib/storage/local-storage";
+import {
+  createDirectory,
+  deleteDirectory,
+  moveDirectory,
+  saveFile,
+} from "@/src/lib/storage/local-storage";
 import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
@@ -20,13 +25,13 @@ const ALLOWED_IMAGE_TYPES: Record<string, string> = {
 };
 
 export async function POST(request: Request) {
+  let tempDirectory: string | null = null;
   let investmentDirectory: string | null = null;
 
   try {
     await requireAuth("admin");
 
     const formData = await request.formData();
-
     const investmentEntry = formData.get("investment");
     const imageEntry = formData.get("image");
 
@@ -81,16 +86,25 @@ export async function POST(request: Request) {
     }
 
     const investmentId = randomUUID();
+    const uploadId = randomUUID();
 
+    tempDirectory = `.tmp/investments/${uploadId}`;
     investmentDirectory = `financials/invoices/images/${investmentId}`;
 
     const filename = `${Date.now()}-${randomUUID()}.${extension}`;
 
-    const key = `${investmentDirectory}/${filename}`;
+    const tempKey = `${tempDirectory}/${filename}`;
+    const finalKey = `${investmentDirectory}/${filename}`;
 
     const arrayBuffer = await imageEntry.arrayBuffer();
 
-    await saveFile(key, new Uint8Array(arrayBuffer));
+    await createDirectory(tempDirectory);
+
+    await saveFile(tempKey, new Uint8Array(arrayBuffer));
+
+    await moveDirectory(tempDirectory, investmentDirectory);
+
+    tempDirectory = null;
 
     try {
       const investment = await prisma.$transaction(async (tx) => {
@@ -122,7 +136,7 @@ export async function POST(request: Request) {
             description,
             amount,
             date,
-            invoiceKey: key,
+            invoiceKey: finalKey,
           },
         });
       });
@@ -136,12 +150,15 @@ export async function POST(request: Request) {
       });
     } catch (error) {
       await deleteDirectory(investmentDirectory);
-
       investmentDirectory = null;
 
       throw error;
     }
   } catch (error) {
+    if (tempDirectory) {
+      await deleteDirectory(tempDirectory).catch(() => undefined);
+    }
+
     if (investmentDirectory) {
       await deleteDirectory(investmentDirectory).catch(() => undefined);
     }

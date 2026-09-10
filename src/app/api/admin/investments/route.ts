@@ -162,6 +162,7 @@ export async function POST(request: Request) {
     if (investmentDirectory) {
       await deleteDirectory(investmentDirectory).catch(() => undefined);
     }
+    console.error("[POST /api/admin/investments]", error);
 
     return NextResponse.json(
       {

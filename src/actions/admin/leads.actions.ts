@@ -116,7 +116,6 @@ export async function setAttend(id: string) {
 }
 
 export async function deleteLead(id: string): Promise<ServerResponse<any>> {
-  //! todo: makes validations!!!!!
   try {
     await requireAuth("admin");
 
@@ -128,6 +127,8 @@ export async function deleteLead(id: string): Promise<ServerResponse<any>> {
       message: "The lead has been delete successfully",
     };
   } catch (error) {
+    console.error("[deleteLead]", error);
+
     return {
       success: false,
       message: "There was an error deleting the lead.",

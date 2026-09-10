@@ -17,6 +17,8 @@ export async function getSpecifications(): Promise<
       data: specifications,
     };
   } catch (error) {
+    console.error("[getSpecifications]", error);
+
     return {
       success: false,
     };
@@ -44,6 +46,8 @@ export async function addSpecification(
       message: `The ${type} specification has been create successfully.`,
     };
   } catch (error) {
+    console.error("[addSpecification]", error);
+
     return {
       success: false,
       message: `There was an error creating the ${type} specification.`,
@@ -65,6 +69,7 @@ export async function deleteSpecification(
       message: "The specification has been delete successfully.",
     };
   } catch (error) {
+    console.error("[deleteSpecification]", error);
     return {
       success: false,
       message: "There was an error deleting the specification.",

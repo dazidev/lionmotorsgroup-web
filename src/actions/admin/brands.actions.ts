@@ -15,6 +15,8 @@ export async function getBrands() {
       data: brands,
     };
   } catch (error) {
+    console.error("[getBrands]", error);
+
     return { success: false };
   }
 }
@@ -36,6 +38,8 @@ export async function deleteBrand(id: string): Promise<ServerResponse<any>> {
       message: "The brand has been delete successfully.",
     };
   } catch (error) {
+    console.error("[deleteBrand]", error);
+
     return {
       success: false,
       message: "There was an error deleting the brand.",

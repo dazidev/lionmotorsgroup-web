@@ -38,6 +38,8 @@ export async function getInvestmentByVehicle(id: string) {
       data: response,
     };
   } catch (error) {
+    console.error("[getInvestmentByVehicle]", error);
+
     return {
       success: false,
       message: error instanceof Error ? error.message : "Unknown error.",
@@ -68,6 +70,8 @@ export async function getInvestments() {
       data: response,
     };
   } catch (error) {
+    console.error("[getInvestments]", error);
+
     return {
       success: false,
       message: error instanceof Error ? error.message : "Unknown error.",

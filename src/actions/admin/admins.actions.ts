@@ -27,6 +27,8 @@ export async function getAdmins() {
       data: admins,
     };
   } catch (error) {
+    console.error("[getAdmins]", error);
+
     return { success: false };
   }
 }
@@ -56,6 +58,7 @@ export async function createAdmin(
     revalidatePath("/dashboard/admins");
     return { success: true };
   } catch (error) {
+    console.error("[createAdmin]", error);
     return { success: false };
   }
 }
@@ -73,6 +76,8 @@ export async function deleteAdmin(id: string): Promise<ServerResponse<any>> {
       message: "The administrator has been delete successfully",
     };
   } catch (error) {
+    console.error("[deleteAdmin]", error);
+
     return {
       success: false,
       message: "There was an error deleting the administrator.",
@@ -103,6 +108,8 @@ export async function editAdmin(
       message: "The administrator has been edit successfully.",
     };
   } catch (error) {
+    console.error("[editAdmin]", error);
+
     return {
       success: false,
       message: "There was an error editing the administrator.",
@@ -128,6 +135,8 @@ export async function changeAdminPassword(
       message: "The password administrator has been edit successfully.",
     };
   } catch (error) {
+    console.error("[changeAdminPassword]", error);
+
     return {
       success: false,
       message: "There was an error editing the administrator password.",

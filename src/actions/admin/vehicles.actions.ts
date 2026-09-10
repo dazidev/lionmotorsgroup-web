@@ -46,6 +46,7 @@ export async function getVehicleSlug(
       },
     };
   } catch (error) {
+    console.error("[getVehicleSlug]", error);
     return {
       success: false,
       message: error instanceof Error ? error.message : "Unknown error.",
@@ -334,11 +335,15 @@ export async function getVehiclesDetailsByVin(
   try {
     await requireAuth("admin");
 
-    const res: VpicDecodeVinValuesResponse = await fetch(url, {
+    const response = await fetch(url, {
       cache: "no-store",
-    })
-      .then((response) => response.json())
-      .catch();
+    });
+
+    if (!response.ok) {
+      throw new Error(`NHTSA request failed with status ${response.status}.`);
+    }
+
+    const res: VpicDecodeVinValuesResponse = await response.json();
 
     const data = res.Results[0];
 
@@ -370,6 +375,8 @@ export async function getVehiclesDetailsByVin(
       data: payload,
     };
   } catch (error) {
+    console.error("[getVehiclesDetailsByVin]", error);
+
     return {
       success: false,
     };

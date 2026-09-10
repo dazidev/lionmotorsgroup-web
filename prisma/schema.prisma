@@ -154,7 +154,7 @@ model VehicleTechnical {
 model VehicleImage {
   id        String          @id @default(uuid())
   vehicleId String
-  key       String
+  key       String          @unique
   position  Int
   deletedAt DateTime?
 

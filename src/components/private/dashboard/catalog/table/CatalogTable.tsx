@@ -55,7 +55,6 @@ export const CatalogTable = ({
     if (data) {
       const end = Number(page) * 20;
       const start = end - 20;
-      console.log(`${end} ${start}`);
       const sliceData = data.slice(start, end);
       setDataList(sliceData);
       setPagination({

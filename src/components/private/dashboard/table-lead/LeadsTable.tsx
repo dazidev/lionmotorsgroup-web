@@ -8,11 +8,14 @@ import { ConfirmModal } from "../modal/ConfirmModal";
 import { Lead } from "@/src/interfaces/lead";
 import { LeadView } from "./LeadView";
 import { deleteLead } from "@/src/actions";
+import { useSearchParams } from "next/navigation";
+import { Pagination } from "../table/pagination/Pagination";
 
 interface Props {
   name: string;
   headers: string[];
   data?: Lead[];
+  amountPages: number;
 }
 
 interface Order {
@@ -21,7 +24,7 @@ interface Order {
   status: "Attended" | "Unattended";
 }
 
-export const LeadsTable = ({ name, headers, data }: Props) => {
+export const LeadsTable = ({ name, headers, data, amountPages = 1 }: Props) => {
   const [search, setSearch] = useState<Order>({
     option: "date",
     date: "Asc",
@@ -34,11 +37,35 @@ export const LeadsTable = ({ name, headers, data }: Props) => {
   });
   const [targetId, setTargetId] = useState("");
 
+  const [orderedData, setOrderedData] = useState<Lead[]>([]);
+
+  const [pagination, setPagination] = useState({
+    limitInf: 0,
+    limitSup: data?.length ?? 20,
+  });
+
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
+
   useEffect(() => {
-    if (data) {
-      setDataList(data);
-    }
+    setOrderedData(data ?? []);
   }, [data]);
+
+  useEffect(() => {
+    const currentPage = Math.max(1, Number(page) || 1);
+
+    const end = currentPage * 20;
+    const start = end - 20;
+
+    const sliceData = orderedData.slice(start, end);
+
+    setDataList(sliceData);
+
+    setPagination({
+      limitInf: start,
+      limitSup: sliceData.length + start,
+    });
+  }, [orderedData, page]);
 
   const handleOpenModalConfirm = (value: boolean) => {
     setOpenModal((prev) => ({ ...prev, confirm: value }));
@@ -61,42 +88,76 @@ export const LeadsTable = ({ name, headers, data }: Props) => {
   };
 
   const handleOrderByStatus = () => {
-    let orderData = null;
     if (search.status === "Attended") {
-      setSearch((prev) => ({ ...prev, status: "Unattended" }));
-      orderData = data?.slice().sort((x, y) => {
-        if (x.status === "unattended" && y.status !== "unattended") return -1;
-        if (x.status !== "unattended" && y.status === "unattended") return 1;
-        return 0;
-      });
+      setSearch((prev) => ({
+        ...prev,
+        status: "Unattended",
+      }));
+
+      setOrderedData((prev) =>
+        prev.slice().sort((x, y) => {
+          if (x.status === "unattended" && y.status !== "unattended") {
+            return -1;
+          }
+
+          if (x.status !== "unattended" && y.status === "unattended") {
+            return 1;
+          }
+
+          return 0;
+        }),
+      );
     } else {
-      setSearch((prev) => ({ ...prev, status: "Attended" }));
-      orderData = data?.slice().sort((x, y) => {
-        if (x.status === "attended" && y.status !== "attended") return -1;
-        if (x.status !== "attended" && y.status === "attended") return 1;
-        return 0;
-      });
-    }
-    if (orderData !== null) {
-      setDataList(orderData);
+      setSearch((prev) => ({
+        ...prev,
+        status: "Attended",
+      }));
+
+      setOrderedData((prev) =>
+        prev.slice().sort((x, y) => {
+          if (x.status === "attended" && y.status !== "attended") {
+            return -1;
+          }
+
+          if (x.status !== "attended" && y.status === "attended") {
+            return 1;
+          }
+
+          return 0;
+        }),
+      );
     }
   };
 
   const handleOrderByDate = () => {
-    let orderData = null;
     if (search.date === "Asc") {
-      setSearch((prev) => ({ ...prev, date: "Desc" }));
-      orderData = data
-        ?.slice()
-        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+      setSearch((prev) => ({
+        ...prev,
+        date: "Desc",
+      }));
+
+      setOrderedData((prev) =>
+        prev
+          .slice()
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+          ),
+      );
     } else {
-      setSearch((prev) => ({ ...prev, date: "Asc" }));
-      orderData = data
-        ?.slice()
-        .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
-    }
-    if (orderData !== null) {
-      setDataList(orderData);
+      setSearch((prev) => ({
+        ...prev,
+        date: "Asc",
+      }));
+
+      setOrderedData((prev) =>
+        prev
+          .slice()
+          .sort(
+            (a, b) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+          ),
+      );
     }
   };
 
@@ -169,6 +230,14 @@ export const LeadsTable = ({ name, headers, data }: Props) => {
               ))}
           </tbody>
         </table>
+        {data && (
+          <Pagination
+            pages={amountPages}
+            results={data.length}
+            limitInf={pagination.limitInf}
+            limitSup={pagination.limitSup}
+          />
+        )}
       </div>
       <ConfirmModal
         open={openModal.confirm}

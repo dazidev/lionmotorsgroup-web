@@ -39,9 +39,10 @@ export default async function CatalogPage({ searchParams }: Props) {
     };
   });
 
-  const amountPages = vehiclesRes.data
-    ? Math.ceil(vehiclesRes.data.length / 20)
-    : 1;
+  const amountPages = Math.max(
+    1,
+    Math.ceil((vehiclesRes.data?.length ?? 0) / 20),
+  );
 
   return (
     <div className="flex flex-col items-center justify-between min-h-[calc(100vh-8.25rem)] w-[90%]">

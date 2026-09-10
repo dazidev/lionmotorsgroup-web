@@ -47,16 +47,19 @@ export const FinancialsTable = ({ name, headers, amountPages = 1 }: Props) => {
 
   useEffect(() => {
     if (vehiclesData) {
-      const end = Number(page) * 20;
+      const currentPage = Math.max(1, Number(page) || 1);
+      const end = currentPage * 20;
       const start = end - 20;
       const sliceData = vehiclesData.slice(start, end);
-      setDataList(vehiclesData);
+
+      setDataList(sliceData);
+
       setPagination({
         limitInf: start,
         limitSup: sliceData.length + start,
       });
     }
-  }, [searchParams, vehiclesData, page]);
+  }, [vehiclesData, page]);
 
   const findData = (value: string) => {
     if (!vehiclesData) return;

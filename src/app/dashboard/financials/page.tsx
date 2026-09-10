@@ -1,7 +1,5 @@
-import { getBasicVehicles, getVehicles } from "@/src/actions";
-import { getInvestments } from "@/src/actions/private/financials.actions";
+import { getBasicVehicles } from "@/src/actions";
 import { FinancialsTable } from "@/src/components/private/dashboard/financials/FinancialsTable";
-import { titleFont } from "@/src/config/fonts";
 import { FinancialProvider } from "@/src/context/FinancialProvider";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -35,9 +33,10 @@ export default async function FinancialsPage({ searchParams }: Props) {
 
   const vehiclesRes = await getBasicVehicles();
 
-  const amountPages = vehiclesRes.data
-    ? Math.ceil(vehiclesRes.data.length / 20)
-    : 1;
+  const amountPages = Math.max(
+    1,
+    Math.ceil((vehiclesRes.data?.length ?? 0) / 20),
+  );
 
   return (
     <div className="flex flex-col items-center justify-between min-h-[calc(100vh-8.25rem)] w-[90%]">

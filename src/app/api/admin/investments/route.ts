@@ -5,6 +5,7 @@ import { deleteDirectory, saveFile } from "@/src/lib/storage/local-storage";
 import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { lockVehicleRow } from "@/src/lib/database/vehicle-lock";
 
 export const runtime = "nodejs";
 
@@ -92,16 +93,38 @@ export async function POST(request: Request) {
     await saveFile(key, new Uint8Array(arrayBuffer));
 
     try {
-      const investment = await prisma.vehicleInvestment.create({
-        data: {
-          id: investmentId,
-          vehicleId,
-          name,
-          description,
-          amount,
-          date,
-          invoiceKey: key,
-        },
+      const investment = await prisma.$transaction(async (tx) => {
+        const locked = await lockVehicleRow(tx, vehicleId);
+
+        if (!locked) {
+          throw new Error("Vehicle not found.");
+        }
+
+        const activeVehicle = await tx.vehicleGeneral.findFirst({
+          where: {
+            id: vehicleId,
+            deletedAt: null,
+          },
+          select: {
+            id: true,
+          },
+        });
+
+        if (!activeVehicle) {
+          throw new Error("Vehicle not found or has been deleted.");
+        }
+
+        return tx.vehicleInvestment.create({
+          data: {
+            id: investmentId,
+            vehicleId,
+            name,
+            description,
+            amount,
+            date,
+            invoiceKey: key,
+          },
+        });
       });
 
       revalidatePath("/dashboard/financials");

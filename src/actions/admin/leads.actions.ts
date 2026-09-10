@@ -1,6 +1,7 @@
 "use server";
 import { ServerResponse } from "@/src/interfaces";
 import { requireAuth } from "@/src/lib";
+import { lockVehicleRow } from "@/src/lib/database/vehicle-lock";
 import prisma from "@/src/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -34,40 +35,66 @@ export async function setAttend(id: string) {
   try {
     await requireAuth("admin");
 
-    const lead = await prisma.lead.findFirst({
-      where: {
-        id,
-        deletedAt: null,
-        OR: [
-          {
-            vehicleId: null,
-          },
-          {
+    const target = await prisma.lead.findUnique({
+      where: { id },
+      select: {
+        vehicleId: true,
+      },
+    });
+
+    if (!target) {
+      throw new Error("Lead not found.");
+    }
+
+    if (target.vehicleId) {
+      await prisma.$transaction(async (tx) => {
+        const locked = await lockVehicleRow(tx, target.vehicleId!);
+
+        if (!locked) {
+          throw new Error("Vehicle not found.");
+        }
+
+        const lead = await tx.lead.findFirst({
+          where: {
+            id,
+            deletedAt: null,
             vehicle: {
               is: {
                 deletedAt: null,
               },
             },
           },
-        ],
-      },
-      select: {
-        id: true,
-      },
-    });
+          select: {
+            id: true,
+          },
+        });
 
-    if (!lead) {
-      throw new Error("Lead not found or has been deleted.");
+        if (!lead) {
+          throw new Error("Lead not found or has been deleted.");
+        }
+
+        await tx.lead.update({
+          where: { id },
+          data: {
+            status: "attended",
+          },
+        });
+      });
+    } else {
+      const result = await prisma.lead.updateMany({
+        where: {
+          id,
+          deletedAt: null,
+        },
+        data: {
+          status: "attended",
+        },
+      });
+
+      if (result.count === 0) {
+        throw new Error("Lead not found or has been deleted.");
+      }
     }
-
-    await prisma.lead.update({
-      where: {
-        id,
-      },
-      data: {
-        status: "attended",
-      },
-    });
 
     revalidatePath("/dashboard/leads");
 

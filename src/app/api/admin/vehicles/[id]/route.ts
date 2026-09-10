@@ -7,6 +7,7 @@ import { StatusVehicle } from "@prisma/client";
 import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { lockVehicleRow } from "@/src/lib/database/vehicle-lock";
 
 export const runtime = "nodejs";
 
@@ -264,6 +265,26 @@ export async function PATCH(
 
     try {
       await prisma.$transaction(async (tx) => {
+        const locked = await lockVehicleRow(tx, id);
+
+        if (!locked) {
+          throw new Error("Vehicle not found.");
+        }
+
+        const activeVehicle = await tx.vehicleGeneral.findFirst({
+          where: {
+            id,
+            deletedAt: null,
+          },
+          select: {
+            id: true,
+          },
+        });
+
+        if (!activeVehicle) {
+          throw new Error("Vehicle not found or has been deleted.");
+        }
+
         await tx.vehicleGeneral.update({
           where: {
             id,

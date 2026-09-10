@@ -1,53 +1,79 @@
 "use server";
 
 import { FormLead, ServerResponse } from "@/src/interfaces";
+import { lockVehicleRow } from "@/src/lib/database/vehicle-lock";
 import prisma from "@/src/lib/prisma";
+import { getSchemaErrorMessage, leadSchema } from "@/src/schemas";
 
 export async function saveLead(form: FormLead): Promise<ServerResponse<any>> {
-  const {
-    name,
-    lastname,
-    email,
-    zipcode,
-    phoneNumber,
-    comments,
-    vehicleId,
-    type,
-  } = form;
+  const result = leadSchema.safeParse(form);
+
+  if (!result.success) {
+    return {
+      success: false,
+      message: getSchemaErrorMessage(result.error, "lead", "backend"),
+    };
+  }
+
+  const { name, lastname, email, zipcode, phoneNumber, comments, type } =
+    result.data;
 
   try {
     if (type === "vehicle") {
+      const vehicleId = result.data.vehicleId;
+
       if (!vehicleId) {
         throw new Error("Vehicle is required.");
       }
 
-      const vehicle = await prisma.vehicleGeneral.findFirst({
-        where: {
-          id: vehicleId,
-          deletedAt: null,
-        },
-        select: {
-          id: true,
+      await prisma.$transaction(async (tx) => {
+        const locked = await lockVehicleRow(tx, vehicleId);
+
+        if (!locked) {
+          throw new Error("Vehicle is no longer available.");
+        }
+
+        const vehicle = await tx.vehicleGeneral.findFirst({
+          where: {
+            id: vehicleId,
+            deletedAt: null,
+          },
+          select: {
+            id: true,
+          },
+        });
+
+        if (!vehicle) {
+          throw new Error("Vehicle is no longer available.");
+        }
+
+        await tx.lead.create({
+          data: {
+            name,
+            lastname,
+            email,
+            zipcode,
+            phoneNumber,
+            comments,
+            vehicleId,
+            type,
+          },
+        });
+      });
+    } else {
+      await prisma.lead.create({
+        data: {
+          name,
+          lastname,
+          email,
+          zipcode,
+          phoneNumber,
+          comments,
+          vehicleId: null,
+          type,
         },
       });
-
-      if (!vehicle) {
-        throw new Error("Vehicle is no longer available.");
-      }
     }
-
-    await prisma.lead.create({
-      data: {
-        name,
-        lastname,
-        email,
-        zipcode,
-        phoneNumber,
-        comments,
-        vehicleId: type === "vehicle" ? vehicleId : null,
-        type,
-      },
-    });
 
     return {
       success: true,

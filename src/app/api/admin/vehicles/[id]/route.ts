@@ -309,7 +309,7 @@ export async function PATCH(
             price: Number(data.price),
 
             status: data.status as StatusVehicle,
-
+            titleStatus: data.titleStatus,
             type: data.type,
             investment,
           },
@@ -447,7 +447,6 @@ export async function PATCH(
     });
 
     revalidatePath("/dashboard/catalog");
-
     revalidatePath("/catalog");
     revalidatePath("/");
 

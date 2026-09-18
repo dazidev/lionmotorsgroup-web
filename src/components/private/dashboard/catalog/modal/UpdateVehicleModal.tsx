@@ -10,6 +10,7 @@ import {
   DrivetrainType,
   TransmissionType,
   Vehicle,
+  TitleStatusType,
 } from "@/src/interfaces";
 import { useEffect, useState } from "react";
 import { SecuritySpecificationModal } from "./specification/SecuritySpecificationModal";
@@ -60,9 +61,16 @@ const fuelOptions: FuelType[] = [
   "hybrid",
 ];
 
-const drivetrainOptions: DrivetrainType[] = ["FOUR_X_FOUR", "FOUR_X_TWO"];
+const drivetrainOptions: DrivetrainType[] = [
+  "FOUR_X_FOUR",
+  "FOUR_X_TWO",
+  "FWD",
+  "AWD",
+  "RWD",
+];
 
 const transmissionOptions: TransmissionType[] = ["automatic", "manual"];
+const titleStatusOptions: TitleStatusType[] = ["clean", "rebuilt", "salvage"];
 
 type InitialVehicleState = {
   //* General
@@ -80,7 +88,7 @@ type InitialVehicleState = {
   status: string;
   type: string;
   investment: string;
-
+  titleStatus: string;
   //* Technical
   engineFuelType: string;
   engineConfiguration: string;
@@ -108,7 +116,7 @@ const InitialState: InitialVehicleState = {
   status: "",
   type: "",
   investment: "",
-
+  titleStatus: "",
   //* Technical
   engineFuelType: "",
   engineConfiguration: "",
@@ -196,7 +204,7 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
       status: vehicle.status,
       type: vehicle.type ?? "",
       investment: vehicle.investment.toString(),
-
+      titleStatus: vehicle.titleStatus,
       //* Technical
       engineFuelType: vehicle.technical?.engineFuelType ?? "",
       engineConfiguration: vehicle.technical?.engineConfiguration ?? "",
@@ -235,7 +243,7 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
 
     setImages(imagesToShow);
     setImageAmount(imagesToShow.length);
-  }, [vehicle, setCheckedSpecs]);
+  }, [vehicle, setCheckedSpecs, open]);
 
   useEffect(() => {
     if (!open) {
@@ -495,6 +503,16 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
                     styles="flex-2"
                     value={vehicleData.type}
                     valueOption="type"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex min-w-full gap-3">
+                  <SelectInput
+                    name={"Title status"}
+                    options={titleStatusOptions}
+                    styles="w-50"
+                    value={vehicleData.titleStatus}
+                    valueOption="titleStatus"
                     onChange={handleChange}
                   />
                 </div>

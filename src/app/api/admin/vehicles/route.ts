@@ -184,6 +184,7 @@ export async function POST(request: Request) {
             price: Number(data.price),
 
             status: data.status as StatusVehicle,
+            titleStatus: data.titleStatus,
 
             type: data.type,
             investment,

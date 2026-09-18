@@ -11,6 +11,7 @@ import {
   FuelType,
   DrivetrainType,
   TransmissionType,
+  TitleStatusType,
 } from "@/src/interfaces";
 import { regex } from "@/src/utils/regex";
 import { useEffect, useState } from "react";
@@ -45,8 +46,15 @@ const fuelOptions: FuelType[] = [
   "gasoline",
   "hybrid",
 ];
-const drivetrainOptions: DrivetrainType[] = ["FOUR_X_FOUR", "FOUR_X_TWO"];
+const drivetrainOptions: DrivetrainType[] = [
+  "FOUR_X_FOUR",
+  "FOUR_X_TWO",
+  "FWD",
+  "AWD",
+  "RWD",
+];
 const transmissionOptions: TransmissionType[] = ["automatic", "manual"];
+const titleStatusOptions: TitleStatusType[] = ["clean", "rebuilt", "salvage"];
 
 const NUM_INITIAL_IMAGES = 5;
 
@@ -65,6 +73,7 @@ const initialVehicleState = {
   status: "",
   type: "",
   investment: "",
+  titleStatus: "",
   //* Technical
   engineFuelType: "",
   engineConfiguration: "",
@@ -149,6 +158,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
       status: "",
       type: "",
       investment: "",
+      titleStatus: "",
       engineFuelType: data.technical.fuelType,
       engineConfiguration: data.technical.engine.configuration,
       engineCylinders: data.technical.engine.cylinders,
@@ -394,6 +404,16 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                     styles="flex-2"
                     value={vehicleData.type}
                     valueOption="type"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex min-w-full gap-3">
+                  <SelectInput
+                    name={"Title status"}
+                    options={titleStatusOptions}
+                    styles="w-50"
+                    value={vehicleData.titleStatus}
+                    valueOption="titleStatus"
                     onChange={handleChange}
                   />
                 </div>

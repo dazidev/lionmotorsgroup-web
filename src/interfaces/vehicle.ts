@@ -40,6 +40,7 @@ export type Vehicle = {
   mileage: number;
   price: number;
   status: string;
+  titleStatus: string;
   type: string;
   investment: number;
   createdAt: Date;
@@ -111,7 +112,7 @@ export interface VehicleState {
   colorInt: string;
   type: string;
   investment: string;
-
+  titleStatus?: TitleStatusType;
   //* Technical
   engineFuelType: FuelType;
   engineConfiguration: string;
@@ -184,5 +185,11 @@ export interface VehicleCardInterface {
 }
 
 export type FuelType = "gasoline" | "diesel" | "hybrid" | "electric" | "gas";
-export type DrivetrainType = "FOUR_X_FOUR" | "FOUR_X_TWO";
+export type DrivetrainType =
+  | "FOUR_X_FOUR"
+  | "FOUR_X_TWO"
+  | "FWD"
+  | "RWD"
+  | "AWD";
 export type TransmissionType = "automatic" | "manual";
+export type TitleStatusType = "clean" | "salvage" | "rebuilt";

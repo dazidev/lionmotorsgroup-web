@@ -68,6 +68,7 @@ export default async function CatalogVehicleIdPage({ params }: Props) {
     { name: "Exterior color", value: vehicleData.colorExt },
     { name: "Interior color", value: vehicleData.colorInt },
     { name: "Type", value: vehicleData.type },
+    { name: "Title status", value: vehicleData.titleStatus },
   ];
 
   const technicalData = [

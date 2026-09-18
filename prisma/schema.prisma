@@ -81,6 +81,12 @@ enum StatusVehicle {
   reserved
 }
 
+enum TitleStatus {
+  clean
+  salvage
+  rebuilt
+}
+
 model VehicleGeneral {
   id             String                                   @id @default(uuid())
   shortId        String?                                  @unique
@@ -96,6 +102,7 @@ model VehicleGeneral {
   mileage        Int
   price          Int
   status         StatusVehicle
+  titleStatus    TitleStatus?
   type           String
   investment     Int
   createdAt      DateTime                                 @default(now())
@@ -125,6 +132,9 @@ enum FuelType {
 enum DrivetrainType {
   FOUR_X_FOUR @map("4x4")
   FOUR_X_TWO  @map("4x2")
+  FWD
+  RWD
+  AWD
 }
 
 enum TransmissionType {

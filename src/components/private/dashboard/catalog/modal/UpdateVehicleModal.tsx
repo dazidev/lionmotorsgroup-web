@@ -88,7 +88,7 @@ type InitialVehicleState = {
   status: string;
   type: string;
   investment: string;
-  titleStatus: string;
+  titleStatus: TitleStatusType | null;
   //* Technical
   engineFuelType: string;
   engineConfiguration: string;
@@ -116,7 +116,7 @@ const InitialState: InitialVehicleState = {
   status: "",
   type: "",
   investment: "",
-  titleStatus: "",
+  titleStatus: null,
   //* Technical
   engineFuelType: "",
   engineConfiguration: "",
@@ -511,7 +511,9 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
                     name={"Title status"}
                     options={titleStatusOptions}
                     styles="w-50"
-                    value={vehicleData.titleStatus}
+                    value={
+                      vehicleData.titleStatus ? vehicleData.titleStatus : ""
+                    }
                     valueOption="titleStatus"
                     onChange={handleChange}
                   />

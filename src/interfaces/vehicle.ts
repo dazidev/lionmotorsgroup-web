@@ -40,7 +40,7 @@ export type Vehicle = {
   mileage: number;
   price: number;
   status: string;
-  titleStatus: string;
+  titleStatus: TitleStatusType | null;
   type: string;
   investment: number;
   createdAt: Date;
@@ -75,7 +75,7 @@ export type VehicleTechnical = {
   enginePower: number;
   engineDisplacement: number;
   engineTurbo: string;
-  drivetrain: "FOUR_X_FOUR" | "FOUR_X_TWO";
+  drivetrain: DrivetrainType;
   transmission: "automatic" | "manual";
   createdAt: Date;
   updatedAt: Date;

@@ -195,7 +195,7 @@ export const CatalogTable = ({
         <UpdateVehicleModal
           open={openModal.update}
           setOpen={handleOpenModal}
-          vehicle={data?.find((veh) => veh.id === targetId)!}
+          id={targetId}
         />
       )}
     </>

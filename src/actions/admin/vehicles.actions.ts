@@ -100,6 +100,55 @@ export async function getVehicles(
   }
 }
 
+export async function getVehicleById(
+  id: string,
+): Promise<ServerResponse<Vehicle>> {
+  try {
+    await requireAuth("admin");
+
+    const vehicle = await prisma.vehicleGeneral.findFirst({
+      where: {
+        id,
+        deletedAt: null,
+      },
+      include: {
+        brand: true,
+        technical: true,
+        specifications: {
+          where: {
+            deletedAt: null,
+          },
+          include: {
+            specification: true,
+          },
+        },
+        images: {
+          where: {
+            deletedAt: null,
+          },
+          orderBy: {
+            position: "desc",
+          },
+        },
+      },
+    });
+
+    if (!vehicle) throw new Error("Vehicle not found.");
+
+    return {
+      success: true,
+      data: vehicle,
+    };
+  } catch (error) {
+    console.error("[getVehicles]", error);
+
+    return {
+      success: false,
+      error: "There is an error loading that vehicle.",
+    };
+  }
+}
+
 export async function getBasicVehicles() {
   try {
     await requireAuth("admin");

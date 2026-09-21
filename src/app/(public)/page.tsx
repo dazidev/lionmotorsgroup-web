@@ -53,25 +53,32 @@ export default async function HomePage() {
   return (
     <main>
       <Hero />
-      <section className="flex justify-center pt-20 pb-28" id="brands">
-        <div className="flex flex-col sm:w-[1350px]">
+      <section
+        className="flex w-full min-w-0 justify-center pt-20 pb-28"
+        id="brands"
+      >
+        <div className="flex w-full min-w-0 max-w-[1350px] flex-col">
           <div className="text-center mb-20">
             <p className="line-both font-sans text-xl font-medium tracking-[0.2em] uppercase text-gold-700 mb-4 flex items-center justify-center gap-4">
               Our cars
             </p>
+
             <h2 className="text-4xl font-light text-white">
               The most <em className="italic text-gold-400">recent</em>
             </h2>
           </div>
-          <div className="px-5 md:px-0">
+
+          <div className="w-full min-w-0 px-5 md:px-0">
             <CarouselVehicles vehicles={vehicles} />
           </div>
+
           <div className="text-center my-20">
             <h2 className="text-4xl font-light text-white">
               Available <em className="italic text-gold-400">brands</em>
             </h2>
           </div>
-          <div className="px-5 md:px-0">
+
+          <div className="w-full min-w-0 px-5 md:px-0">
             <Grid option="brands">
               {dataBrands &&
                 dataBrands.map((brand) => (

@@ -17,25 +17,29 @@ export const CarouselVehicles = ({ vehicles }: Props) => {
     <div className="w-full min-w-0 overflow-hidden">
       <Swiper
         modules={[Autoplay]}
-        slidesPerView="auto"
+        slidesPerView={1}
         spaceBetween={16}
+        centeredSlides={false}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+        }}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
         }}
-        className="w-full"
+        className="w-full min-w-0"
       >
         {vehicles.map((veh) => (
-          <SwiperSlide
-            key={veh.id}
-            className="
-              !w-full
-              sm:!w-[calc((100%_-_16px)/2)]
-              lg:!w-[calc((100%_-_32px)/3)]
-              xl:!w-[calc((100%_-_48px)/4)]
-            "
-          >
-            <div className="flex justify-center py-2">
+          <SwiperSlide key={veh.id}>
+            <div className="flex w-full justify-center py-2">
               <VehicleCard
                 brand={veh.brand.name}
                 model={veh.model}

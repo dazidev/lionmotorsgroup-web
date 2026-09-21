@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="flex flex-col items-center bg-zinc-900 text-white px-8 py-10">
-      <div className="md:w-[1350px]">
+    <footer className="flex flex-col items-center bg-zinc-900 text-white pb-10 md:px-8 md:py-10">
+      <div className="w-full px-8 md:w-[1350px]">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <Image
@@ -13,7 +13,7 @@ export const Footer = () => {
               width={200}
               height={100}
               className="hidden md:flex"
-            ></Image>
+            />
           </div>
 
           <div>

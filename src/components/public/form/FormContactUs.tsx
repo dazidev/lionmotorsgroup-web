@@ -69,7 +69,7 @@ export const FormContactUs = () => {
 
   return (
     <form
-      className="flex flex-col items h-auto w-[75%] bg-stone-900 rounded-2xl text-center gap-5 p-5"
+      className="flex flex-col items h-auto w-[100%] md:w-[75%] bg-stone-900 rounded-2xl text-center gap-5 p-5"
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="text-center">

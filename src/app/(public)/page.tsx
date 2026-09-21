@@ -63,7 +63,7 @@ export default async function HomePage() {
               The most <em className="italic text-gold-400">recent</em>
             </h2>
           </div>
-          <div className="">
+          <div className="px-5 md:px-0">
             <CarouselVehicles vehicles={vehicles} />
           </div>
           <div className="text-center my-20">
@@ -71,12 +71,14 @@ export default async function HomePage() {
               Available <em className="italic text-gold-400">brands</em>
             </h2>
           </div>
-          <Grid option="brands">
-            {dataBrands &&
-              dataBrands.map((brand) => (
-                <BrandCard key={brand.id} brand={brand} />
-              ))}
-          </Grid>
+          <div className="px-5 md:px-0">
+            <Grid option="brands">
+              {dataBrands &&
+                dataBrands.map((brand) => (
+                  <BrandCard key={brand.id} brand={brand} />
+                ))}
+            </Grid>
+          </div>
         </div>
       </section>
       <OurValues />
@@ -101,7 +103,7 @@ export default async function HomePage() {
         id="contact-us"
       >
         <div
-          className="flex justify-center w-full md:w-[1350px]"
+          className="flex justify-center w-full px-5 md:px-0 md:w-[1350px]"
           id="contact-us"
         >
           <FormContactUs />

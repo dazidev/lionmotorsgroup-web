@@ -1,11 +1,10 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { Autoplay } from "swiper/modules";
-import { chunkArray } from "@/src/utils/chunkArray";
+
+import "swiper/css";
+
 import { VehicleCardInterface } from "@/src/interfaces";
 import { VehicleCard } from "../catalog/VehicleCard";
 
@@ -14,38 +13,42 @@ interface Props {
 }
 
 export const CarouselVehicles = ({ vehicles }: Props) => {
-  const grouped = chunkArray(vehicles, 4);
-
   return (
-    <>
+    <div className="w-full min-w-0 overflow-hidden">
       <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
+        modules={[Autoplay]}
+        slidesPerView="auto"
+        spaceBetween={16}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
         }}
-        modules={[Autoplay]}
+        className="w-full"
       >
-        {grouped.map((group, i) => (
-          <SwiperSlide key={i}>
-            <div className="flex flex-row justify-between py-2 px-2 gap-3">
-              {group.map((veh) => (
-                <VehicleCard
-                  key={veh.id}
-                  brand={veh.brand.name}
-                  model={veh.model}
-                  year={veh.year}
-                  miles={veh.mileage}
-                  price={veh.price}
-                  image={veh.images[0].key}
-                  link={`${veh.slug}-${veh.shortId}`}
-                />
-              ))}
+        {vehicles.map((veh) => (
+          <SwiperSlide
+            key={veh.id}
+            className="
+              !w-full
+              sm:!w-[calc((100%_-_16px)/2)]
+              lg:!w-[calc((100%_-_32px)/3)]
+              xl:!w-[calc((100%_-_48px)/4)]
+            "
+          >
+            <div className="flex justify-center py-2">
+              <VehicleCard
+                brand={veh.brand.name}
+                model={veh.model}
+                year={veh.year}
+                miles={veh.mileage}
+                price={veh.price}
+                image={veh.images[0].key}
+                link={`${veh.slug}-${veh.shortId}`}
+              />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };

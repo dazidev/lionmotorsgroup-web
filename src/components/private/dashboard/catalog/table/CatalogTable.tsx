@@ -173,21 +173,31 @@ export const CatalogTable = ({
           />
         )}
       </div>
-      <SpecificationManageModal
-        open={openModal.addBrand}
-        setOpen={handleOpenModal}
-      />
-      <ConfirmModal
-        open={openModal.confirm}
-        setOpen={handleOpenModal}
-        handleRemove={handleRemove}
-      />
-      <CreateVehicleModal open={openModal.create} setOpen={handleOpenModal} />
-      <UpdateVehicleModal
-        open={openModal.update}
-        setOpen={handleOpenModal}
-        vehicle={data?.find((veh) => veh.id === targetId)!}
-      />
+      {openModal.addBrand && (
+        <SpecificationManageModal
+          open={openModal.addBrand}
+          setOpen={handleOpenModal}
+        />
+      )}
+      {openModal.confirm && (
+        <ConfirmModal
+          open={openModal.confirm}
+          setOpen={handleOpenModal}
+          handleRemove={handleRemove}
+        />
+      )}
+
+      {openModal.create && (
+        <CreateVehicleModal open={openModal.create} setOpen={handleOpenModal} />
+      )}
+
+      {openModal.update && (
+        <UpdateVehicleModal
+          open={openModal.update}
+          setOpen={handleOpenModal}
+          vehicle={data?.find((veh) => veh.id === targetId)!}
+        />
+      )}
     </>
   );
 };

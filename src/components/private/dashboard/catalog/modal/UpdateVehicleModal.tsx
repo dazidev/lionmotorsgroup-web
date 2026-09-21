@@ -139,11 +139,14 @@ export const UpdateVehicleModal = ({ open, setOpen, vehicle }: Props) => {
   const { brandsData, specificationsData, resetCheckedSpec, setCheckedSpecs } =
     useCatalog();
 
-  const [imageAmount, setImageAmount] = useState(NUM_INITIAL_IMAGES);
+  const [imageAmount, setImageAmount] = useState(
+    vehicle?.images.length ?? NUM_INITIAL_IMAGES,
+  );
 
   const [images, setImages] = useState<ImagesState>(() =>
-    Array.from({ length: NUM_INITIAL_IMAGES }, (_, index) =>
-      createEmptyImage(index),
+    Array.from(
+      { length: vehicle?.images.length ?? NUM_INITIAL_IMAGES },
+      (_, index) => createEmptyImage(index),
     ),
   );
 

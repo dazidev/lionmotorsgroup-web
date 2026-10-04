@@ -21,18 +21,16 @@ export const TextInput = ({
   value,
   valueOption,
   onChange,
-  styles,
+  styles = "",
   label = true,
   required = false,
 }: Props) => {
   const handleChange = (value: string) => {
-    if (valueOption !== "specification") return onChange(value, valueOption);
-
     onChange(value, valueOption);
   };
 
   return (
-    <div className={`col-span-2 ${styles}`}>
+    <div className={`w-full min-w-0 ${styles}`}>
       {label && (
         <label htmlFor={valueOption} className="block mb-2 text-sm font-medium">
           {name}

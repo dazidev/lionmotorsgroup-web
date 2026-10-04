@@ -14,7 +14,7 @@ export const SecuritySpecificationModal = () => {
   const { specificationsData, revalidateData } = useCatalog();
 
   const handleAddSpecification = async () => {
-    if (!specification) return; // todo: add more validations!!
+    if (!specification) return;
     if (loading) return;
     setLoading(true);
 
@@ -36,27 +36,28 @@ export const SecuritySpecificationModal = () => {
   };
 
   return (
-    <div className="flex flex-col p-5 gap-8 border-b rounded-t border-stone-700">
-      <div className="flex flex-row items-center justify-between">
+    <div className="flex flex-col p-4 sm:p-5 gap-6 sm:gap-8 border-b border-stone-700">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <span className="text-xl font-semibold">Security Specifications</span>
-        <div className="flex flex-row items-end gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-end w-full md:w-auto gap-3">
           <TextInput
             name="Specification"
             label={false}
             value={specification}
             valueOption="specification"
             onChange={handleChange}
+            styles="w-full sm:min-w-60"
           />
           <DefaultButton
             name="Add Specification"
             style="bg-green-800 hover:bg-green-700"
-            size="w-42"
+            size="w-full sm:w-42"
             loading={loading}
             onClick={handleAddSpecification}
           />
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {specificationsData
           .filter((row) => row.type.includes("security"))
           .map((s) => (

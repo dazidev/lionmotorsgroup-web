@@ -22,13 +22,11 @@ export const SelectInput = ({
   valueOption,
   options,
   onChange,
-  styles,
+  styles = "",
   required = false,
 }: Props) => {
   const handleChange = (value: string) => {
-    if (valueOption === "typeSpecification") {
-      onChange(value, valueOption);
-    } else onChange(value, valueOption);
+    onChange(value, valueOption);
   };
 
   function isBrand(data: object): data is CatalogBrand {
@@ -36,13 +34,14 @@ export const SelectInput = ({
   }
 
   return (
-    <div className={`col-span-2 ${styles}`}>
+    <div className={`w-full min-w-0 ${styles}`}>
       <label htmlFor={name} className="block mb-2 text-sm font-medium">
         {name}
       </label>
+
       <select
         id={name}
-        className="w-full h-12 p-2.5 bg-zinc-800/80 border-2 border-gold-500/20 rounded-xl text-white placeholder-zinc-500 outline-none focus:bg-zinc-800 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
+        className="w-full min-w-0 h-12 p-2.5 bg-zinc-800/80 border-2 border-gold-500/20 rounded-xl text-white outline-none focus:bg-zinc-800 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10"
         value={value}
         onChange={(e) => {
           handleChange(e.target.value);
@@ -50,6 +49,7 @@ export const SelectInput = ({
         required={required}
       >
         <option value="">{`Select ${name.replace("*", "")}`}</option>
+
         {options.map((option) => {
           let formatOption;
 
@@ -74,14 +74,14 @@ export const SelectInput = ({
                 {formatOption}
               </option>
             );
-          } else if (typeof option === "object") {
-            if (isBrand(option)) {
-              return (
-                <option key={option.id} value={option.id}>
-                  {option.name}
-                </option>
-              );
-            }
+          }
+
+          if (typeof option === "object" && isBrand(option)) {
+            return (
+              <option key={option.id} value={option.id}>
+                {option.name}
+              </option>
+            );
           }
         })}
       </select>

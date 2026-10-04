@@ -250,16 +250,18 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
   return (
     <div
       tabIndex={-1}
-      className="overflow-hidden fixed z-50 flex justify-center items-center w-full md:inset-0 h-screen bg-zinc-800/90"
+      className="fixed inset-0 z-50 flex justify-center items-center w-full h-dvh bg-zinc-800/90 p-2 sm:p-4"
     >
-      <div className="relative p-4 w-full max-w-5xl max-h-full">
-        <div className="relative h-[calc(100vh-5rem)] overflow-y-auto no-scrollbar bg-zinc-900 rounded-2xl shadow-2xl border border-stone-700">
-          <div className="sticky top-0 z-100 flex w-full border-b rounded-t-2xl border-stone-700 bg-zinc-800 p-5">
-            <span className="text-2xl font-semibold">Create Vehicle</span>
+      <div className="relative w-full max-w-5xl h-full sm:h-auto">
+        <div className="relative h-full sm:h-[calc(100dvh-2rem)] overflow-y-auto no-scrollbar bg-zinc-900 rounded-xl sm:rounded-2xl shadow-2xl border border-stone-700">
+          <div className="sticky top-0 z-100 flex items-center w-full border-b rounded-t-xl sm:rounded-t-2xl border-stone-700 bg-zinc-800 p-4 sm:p-5">
+            <span className="text-xl sm:text-2xl font-semibold">
+              Create Vehicle
+            </span>
             <CloseButton onClick={setOpen} element="create" />
           </div>
-          <div className="flex p-5 border-b rounded-t border-stone-700">
-            <div className="flex justify-left items-end w-150 gap-3">
+          <div className="p-4 sm:p-5 border-b border-stone-700">
+            <div className="flex flex-col sm:flex-row sm:items-end w-full sm:max-w-150 gap-3">
               <TextInput
                 name={"VIN"}
                 styles="flex-3"
@@ -277,7 +279,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
               <DefaultButton
                 name="Search Vehicle"
                 onClick={handleSearch}
-                size="w-40"
+                size="w-full sm:w-40"
                 loading={loading.searchVehicle}
               />
             </div>
@@ -287,12 +289,12 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
               disabled={loading.createVehicle}
               className="contents disabled:opacity-60"
             >
-              <div className="flex flex-col p-5 gap-3 border-b rounded-t border-stone-700">
+              <div className="flex flex-col p-4 sm:p-5 gap-3 border-b border-stone-700">
                 <span className="text-xl font-semibold">Financials</span>
-                <div className="flex max-w-70 gap-3">
+                <div className="w-full sm:max-w-70">
                   <TextInput
                     name={"Initial Investment *"}
-                    styles="flex-3"
+                    styles="w-full"
                     value={vehicleData.investment}
                     valueOption="investment"
                     onChange={handleChange}
@@ -304,10 +306,10 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                 <span className="text-xl font-semibold">
                   General Specifications
                 </span>
-                <div className="flex min-w-full gap-3">
+                <div className="flex flex-col md:flex-row w-full gap-3">
                   <TextInput
                     name={"VIN *"}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.vin}
                     valueOption="vin"
                     onChange={handleChange}
@@ -315,7 +317,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                   <TextInput
                     name={"Year *"}
-                    styles="flex-1"
+                    styles="w-full md:flex-1"
                     value={vehicleData.year}
                     valueOption="year"
                     onChange={handleChange}
@@ -324,7 +326,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   <SelectInput
                     name={"Brand *"}
                     options={brandsData}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.brand}
                     valueOption="brand"
                     onChange={handleChange}
@@ -332,7 +334,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                   <TextInput
                     name={"Model *"}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.model}
                     valueOption="model"
                     onChange={handleChange}
@@ -340,17 +342,17 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                 </div>
 
-                <div className="flex min-w-full gap-3">
+                <div className="flex flex-col md:flex-row w-full gap-3">
                   <TextInput
                     name={"Series"}
-                    styles="flex-3"
+                    styles="w-full md:flex-3"
                     value={vehicleData.series}
                     valueOption="series"
                     onChange={handleChange}
                   />
                   <TextInput
                     name={"Doors"}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.doors}
                     valueOption="doors"
                     onChange={handleChange}
@@ -358,7 +360,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   <SelectInput
                     name={"Color Ext *"}
                     options={colors}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.colorExt}
                     valueOption="colorExt"
                     onChange={handleChange}
@@ -367,16 +369,16 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   <SelectInput
                     name={"Color Int"}
                     options={colors}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.colorInt}
                     valueOption="colorInt"
                     onChange={handleChange}
                   />
                 </div>
-                <div className="flex min-w-full gap-3">
+                <div className="flex flex-col md:flex-row w-full gap-3">
                   <TextInput
                     name={"Mileage *"}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.mileage}
                     valueOption="mileage"
                     onChange={handleChange}
@@ -384,7 +386,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                   <TextInput
                     name={"Price *"}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.price}
                     valueOption="price"
                     onChange={handleChange}
@@ -393,7 +395,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   <SelectInput
                     name={"Status *"}
                     options={statusOptions}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.status}
                     valueOption="status"
                     onChange={handleChange}
@@ -401,7 +403,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                   <TextInput
                     name={"Type"}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.type}
                     valueOption="type"
                     onChange={handleChange}
@@ -411,7 +413,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   <SelectInput
                     name={"Title status"}
                     options={titleStatusOptions}
-                    styles="w-50"
+                    styles="w-full sm:w-50"
                     value={vehicleData.titleStatus}
                     valueOption="titleStatus"
                     onChange={handleChange}
@@ -423,11 +425,11 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                 <span className="text-xl font-semibold">
                   Technical Specifications
                 </span>
-                <div className="flex min-w-full gap-3">
+                <div className="flex flex-col md:flex-row w-full gap-3">
                   <SelectInput
                     name={"Engine Fuel Type *"}
                     options={fuelOptions}
-                    styles="flex-3"
+                    styles="w-full md:flex-3"
                     value={vehicleData.engineFuelType}
                     valueOption="engineFuelType"
                     onChange={handleChange}
@@ -435,37 +437,37 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   />
                   <TextInput
                     name={"Engine Configuration"}
-                    styles="flex-4"
+                    styles="w-full md:flex-4"
                     value={vehicleData.engineConfiguration}
                     valueOption="engineConfiguration"
                     onChange={handleChange}
                   />
                   <TextInput
                     name={"Engine Cylinders"}
-                    styles="flex-3"
+                    styles="w-full md:flex-3"
                     value={vehicleData.engineCylinders}
                     valueOption="engineCylinders"
                     onChange={handleChange}
                   />
                   <TextInput
                     name={"Engine Power"}
-                    styles="flex-3"
+                    styles="w-full md:flex-3"
                     value={vehicleData.enginePower}
                     valueOption="enginePower"
                     onChange={handleChange}
                   />
                 </div>
-                <div className="flex min-w-full gap-3">
+                <div className="flex flex-col md:flex-row w-full gap-3">
                   <TextInput
                     name={"Engine Displacement"}
-                    styles="flex-3"
+                    styles="w-full md:flex-3"
                     value={vehicleData.engineDisplacement}
                     valueOption="engineDisplacement"
                     onChange={handleChange}
                   />
                   <TextInput
                     name={"Engine Turbo"}
-                    styles="flex-2"
+                    styles="w-full md:flex-2"
                     value={vehicleData.engineTurbo}
                     valueOption="engineTurbo"
                     onChange={handleChange}
@@ -473,7 +475,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   <SelectInput
                     name={"Drivetrain *"}
                     options={drivetrainOptions}
-                    styles="flex-3"
+                    styles="w-full md:flex-3"
                     value={vehicleData.drivetrain}
                     valueOption="drivetrain"
                     onChange={handleChange}
@@ -482,7 +484,7 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   <SelectInput
                     name={"Transmission *"}
                     options={transmissionOptions}
-                    styles="flex-3"
+                    styles="w-full md:flex-3"
                     value={vehicleData.transmission}
                     valueOption="transmission"
                     onChange={handleChange}
@@ -542,11 +544,11 @@ export const CreateVehicleModal = ({ open, setOpen }: Props) => {
                   </button>
                 </div>
               </div>
-              <div className="flex p-5 justify-end">
+              <div className="flex p-4 sm:p-5 justify-end">
                 <DefaultButton
                   type="submit"
                   name="Create Vehicle"
-                  size="w-40"
+                  size="w-full sm:w-40"
                   loading={loading.createVehicle}
                 />
               </div>

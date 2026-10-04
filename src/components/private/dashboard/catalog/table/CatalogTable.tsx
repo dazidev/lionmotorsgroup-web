@@ -105,19 +105,21 @@ export const CatalogTable = ({
 
   return (
     <>
-      <div className="relative overflow-x-auto shadow-sm sm:rounded-lg m-5 bg-zinc-900 border border-stone-700">
-        <div className="flex flex-row w-full h-20 items-center justify-between border-b border-stone-700 px-10">
-          <span className="text-xl text-gray-50 font-bold">{`${name}`}</span>
-          <div className="flex gap-3">
+      <div className="relative overflow-hidden shadow-sm rounded-lg m-2 sm:m-5 bg-zinc-900 border border-stone-700">
+        <div className="flex flex-col md:flex-row w-full md:items-center md:justify-between gap-4 border-b border-stone-700 p-4 sm:px-6 sm:py-5 lg:px-10">
+          <span className="text-xl text-gray-50 font-bold">{name}</span>
+
+          <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
             <button
-              className="block px-5 py-2 text-white font-bold rounded-lg cursor-pointer hover:brightness-110 bg-gold-700"
+              className="w-full sm:w-auto px-5 py-2.5 text-white font-bold rounded-lg cursor-pointer hover:brightness-110 bg-gold-700"
               type="button"
               onClick={() => handleOpenModal(true, "addBrand")}
             >
               Manage Details
             </button>
+
             <button
-              className="block px-5 py-2 text-white font-bold rounded-lg cursor-pointer hover:brightness-110 bg-gold-700"
+              className="w-full sm:w-auto px-5 py-2.5 text-white font-bold rounded-lg cursor-pointer hover:brightness-110 bg-gold-700"
               type="button"
               onClick={() => handleOpenModal(true, "create")}
             >
@@ -125,12 +127,14 @@ export const CatalogTable = ({
             </button>
           </div>
         </div>
-        <div className="px-8 py-6">
+
+        <div className="p-4 sm:px-6 sm:py-5 lg:px-8">
           <div className="relative">
             <BiSearch
               className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
               size={16}
             />
+
             <input
               type="text"
               placeholder="Search by model, brand or year..."
@@ -140,30 +144,39 @@ export const CatalogTable = ({
             />
           </div>
         </div>
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 pt-5">
-          <thead className="text-xs text-gray-100 uppercase bg-zinc-800">
-            <tr>
-              {headers &&
-                headers.map((header) => (
-                  <th key={header} scope="col" className="px-6 py-3">
-                    {header}
-                  </th>
+
+        <div className="w-full overflow-x-auto">
+          <table className="w-full min-w-max text-sm text-left rtl:text-right text-gray-500">
+            <thead className="text-xs text-gray-100 uppercase bg-zinc-800">
+              <tr>
+                {headers &&
+                  headers.map((header) => (
+                    <th
+                      key={header}
+                      scope="col"
+                      className="px-4 sm:px-6 py-3 whitespace-nowrap"
+                    >
+                      {header}
+                    </th>
+                  ))}
+              </tr>
+            </thead>
+
+            <tbody>
+              {dataList &&
+                dataList.map((vehicle) => (
+                  <CatalogTableItem
+                    key={vehicle.id}
+                    vehicle={vehicle}
+                    setOpenConfirm={handleOpenModal}
+                    setOpenEdit={handleOpenModal}
+                    setTargetId={setTargetId}
+                  />
                 ))}
-            </tr>
-          </thead>
-          <tbody>
-            {dataList &&
-              dataList.map((vehicle) => (
-                <CatalogTableItem
-                  key={vehicle.id}
-                  vehicle={vehicle}
-                  setOpenConfirm={handleOpenModal}
-                  setOpenEdit={handleOpenModal}
-                  setTargetId={setTargetId}
-                />
-              ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+
         {data && (
           <Pagination
             pages={amountPages}

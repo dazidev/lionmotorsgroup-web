@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,23 +9,28 @@ interface Props {
 
 export const TopNavItem = ({ path, labelText }: Props) => {
   const currentPath = usePathname();
+  const active =
+    path === "/dashboard" ? currentPath === path : currentPath.startsWith(path);
 
   return (
-    <li>
+    <li className="shrink-0">
       <Link
         href={path}
         className={`
-          flex items-center h-14  rounded-lg 
+          flex items-center justify-center
+          h-14
+          px-4 xl:px-5
+          whitespace-nowrap
+          rounded-lg
+          transition-colors
           ${
-            currentPath === path
-              ? " text-gold-400 font-bold"
+            active
+              ? "text-gold-400 font-bold"
               : "text-gold-700 hover:text-gold-400"
           }
         `}
       >
-        <div className="flex items-center pl-8">
-          <span className={"ms-3 text-2xl"}>{labelText}</span>
-        </div>
+        <span className="text-base sm:text-lg xl:text-xl">{labelText}</span>
       </Link>
     </li>
   );

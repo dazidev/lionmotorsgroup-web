@@ -1,5 +1,4 @@
 "use client";
-
 import { logout } from "@/src/actions";
 import { useClickOutside } from "@/src/hooks/useClickOutside";
 import { useRef, useState } from "react";
@@ -20,32 +19,57 @@ export const UserOptions = ({ name, lastname, email, role }: Props) => {
   useClickOutside(menuRef, () => setOpen(false), [btnRef]);
 
   return (
-    <>
+    <div className="relative shrink-0">
       <div className="flex items-center gap-3">
-        <div className="flex flex-col text-right">
-          <div className="text-lg font-semibold text-white">Hi, {name}</div>
-          <div className="text-sm text-slate-200">{email}</div>
+        <div className="hidden md:flex flex-col text-right max-w-55">
+          <div className="text-base lg:text-lg font-semibold text-white truncate">
+            Hi, {name}
+          </div>
+
+          <div className="text-sm text-slate-200 truncate">{email}</div>
         </div>
+
         <button
           ref={btnRef}
-          className="w-10 h-10 rounded-full bg-linear-to-br from-gold-400 to-gold-700 flex items-center justify-center text-white font-semibold cursor-pointer"
+          type="button"
+          className="w-10 h-10 shrink-0 rounded-full bg-linear-to-br from-gold-400 to-gold-700 flex items-center justify-center text-white font-semibold cursor-pointer"
           onClick={() => setOpen((v) => !v)}
         >
           {shortName}
         </button>
       </div>
+
       {open && (
         <div
           ref={menuRef}
-          className="flex flex-col bg-zinc-900 rounded-xl mt-2 border border-stone-700"
+          className="
+            absolute
+            right-0
+            top-full
+            mt-3
+            z-60
+            w-64
+            max-w-[calc(100vw-2rem)]
+            flex flex-col
+            bg-zinc-900
+            rounded-xl
+            border border-stone-700
+            shadow-2xl
+          "
         >
-          <div className="flex flex-col p-3 border-b border-stone-700">
-            <span className="font-semibold">{`${name} ${lastname}`}</span>
-            <span>{role}</span>
+          <div className="flex flex-col p-3 border-b border-stone-700 min-w-0">
+            <span className="font-semibold truncate">
+              {`${name} ${lastname}`}
+            </span>
+
+            <span className="text-sm text-slate-300 truncate">{email}</span>
+
+            <span className="text-sm text-slate-400">{role}</span>
           </div>
+
           <div className="py-1 hover:bg-zinc-800 rounded-b-xl">
             <button
-              className="flex w-full  py-2 cursor-pointer"
+              className="flex w-full py-2 cursor-pointer"
               onClick={() => {
                 setOpen(false);
                 logout();
@@ -56,6 +80,6 @@ export const UserOptions = ({ name, lastname, email, role }: Props) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };

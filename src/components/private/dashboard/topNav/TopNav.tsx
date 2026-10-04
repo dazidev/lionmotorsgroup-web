@@ -12,22 +12,23 @@ export const TopNav = async () => {
     redirect("/auth/login");
   }
 
-  const { id, name, lastname, email, role } = session.user;
+  const { name, lastname, email, role } = session.user;
 
   return (
-    <nav className="fixed top-0 z-50 w-full px-[5%] h-20 bg-zinc-900 border-b shadow-2xl border-b-gold-700/50">
-      <div className="flex flex-row px-3 py-3">
-        <div className="flex items-center h-14 justify-end pl-5">
+    <nav className="fixed top-0 z-50 w-full bg-zinc-900 border-b shadow-2xl border-b-gold-700/50">
+      <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-[5%]">
+        <div className="flex items-center shrink-0">
           <Image
             src="/logo-sin-fondo-leon.png"
             alt="Logo"
             width={80}
             height={80}
-          ></Image>
+            className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
+          />
         </div>
 
-        <div className="flex-1">
-          <ul className="flex flex-row justify-center">
+        <div className="hidden lg:flex flex-1 justify-center">
+          <ul className="flex items-center">
             <TopNavItem path="/dashboard" labelText="Home" />
             <TopNavItem path="/dashboard/admins" labelText="Admins" />
             <TopNavItem path="/dashboard/catalog" labelText="Catalog" />
@@ -36,14 +37,22 @@ export const TopNav = async () => {
           </ul>
         </div>
 
-        <div className="">
-          <UserOptions
-            name={name ?? ""}
-            lastname={lastname ?? ""}
-            email={email ?? ""}
-            role={role ?? ""}
-          />
-        </div>
+        <UserOptions
+          name={name ?? ""}
+          lastname={lastname ?? ""}
+          email={email ?? ""}
+          role={role ?? ""}
+        />
+      </div>
+
+      <div className="lg:hidden overflow-x-auto no-scrollbar border-t border-stone-800">
+        <ul className="flex min-w-max px-2">
+          <TopNavItem path="/dashboard" labelText="Home" />
+          <TopNavItem path="/dashboard/admins" labelText="Admins" />
+          <TopNavItem path="/dashboard/catalog" labelText="Catalog" />
+          <TopNavItem path="/dashboard/leads" labelText="Leads" />
+          <TopNavItem path="/dashboard/financials" labelText="Financials" />
+        </ul>
       </div>
     </nav>
   );
